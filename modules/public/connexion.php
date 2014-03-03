@@ -30,6 +30,6 @@
   }
 
   // Inclusion de la vue du formulaire
-  include_once 'vue/connexion.php';
+  include_once 'vue/connexion_vue.php';
 
 ?>
