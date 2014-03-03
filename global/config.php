@@ -45,6 +45,10 @@ define('LOGOUT_REDIRECT','index.php');
 define (SALT1, 'lkjedazLKNg24gtr6e54z');
 define (SALT2, 'mnkerz65khUCvz');
 
+// Message flash (session)
+define (MESSAGE_FLASH, 'Message_flash');
+define (MESSAGE_FLASH_DEFAULT, 'default');
+
 $queries = 0;
 
 ?>

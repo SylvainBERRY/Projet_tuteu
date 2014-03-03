@@ -72,7 +72,35 @@ function logout() {
 //////////////////////////
 
 //@todo : faire une fonction de redirect
-//@todo : faire une fonction de set message flash
-//@todo : faire une fonction de read message flash
 
+/**
+ * Ajoute un message flash en session dans une catégorie donnée.
+ * @param string $message  [Message à ajouter]
+ * @param string $category [Catégorie dans laquelle ajouter le message.]
+ */
+function setMessageFlash($message = "", $category = MESSAGE_FLASH_DEFAULT) {
+  $_SESSION[MESSAGE_FLASH][$category][] = $message;
+}
+
+/**
+ * Lit et retourne les messages enregistrés en session dans la catégorie donnée.
+ * @param  string $category [Catégorie contenant les messages que l'on souhaite récupérer]
+ * @return array           [Messages de cette catégorie]
+ */
+function getMessageFlash($category = MESSAGE_FLASH_DEFAULT) {
+
+  // On regarde si la category demandée existe
+  if (isset($_SESSION[MESSAGE_FLASH][$category])) {
+
+    // On récupère le/les messages
+    $message = $_SESSION[MESSAGE_FLASH][$category];
+    // On le retire de la session
+    unset($_SESSION[MESSAGE_FLASH][$category])
+    // On le retourne
+    return $message;
+  }
+
+  // Sinon on retourn un tableau vide
+  return array();
+}
 ?>
