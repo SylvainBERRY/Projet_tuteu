@@ -1,0 +1,21 @@
+td,th
+{
+	border: 1px solid black;
+}
+
+table
+{
+	border-collapse: collapse;
+	max-width: 100%;
+}
+
+body
+{
+	font: 14px calibri;
+}
+
+.dataTables_wrapper {
+	display: inline-block;
+	margin: 15px;
+	vertical-align: top;
+}

@@ -95,7 +95,7 @@ function getMessageFlash($category = MESSAGE_FLASH_DEFAULT) {
     // On récupère le/les messages
     $message = $_SESSION[MESSAGE_FLASH][$category];
     // On le retire de la session
-    unset($_SESSION[MESSAGE_FLASH][$category])
+    unset($_SESSION[MESSAGE_FLASH][$category]);
     // On le retourne
     return $message;
   }

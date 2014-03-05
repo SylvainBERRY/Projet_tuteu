@@ -23,14 +23,14 @@ Aucune information/erreur
 define('DEBUG', true);
 
 // Informations relatives au site
-define('ROOTPATH', 'http://'.$_SERVER['HTTP_HOST'].'/sylvain/GestionNotes', true);
+define('ROOTPATH', 'http://'.$_SERVER['HTTP_HOST'].'/GitHub/Projet_tuteu', true);
 define('TITRESITE', 'Gestion note', true);
 
 // Chemins d'accès
 define('CHEMIN_MODELE', 'modeles/');
 
 // Configuration de la base de données
-define('DB_NAME', 'sylvain');
+define('DB_NAME', 'getnotes');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_TYPE', 'mysql');
