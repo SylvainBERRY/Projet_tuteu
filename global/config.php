@@ -42,12 +42,22 @@ define('LOGOUT_REDIRECT','index.php');
 
 // Sécurité
 // Modifier lors de l'installation (différent du git) et ne plus le toucher
-define (SALT1, 'lkjedazLKNg24gtr6e54z');
-define (SALT2, 'mnkerz65khUCvz');
+define ('SALT1', 'lkjedazLKNg24gtr6e54z');
+define ('SALT2', 'mnkerz65khUCvz');
 
 // Message flash (session)
-define (MESSAGE_FLASH, 'Message_flash');
-define (MESSAGE_FLASH_DEFAULT, 'default');
+define ('MESSAGE_FLASH', 'Message_flash');
+define ('MESSAGE_FLASH_DEFAULT', 'default');
+
+//Configuration variable de test pour l'inscription
+define ('TOOSHORT','tooshort');
+define ('TOOLONG','toolong');
+define ('VIDE','vide');
+define ('EXISTS', 'exists');
+define ('OK','ok');
+define ('NOFIGURE', 'nofigure');
+define ('NOUPCAP', 'noupcap');
+define ('DIFFERENT', 'different');
 
 $queries = 0;
 

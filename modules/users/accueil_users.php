@@ -7,7 +7,7 @@
   $info_user = get_information_user( $_SESSION['id_user']);
 
   // Appel de la vue
-  include_once '/vue/accueil.php';
+  include_once '/vue/accueil_users_vue.php';
 
 
 ?>

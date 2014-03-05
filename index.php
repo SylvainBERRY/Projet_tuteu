@@ -65,23 +65,23 @@ if (is_file($chemin_page)) {
 			//Vérification de l'authentification de l'administrateur
 			if (administrateur_est_connecte()) {
 				// Inclusion de la page
-				include_once 'global/haut.php';
+				include_once 'modules/administrators/haut_admin.php';
 				include_once $chemin_page;
-				include_once 'global/bas.php';
+				include_once 'modules/administrators/bas_admin.php';
 			}
 			else{
 
 				if (utilisateur_est_connecte()) {
 					// Inclusion de la page de connexion
-					include_once 'global/haut.php';
+					include_once 'modules/public/haut_public.php';
 					include_once 'modules/public/acces_interdit.php';
-					include_once 'global/bas.php';
+					include_once 'modules/public/bas_public.php';
 				}
 				else {
 					// Inclusion de la page de connexion
-					include_once 'global/haut.php';
+					include_once 'modules/public/haut_public.php';
 					include_once 'modules/public/connexion.php';
-					include_once 'global/bas.php';
+					include_once 'modules/public/bas_public.php';
 				}
 			}
 		}
@@ -92,24 +92,24 @@ if (is_file($chemin_page)) {
 			//Vérification de l'authentification de l'utilisateur
 			if (utilisateur_est_connecte()) {
 				// Inclusion de la page
-				include_once 'global/haut.php';
+				include_once 'modules/users/haut_users.php';
 				include_once $chemin_page;
-				include_once 'global/bas.php';
+				include_once 'modules/users/haut_users.php';
 			}
 			else{
 				// Inclusion de la page de connexion
-				include_once 'global/haut.php';
-				include_once 'modules/public/connexion.php';
-				include_once 'global/bas.php';
+					include_once 'modules/public/haut_public.php';
+					include_once 'modules/public/connexion.php';
+					include_once 'modules/public/bas_public.php';
 			}
 
 		// Tentative d'accès à l'espace public
 		} else {
 
 			// Inclusion de la page
-			include_once 'global/haut.php';
+			include_once 'modules/public/haut_public.php';
 			include_once $chemin_page;
-			include_once 'global/bas.php';
+			include_once 'modules/public/bas_public.php';
 
 		}
 
@@ -117,9 +117,9 @@ if (is_file($chemin_page)) {
 } else {
 
 	// Inclusion erreur 404
-	include_once 'global/haut.php';
+	include_once 'modules/public/haut_public.php';
 	include_once 'modules/public/erreur404.php';
-	include_once 'global/bas.php';
+	include_once 'modules/public/bas_public.php';
 
 }
 
@@ -130,19 +130,4 @@ if (is_file($chemin_page)) {
 // 	inclue
 
 /**********Fin ent?te et titre***********/
-?>
-<!-- 		<div id="contenu">
-			<div id="map">
-				<a href="index.php">Accueil</a>
-			</div>
-
-			<h1>Bienvenue sur l'application Gestion de Notes</h1>
-			<p>
-			Si se n'est pas encore fait il faut vous <a href="utilisateurs/inscription.php">inscrire</a>
-			</p>
-		</div>
-
- -->
-<?php
-		// mysql_close();
 ?>

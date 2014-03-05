@@ -4,7 +4,7 @@
 if (!empty($_POST)) {
 
 	// Inclusion du modèle nécessaire
-    include_once CHEMIN_MODELE.'users.php';
+    include_once CHEMIN_MODELE.'inscription_modele.php';
 
 if($_SESSION['login'] == $_POST['login'] && trim($_POST['login']) != '')
 {
@@ -16,32 +16,33 @@ if($_SESSION['login'] == $_POST['login'] && trim($_POST['login']) != '')
 if(isset($_POST['login']))
 {
 	$login = trim($_POST['login']);
+	// Appel fonction de vérification utilisation login correcte
 	$login_result = check_login($login);
-	if($login_result == 'tooshort')
+	if($login_result == TOOSHORT)
 	{
 		// Ajout de l'erreur login trop court en message flash
 		//$_SESSION['message_info'] = '<span class="erreur">Le login '.htmlspecialchars($login, ENT_QUOTES).' est trop court, vous devez en choisir un plus long (minimum 3 caractères).</span><br/>';
 	}
 	
-	else if($login_result == 'toolong')
+	else if($login_result == TOOLONG)
 	{
 		// Ajout de l'erreur login trop long en message flash
 		//$_SESSION['message_info'] = '<span class="erreur">Le login '.htmlspecialchars($login, ENT_QUOTES).' est trop long, vous devez en choisir un plus court (maximum 32 caractères).</span><br/>';
 	}
 	
-	else if($login_result == 'exists')
+	else if($login_result == EXISTS)
 	{
 		// Ajout de l'erreur login déjà utiliséen message flash
 		//$_SESSION['message_info'] = '<span class="erreur">Le login '.htmlspecialchars($login, ENT_QUOTES).' est déjà pris, choisissez-en un autre.</span><br/>';
 	}
 		
-	else if($login_result == 'ok')
+	else if($login_result == OK)
 	{
 		//Login ok pas de message d'erreur en flash
 		//$_SESSION['message_info'] = '';
 	}
 	
-	else if($login_result == 'empty')
+	else if($login_result == VIDE)
 	{
 		// Ajout de l'erreur vous n'avez pas rentré de login en message flash
 		//$_SESSION['message_info'] = '<span class="erreur">Vous n\'avez pas entré de login.</span><br/>';
@@ -50,175 +51,159 @@ if(isset($_POST['login']))
 
 else
 {
-	exit();
+	// Réaffichage du formulaire d'inscription erreur survenu
 }
 
 //Prenom
 if(isset($_POST['prenom']))
 {
 	$prenom = trim($_POST['prenom']);
-	$prenom_result = check_prenom($prenom);
-	if($prenom_result == 'tooshort')
+	// Appel fonction de vérification utilisation prénom correcte
+	$prenom_result = check_nom_prenom($prenom);
+	if($prenom_result == TOOSHORT)
 	{
-		$_SESSION['prenom_info'] = '<span class="erreur">Le prenom '.htmlspecialchars($prenom, ENT_QUOTES).' est trop court, vous devez en choisir un plus long (minimum 3 caractères).</span><br/>';
-		$_SESSION['form_prenom'] = '';
-		$_SESSION['erreurs']++;
+		// Ajout de l'erreur prénom trop court en message flash
+		//$_SESSION['message_info'] = '<span class="erreur">Le prénom '.htmlspecialchars($login, ENT_QUOTES).' est trop court, vous devez en choisir un plus long (minimum 3 caractères).</span><br/>';
 	}
 	
-	else if($prenom_result == 'toolong')
+	else if($prenom_result == TOOLONG)
 	{
-		$_SESSION['prenom_info'] = '<span class="erreur">Le prenom '.htmlspecialchars($prenom, ENT_QUOTES).' est trop long, vous devez en choisir un plus court (maximum 32 caractères).</span><br/>';
-		$_SESSION['form_prenom'] = '';
-		$_SESSION['erreurs']++;
+		// Ajout de l'erreur prénom trop long en message flash
+		//$_SESSION['message_info'] = '<span class="erreur">Le prénom '.htmlspecialchars($login, ENT_QUOTES).' est trop long, vous devez en choisir un plus court (maximum 32 caractères).</span><br/>';
 	}
-		
-	else if($prenom_result == 'ok')
+			
+	else if($prenom_result == OK)
 	{
-		$_SESSION['prenom_info'] = '';
-		$_SESSION['form_prenom'] = $prenom;
+		//Prénom ok pas de message d'erreur en flash
+		//$_SESSION['message_info'] = '';
 	}
 	
-	else if($prenom_result == 'empty')
+	else if($prenom_result == VIDE)
 	{
-		$_SESSION['prenom_info'] = '<span class="erreur">Vous n\'avez pas entré de prenom.</span><br/>';
-		$_SESSION['form_prenom'] = '';
-		$_SESSION['erreurs']++;	
+		// Ajout de l'erreur vous n'avez pas rentré de prénom en message flash
+		//$_SESSION['message_info'] = '<span class="erreur">Vous n\'avez pas entré de prénom.</span><br/>';
 	}
 }
 
 else
 {
-	header('Location: ../index.php');
-	exit();
+	// Réaffichage du formulaire d'inscription erreur survenu
 }
 
 //Nom
 if(isset($_POST['nom']))
 {
 	$nom = trim($_POST['nom']);
-	$nom_result = checknom($nom);
-	if($nom_result == 'tooshort')
+	// Appel fonction de vérification utilisation nom correcte
+	$nom_result = check_nom_prenom($nom);
+	if($nom_result == TOOSHORT)
 	{
-		$_SESSION['nom_info'] = '<span class="erreur">Le nom '.htmlspecialchars($nom, ENT_QUOTES).' est trop court, vous devez en choisir un plus long (minimum 3 caractères).</span><br/>';
-		$_SESSION['form_nom'] = '';
-		$_SESSION['erreurs']++;
+		// Ajout de l'erreur nom trop court en message flash
+		//$_SESSION['message_info'] = '<span class="erreur">Le nom '.htmlspecialchars($login, ENT_QUOTES).' est trop court, vous devez en choisir un plus long (minimum 3 caractères).</span><br/>';
 	}
 	
-	else if($nom_result == 'toolong')
+	else if($nom_result == TOOLONG)
 	{
-		$_SESSION['nom_info'] = '<span class="erreur">Le nom '.htmlspecialchars($nom, ENT_QUOTES).' est trop long, vous devez en choisir un plus court (maximum 32 caractères).</span><br/>';
-		$_SESSION['form_nom'] = '';
-		$_SESSION['erreurs']++;
+		// Ajout de l'erreur nom trop long en message flash
+		//$_SESSION['message_info'] = '<span class="erreur">Le nom '.htmlspecialchars($login, ENT_QUOTES).' est trop long, vous devez en choisir un plus court (maximum 32 caractères).</span><br/>';
 	}
-		
-	else if($nom_result == 'ok')
+			
+	else if($nom_result == OK)
 	{
-		$_SESSION['nom_info'] = '';
-		$_SESSION['form_nom'] = $nom;
+		// Nom ok pas de message d'erreur en flash
+		//$_SESSION['message_info'] = '';
 	}
 	
-	else if($nom_result == 'empty')
+	else if($nom_result == VIDE)
 	{
-		$_SESSION['nom_info'] = '<span class="erreur">Vous n\'avez pas entré de nom.</span><br/>';
-		$_SESSION['form_nom'] = '';
-		$_SESSION['erreurs']++;	
+		// Ajout de l'erreur vous n'avez pas rentré de nom en message flash
+		//$_SESSION['message_info'] = '<span class="erreur">Vous n\'avez pas entré de nom.</span><br/>';
 	}
 }
 
 else
 {
-	header('Location: ../index.php');
-	exit();
+	// Réaffichage du formulaire d'inscription erreur survenu
 }
 
 //Mot de passe
 if(isset($_POST['mdp']))
 {
 	$mdp = trim($_POST['mdp']);
-	$mdp_result = checkmdp($mdp, '');
-	if($mdp_result == 'tooshort')
+	$mdp_result = check_mdp($mdp, '');
+	if($mdp_result == TOOSHORT)
 	{
-		$_SESSION['mdp_info'] = '<span class="erreur">Le mot de passe entré est trop court, changez-en pour un plus long (minimum 4 caractères).</span><br/>';
-		$_SESSION['form_mdp'] = '';
-		$_SESSION['erreurs']++;
+		// Ajout de l'erreur mdp trop court en message flash
+		//$_SESSION['message_info'] = '<span class="erreur">Le mot de passe '.htmlspecialchars($login, ENT_QUOTES).' est trop court, vous devez en choisir un plus long (minimum 3 caractères).</span><br/>';
 	}
 	
-	else if($mdp_result == 'toolong')
+	else if($mdp_result == TOOLONG)
 	{
-		$_SESSION['mdp_info'] = '<span class="erreur">Le mot de passe entré est trop long, changez-en pour un plus court. (maximum 50 caractères)</span><br/>';
-		$_SESSION['form_mdp'] = '';
-		$_SESSION['erreurs']++;
+		// Ajout de l'erreur mdp trop long en message flash
+		//$_SESSION['message_info'] = '<span class="erreur">Le mot de passe '.htmlspecialchars($login, ENT_QUOTES).' est trop long, vous devez en choisir un plus court (maximum 32 caractères).</span><br/>';
 	}
 	
-	else if($mdp_result == 'nofigure')
+	else if($mdp_result == NOFIGURE)
 	{
-		$_SESSION['mdp_info'] = '<span class="erreur">Votre mot de passe doit contenir au moins un chiffre.</span><br/>';
-		$_SESSION['form_mdp'] = '';
-		$_SESSION['erreurs']++;
+		// Ajout de l'erreur votre mot de passe doit contenir au moins un chiffre
+		//$_SESSION['mdp_info'] = '<span class="erreur">Votre mot de passe doit contenir au moins un chiffre.</span><br/>';
 	}
 		
-	else if($mdp_result == 'noupcap')
+	else if($mdp_result == NOUPCAP)
 	{
-		$_SESSION['mdp_info'] = '<span class="erreur">Votre mot de passe doit contenir au moins une majuscule.</span><br/>';
-		$_SESSION['form_mdp'] = '';
-		$_SESSION['erreurs']++;
+		// Ajout de l'erreur votre mot de passe doit contenir au moins une majuscule
+		//$_SESSION['mdp_info'] = '<span class="erreur">Votre mot de passe doit contenir au moins une majuscule.</span><br/>';
 	}
 		
-	else if($mdp_result == 'ok')
+	else if($mdp_result == OK)
 	{
-		$_SESSION['mdp_info'] = '';
-		$_SESSION['form_mdp'] = $mdp;
+		// Mdp ok pas de message d'erreur en flash
+		//$_SESSION['message_info'] = '';
 	}
 	
-	else if($mdp_result == 'empty')
+	else if($mdp_result == VIDE)
 	{
-		$_SESSION['mdp_info'] = '<span class="erreur">Vous n\'avez pas entré de mot de passe.</span><br/>';
-		$_SESSION['form_mdp'] = '';
-		$_SESSION['erreurs']++;
+		// Ajout de l'erreur vous n'avez pas rentré de mdp en message flash
+		//$_SESSION['message_info'] = '<span class="erreur">Vous n\'avez pas entré de not de passe.</span><br/>';
 
 	}
 }
 
 else
 {
-	header('Location: ../index.php');
-	exit();
+	// Réaffichage du formulaire d'inscription erreur survenu
 }
 
-//Mot de passe suite
+//Mot de passe confirmation
 if(isset($_POST['mdp_verif']))
 {
 	$mdp_verif = trim($_POST['mdp_verif']);
-	$mdp_verif_result = checkmdpS($mdp_verif, $mdp);
-	if($mdp_verif_result == 'different')
+	$mdp_verif_result = check_mdp_conf($mdp_verif, $mdp);
+	if($mdp_verif_result == DIFFERENT)
 	{
-		$_SESSION['mdp_verif_info'] = '<span class="erreur">Le mot de passe de vérification diffère du mot de passe.</span><br/>';
-		$_SESSION['form_mdp_verif'] = '';
-		$_SESSION['erreurs']++;
-		if(isset($_SESSION['form_mdp'])) unset($_SESSION['form_mdp']);
+		// Ajout de l'erreur mot de passe de confirmation différent du mot de passe initial
+		//$_SESSION['mdp_verif_info'] = '<span class="erreur">Le mot de passe de vérification diffère du mot de passe.</span><br/>';
 	}
 	
 	else
 	{
-		if($mdp_verif_result == 'ok')
+		if($mdp_verif_result == OK)
 		{
-			$_SESSION['form_mdp_verif'] = $mdp_verif;
-			$_SESSION['mdp_verif_info'] = '';
+			// Mdp de vérification ok pas de message d'erreur en flash
+			//$_SESSION['message_info'] = '';
 		}
 		
 		else
 		{
-			$_SESSION['mdp_verif_info'] = str_replace('passe', 'passe de vérification', $_SESSION['mdp_info']);
-			$_SESSION['form_mdp_verif'] = '';
-			$_SESSION['erreurs']++;
+			// Ajout erreur $mdp_verif_result trop court, trop long ...
+			//$_SESSION['message_info'] = $mdp_verif_result;
 		}
 	}
 }
 
 else
 {
-	header('Location: ../index.php');
-	exit();
+	// Réaffichage du formulaire d'inscription erreur survenu
 }
 
 //mail
@@ -295,15 +280,8 @@ else
 	exit();
 }
 
-/********Entête et titre de page*********/
-if($_SESSION['erreurs'] > 0) $titre = 'Erreur : Inscription 2/2';
-else $titre = 'Inscription 2/2';
-
-include('../includes/haut.php'); 
-
-/**********Fin entête et titre***********/
 ?>
-<!--Test des erreurs et envoi-->
+
 <?php
 	if($_SESSION['erreurs'] == 0)
 {
@@ -368,9 +346,5 @@ include('../includes/haut.php');
 		echo $_SESSION['mdp_verif_info'];
 		echo $_SESSION['mail_info'];
 		echo $_SESSION['mail_verif_info'];
-	
-?>
- }
-// Inclu la page d'inscription
-include_once 'vue/inscription_vue.php';
+	}
 ?>
