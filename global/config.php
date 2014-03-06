@@ -28,6 +28,7 @@ define('TITRESITE', 'Gestion note', true);
 
 // Chemins d'accès
 define('CHEMIN_MODELE', 'modeles/');
+define('CHEMIN_VUE', 'vues/');
 
 // Configuration de la base de données
 define('DB_NAME', 'getnotes');
