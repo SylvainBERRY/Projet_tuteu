@@ -1,6 +1,6 @@
 <?php
 
-  // Inclusion du modèle utilisateur
+  // Inclusion du modèle importation
   include_once CHEMIN_MODELE.'importation_modele.php';
 
   //Récupération login utilisateur
