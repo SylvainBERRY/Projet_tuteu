@@ -6,7 +6,7 @@ $(document).ready (function()
         "bAutoWidth": false,
         "bSort" : false,
         "oLanguage": {
-                "sUrl": "scripts/dataTables_french.txt"
+                "sUrl": "../../js/dataTables_french.txt"
             }
 
     });

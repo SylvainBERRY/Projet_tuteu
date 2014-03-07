@@ -6,7 +6,7 @@ $(document).ready (function()
         "bAutoWidth": false,
         "sSortAscending": true,
         "oLanguage": {
-                "sUrl": "scripts/dataTables_french.txt"
+                "sUrl": "../../js/dataTables_french.txt"
             },
         "aoColumnDefs": [
           { 'bSortable': false, 'aTargets': [ 0 ] }
