@@ -257,47 +257,4 @@ function afficherTable()
 	echo '</table>';
 }
 
-function afficherTable1()
-{
-	global $bdd;
-	$info_etudiants = $bdd->query('SELECT id_etud, nom, prenom, mail1, mail2  FROM etudiant');
-	$types_notes = $bdd->query('SELECT DISTINCT type_note FROM note');
-
-	echo '<table border="1">';
-	echo '<thead><tr>';
-	echo '<th><input type="checkbox" id="select_tout" /></th><th>Nom</th><th>Prénom</th><th>Email 1</th><th>Email 2</th>';
-
-	while ($type_note = $types_notes->fetch())
-	{
-		echo '<th>'.$type_note[0].'</th>';
-	}
-
-	echo '</tr></thead>';
-	echo '<tbody>';
-
-	
-
-	while ($etudiant = $info_etudiants->fetch())
-	{
-		echo '<tr>';
-		echo '<td><input type="checkbox" name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" /></td>';
-		echo '<td>'.$etudiant['nom'].'</td>';
-		echo '<td>'.$etudiant['prenom'].'</td>';
-		echo '<td>'.$etudiant['mail1'].'</td>';
-		echo '<td>'.$etudiant['mail2'].'</td>';
-
-		$note_etudiant = $bdd->query('SELECT valeur FROM note WHERE id_etud="'.$etudiant['id_etud'].'"');
-
-		while ($notes = $note_etudiant->fetch())
-		{
-			echo '<td>'.$notes[0].'</td>';
-		}
-
-		echo '</tr>';		
-	}
-
-	echo '</tbody>';
-	echo '</table>';
-}
-
 ?>
