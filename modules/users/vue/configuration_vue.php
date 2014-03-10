@@ -15,13 +15,13 @@
         <header>
 
         </header>
-    
+
         <section>
             <h1>Configuration des mails</h1>
 
              <form action="apercu.php" method="post" >
                 <label for="ue" >UE :</label>
-                <input id="ue" type="text" name="ue" />  
+                <input id="ue" type="text" name="ue" />
                 <br/>
                 <label for="enseignant" >Enseignant :</label>
                 <input id="enseignant" type="text" name="enseignant" />
@@ -32,11 +32,11 @@
                 <label for="message" >Enseignant :</label>
                 <br/>
                 <textarea id="message" name="message" >Bonjour, Voici le note du :
-                    
+
 Cordialement</textarea>
                 <br/>
                 <input type="submit" value="envoyer" /><input type="submit" value="aperçu" /></br>
-             
+
 <?php
 
     echo '<table border="1">';
@@ -60,6 +60,7 @@ Cordialement</textarea>
     echo '<td>'.$etudiant['mail1'].'</td>';
     echo '<td>'.$etudiant['mail2'].'</td>';
 
+    // @todo : - requêtes dans le controleur - utilisation de pdo (injection) - faire une fonction dans le modèle
     $note_etudiant = $bdd->query('SELECT valeur FROM note WHERE id_etud="'.$etudiant['id_etud'].'"');
 
     while ($notes = $note_etudiant->fetch())
@@ -67,7 +68,7 @@ Cordialement</textarea>
       echo '<td>'.$notes[0].'</td>';
     }
 
-    echo '</tr>';   
+    echo '</tr>';
     }
 
     echo '</tbody>';

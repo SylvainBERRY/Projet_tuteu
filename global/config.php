@@ -38,7 +38,7 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 
 // Configuration redirections
-define('LOGIN_REDIRECT','index.php?module=users&action=accueil');
+define('LOGIN_REDIRECT','index.php?module=users&action=accueil_users');
 define('LOGOUT_REDIRECT','index.php');
 
 // Sécurité
@@ -59,6 +59,10 @@ define ('OK','ok');
 define ('NOFIGURE', 'nofigure');
 define ('NOUPCAP', 'noupcap');
 define ('DIFFERENT', 'different');
+
+// Configuration page par défaut
+define ('DEFAULT_ACTION','accueil_public');
+define ('DEFAULT_MODULE','public');
 
 $queries = 0;
 

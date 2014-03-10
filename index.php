@@ -39,9 +39,9 @@ $titre = 'Accueil';
 //////////////////////////////////////
 
 // Module à prendre en compte (dossier)
-$module = 'public';
+$module = DEFAULT_MODULE;
 // Action du module à inclure (fichier)
-$action = 'accueil';
+$action = DEFAULT_ACTION;
 
 // Récupération du module
 if (!empty($_GET['module'])) {
