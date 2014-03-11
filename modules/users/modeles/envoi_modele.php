@@ -22,12 +22,13 @@
     $notes=$bdd->query('SELECT * FROM note
         WHERE id_etud IN '.$num_etud);
 
-    $objet = $_POST['objet'];
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
     $message_globale='';
 
+    $objet = $_POST['objet'];
+    $email_from = 'getnotes';
+    $email_replay = 'no_replay';
+
+    // L'envoi des mail etudiant
     while($etudiant=$etudiants->fetch()) 
     {
         $message = $_POST['message'];
@@ -37,14 +38,19 @@
             $note=$notes->fetch();
             $message.=$note['valeur'].' : '. $note['valeur'].'<br/>';
         }
+ 
+        $email_to = $etudiant['mail1']
+        envoiMail($email_from,$email_to,$objet,$message);
 
-        mail($etudiant['mail1'], $objet, $message, $headers);
-        mail($etudiant['mail2'], $objet, $message, $headers);
-
+        $email_to = $etudiant['mail2']
+        envoiMail($email_from,$email_to,$email_replay,$objet,$message);
+        
         $message_globale.=$message;
     }
 
+    // L'envoi du mail recapitulatif au prof
     $objet='Recapitulatif des message envoyé';
+    $email_to = $_SESSION['mail_prof'];
+    envoiMail($email_from,$email_to,$email_replay,$objet,$message_globale);
 
-    mail($_SESSION['mail'], $objet, $message_globale, $headers);
 ?>

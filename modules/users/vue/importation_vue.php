@@ -18,7 +18,7 @@
     
         <section>
             <h1>Importation fichier Excel</h1>
-            <form action="importation.php" method="post" enctype="multipart/form-data" >
+            <form action="index.php?module=users&amp;action=importation" method="post" enctype="multipart/form-data" >
                 <label for="info" >Emails étudiants :</label>
                 <input type="hidden" name="MAX_FILE_SIZE" value="2097152">  
                 <input type="file" id="excel_mails" name="excel_mails" value="ddd" />

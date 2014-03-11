@@ -1,13 +1,6 @@
 <?php
 
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=getnotes', 'root', '');
-}
-catch (Exception $exp)
-{
-    die('Erreur : ' . $exp->getMessage());
-}
+$pdo = PDOSingleton::getInstance();
 
 if(!(isset($_SESSION['emails_valides']) AND isset($_SESSION['charger'])))
 {

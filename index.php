@@ -108,7 +108,8 @@ if (is_file($chemin_page)) {
 
 			// Inclusion de la page
 			include_once 'modules/public/haut_public.php';
-			include_once $chemin_page;
+			//include_once $chemin_page;
+			include_once 'modules/public/connexion.php';
 			include_once 'modules/public/bas_public.php';
 
 		}
