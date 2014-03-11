@@ -29,6 +29,10 @@ define('TITRESITE', 'Gestion note', true);
 // Chemins d'accès
 define('CHEMIN_MODELE', 'modeles/');
 define('CHEMIN_VUE', 'vues/');
+define('CHEMIN_MODULE', ROOTPATH.'/modules/');
+define('CHEMIN_LIB', ROOTPATH.'/lib/');
+define('CHEMIN_JS', ROOTPATH.'/js/');
+define('CHEMIN_STYLE', ROOTPATH.'/styles/');
 
 // Configuration de la base de données
 define('DB_NAME', 'getnotes');
