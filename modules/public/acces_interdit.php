@@ -1,3 +1,3 @@
 <?php
-  include_once 'vue/acces_interdit_vue.php';
+  include_once CHEMIN_VUE.'acces_interdit_vue.php';
 ?>

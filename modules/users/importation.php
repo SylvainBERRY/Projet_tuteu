@@ -2,12 +2,12 @@
 
 include_once 'fonctions_importation.php';
 
-include_once 'modeles/importation_modele.php';
+include_once CHEMIN_MODELE.'importation_modele.php';
 
 if(isset($_POST['valider'])) {
-    header('Location:configuration.php');
+    header('Location:index.php?module=users&action=configuration');
 }
 
-include_once 'vue/importation_vue.php';
+include_once CHEMIN_VUE.'importation_vue.php';
 
 ?>

@@ -30,9 +30,11 @@ define('TITRESITE', 'Gestion note', true);
 define('CHEMIN_MODELE', 'modeles/');
 define('CHEMIN_VUE', 'vues/');
 define('CHEMIN_MODULE', ROOTPATH.'/modules/');
-define('CHEMIN_LIB', ROOTPATH.'/lib/');
+define('CHEMIN_LIB', ROOTPATH.'/libs/');
 define('CHEMIN_JS', ROOTPATH.'/js/');
 define('CHEMIN_STYLE', ROOTPATH.'/styles/');
+define('CHEMIN_EXCEL', ROOTPATH.'/modules/users/excels/');
+
 
 // Configuration de la base de données
 define('DB_NAME', 'getnotes');

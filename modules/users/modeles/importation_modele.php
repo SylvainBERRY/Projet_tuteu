@@ -1,6 +1,7 @@
 <?php
 
-$pdo = PDOSingleton::getInstance();
+
+$bdd = PDOSingleton::getInstance();
 
 if(!(isset($_SESSION['emails_valides']) AND isset($_SESSION['charger'])))
 {
@@ -8,12 +9,10 @@ if(!(isset($_SESSION['emails_valides']) AND isset($_SESSION['charger'])))
     $_SESSION['notes_valides']=false;
 }
 
-$chemin_destination = 'excels/';   
-
 if(isset($_FILES['excel_mails']) and (!erreurUpload('excel_mails')))
 {  
-	move_uploaded_file($_FILES['excel_mails']['tmp_name'], $chemin_destination.$_FILES['excel_mails']['name']);
-	$_SESSION['upload_mails']=$chemin_destination.$_FILES['excel_mails']['name'];
+	move_uploaded_file($_FILES['excel_mails']['tmp_name'], 'excels/'.$_FILES['excel_mails']['name']);
+	$_SESSION['upload_mails']='excels/'.$_FILES['excel_mails']['name'];
 }
 
 if(isset($_SESSION['upload_mails']))
@@ -48,8 +47,8 @@ if(isset($_SESSION['upload_mails']))
 
 if(isset($_FILES['excel_notes']) and (!erreurUpload('excel_notes')))
 {  
-	move_uploaded_file($_FILES['excel_notes']['tmp_name'], $chemin_destination.$_FILES['excel_notes']['name']);
-	$_SESSION['upload_notes']=$chemin_destination.$_FILES['excel_notes']['name'];
+	move_uploaded_file($_FILES['excel_notes']['tmp_name'], 'excels/'.$_FILES['excel_notes']['name']);
+	$_SESSION['upload_notes']='excels/'.$_FILES['excel_notes']['name'];
 }
 
 if(isset($_SESSION['upload_notes']))

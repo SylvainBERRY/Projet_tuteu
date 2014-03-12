@@ -12,7 +12,7 @@
 
       // Inclusion du modèle nécessaire
       // include_once CHEMIN_MODELE.'users.php';
-      include_once 'modeles/users_modele.php';
+      include_once CHEMIN_MODELE.'users_modele.php';
 
       // On vérifie si le login existe
       if (couple_login_mdp_valide($login,$mdp)) {
@@ -31,6 +31,6 @@
   }
 
   // Inclusion de la vue du formulaire
-  include_once 'vue/connexion_vue.php';
+  include_once CHEMIN_VUE.'connexion_vue.php';
 
 ?>

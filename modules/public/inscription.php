@@ -5,7 +5,7 @@ if (!empty($_POST)) {
 
 	// Inclusion du modèle nécessaire
   // include_once CHEMIN_MODELE.'inscription_modele.php';
-  include_once 'modeles/inscription_modele.php';
+  include_once CHEMIN_MODELE.'inscription_modele.php';
 
 if($_SESSION['login'] == $_POST['login'] && trim($_POST['login']) != '')
 {

@@ -2,12 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="../../styles/globale.css" />
-        <link rel="stylesheet" type="text/css" href="../../styles/jquery.dataTables.css">
-        <link rel="stylesheet" href="../../styles/importation.css" />
-        <script type="text/javascript" charset="utf8" src="../../js/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="../../js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="../../js/tables_import.js"></script>
+        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>globale.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo CHEMIN_STYLE ?>jquery.dataTables.css">
+        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>importation.css" />
+        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_import.js"></script>
         <title>Importation</title>
     </head>
     <body>
