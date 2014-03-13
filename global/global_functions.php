@@ -1,23 +1,64 @@
 <?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page global_functions.php
+*
+*Page contenant les fonctions globales qui vont être utilisées par l'application
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions donn?es)
+*
+*Liste des fonctions :
+*--------------------------
+*modifTitre($new_titre)
+*administrateur_est_connecte()
+*utilisateur_est_connecte()
+*password($mdp)
+*login($login)
+*logout()
+*setMessageFlash($message = "", $category = MESSAGE_FLASH_DEFAULT)
+*getMessageFlash($category = MESSAGE_FLASH_DEFAULT)
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
 
-////////////////////////////////
-// Fonctions authentification //
-////////////////////////////////
+// Inclusion du modèle pour récupérer les données utilisateur
+include_once (CHEMIN_MODULE.'public/'.CHEMIN_MODELE.'users_modele.php');
 
-// Vérifie si un utilisateur est connecté en tant que administrateur
+/**
+ * Modifie la variable $titre_head du fichier de configuration pour nommer une nouvelle page
+ */
+function modifTitre($new_titre) {
+  $titre_head = $new_titre;
+}
+
+/**
+ * Vérifie si un utilisateur est connecté en tant qu'administrateur
+ * @return bool [vrai si l'utilisateur est connecté en tant qu'administrateur, faux sinon
+ */
 function administrateur_est_connecte() {
   return !empty($_SESSION['id_user']) && $_SESSION['is_admin'];
 }
 
-// Vérifie si un utilisateur est connecté
+/**
+ * Vérifie si un utilisateur est connecté
+ * @return bool [vrai si l'utilisateur est connecté, faux sinon
+ */
 function utilisateur_est_connecte() {
   return !empty($_SESSION['id_user']);
 }
 
-// Fonction de cryptage utilisée pour les mots de passe utilisateur
+/**
+ * Fonction de cryptage utilisée pour les mots de passe utilisateur
+ * @param  string $mdp
+ * @return string $mdp en md5
+ */
 function password($mdp) {
   return $mdp;
-  return md5(SALT1.$mdp.SALT2);
+  //return md5(SALT1.$mdp.SALT2);
 }
 
 /**
@@ -26,19 +67,16 @@ function password($mdp) {
  */
 function login($login) {
 
-  // inclusion du modèle
-  include_once CHEMIN_MODELE.'users.php';
-
-  // récupérer l'utilisateur en base de données
+  // Récupérer l'utilisateur en base de données
   $user_information = get_user($login);
 
   // Si l'utilisateur existe => connecte
   if ($user_information) {
 
-    // inscrire l'utilisateur dans $_SESSION['id_user']
+    // Inscrire l'utilisateur dans $_SESSION['id_user']
     $_SESSION['id_user'] = $user_information['uti_id'];
 
-    // si l'utilisateur est super administration, inscrire dans $_SESSION['is_admin']
+    // Si l'utilisateur est super administration, inscrire dans $_SESSION['is_admin']
     if ($user_information['uti_is_admin']) {
       $_SESSION['is_admin'] = true;
     }
@@ -53,7 +91,7 @@ function login($login) {
 }
 
 /**
- * Déconnecte l'utilisateur courant.
+ * Déconnexion de l'utilisateur courant
  */
 function logout() {
 
