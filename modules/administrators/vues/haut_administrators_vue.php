@@ -32,5 +32,5 @@
     <body>
 		<header>
 			<h1> <?php echo $titre_head; ?> </h1>
-			<input type="button" name="logout" id="logout" value="Logout" onclick= "index.php?module=public&amp;action=deconnexion" /><br/>
+			<input type="button" name="logout" id="logout" value="Logout" onclick= "index.php?module=public&action=deconnexion" /><br/>
 		</header>

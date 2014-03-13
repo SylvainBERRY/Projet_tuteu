@@ -49,7 +49,8 @@ define('DB_HOST', 'localhost');
 
 // Configuration redirections
 define('LOGIN_REDIRECT','index.php?module=users&action=accueil_users');
-define('LOGOUT_REDIRECT','index.php');
+define('LOGIN_REDIRECT_ADMIN','index.php?module=administrators&action=accueil_administrators');
+define('LOGOUT_REDIRECT','index.php?module=public&action=connexion');
 
 // Sécurité
 // Modifier lors de l'installation (différent du git) et ne plus le toucher

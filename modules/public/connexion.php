@@ -11,7 +11,6 @@
       $mdp = $_POST['mdp'];
 
       // Inclusion du modèle nécessaire
-      // include_once CHEMIN_MODELE.'users.php';
       include_once CHEMIN_MODELE.'users_modele.php';
 
       // On vérifie si le login existe
@@ -20,9 +19,18 @@
         // Ajout de l'utilisateur en session
         if (login($login)) {
 
-          // @todo : Mettre message flash de succès
-          // Redirection
-          header( 'Location: '.LOGIN_REDIRECT );
+            // @todo : Mettre message flash de succès
+            setMessageFlash('Vous avez bien été connecté(e).');
+            
+            if (administrateur_est_connecte()) {
+                // Si administrateur redirection page d'administration
+                header( 'Location: '.LOGIN_REDIRECT_ADMIN);
+            }
+            else {
+              
+                // Redirection
+                header( 'Location: '.LOGIN_REDIRECT );
+            }
         }
 
       }

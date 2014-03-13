@@ -64,7 +64,11 @@ if (!empty($_GET['module'])) {
 if (!empty($_GET['action'])) {
 	$action = $_GET['action'];
 }
-// @todo : revoir le calcul du chemein page / et \ a tester
+
+// @todo : déplacer ou vous le voulez
+// Afficher les messages flash
+var_dump(getMessageFlash());
+
 // Calcul du chemin de la page
 $chemin_page = 	dirname(__FILE__).'/'.CHEMIN_MODULE.$module.'/'.$action.'.php';
 
@@ -76,11 +80,11 @@ if (is_file($chemin_page)) {
 		
 			//Vérification de l'authentification de l'administrateur
 			if (administrateur_est_connecte()) {
-				echo ('test partie administrateur');
+
 				// Inclusion de la page
 				modifTitre('Administration');
 				include_once (CHEMIN_MODULE.'administrators/haut_admin.php');
-				include_once (CHEMIN_MODULE.'administrators/accueil_administrators.php');
+				include_once ($chemin_page);
 				include_once (CHEMIN_MODULE.'administrators/bas_admin.php');
 			}
 			else{
@@ -112,7 +116,7 @@ if (is_file($chemin_page)) {
 				// Inclusion de la page
 				modifTitre('Importation');
 				include_once (CHEMIN_MODULE.'users/haut_users.php');
-				include_once (CHEMIN_MODULE.'users/importation.php');
+				include_once ($chemin_page);
 				include_once (CHEMIN_MODULE.'users/haut_users.php');
 			}
 			else{
@@ -130,7 +134,7 @@ if (is_file($chemin_page)) {
 			// Inclusion de la page
 			modifTitre('Connexion');
 			include_once (CHEMIN_MODULE.'public/haut_public.php');
-			include_once (CHEMIN_MODULE.'public/connexion.php');
+			include_once ($chemin_page);
 			include_once (CHEMIN_MODULE.'public/bas_public.php');
 
 		}
