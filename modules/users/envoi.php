@@ -1,11 +1,9 @@
 <?php
 
-session_start();
+include_once 'fonctions_envoi.php';
 
-include_once 'modeles/fonctions_envoi.php';
+include_once CHEMIN_MODELE.'envoi_modele.php';
 
-include_once 'modeles/envoi_modele.php';
-
-include_once 'vue/envoi_vue.php';
+include_once CHEMIN_VUE.'envoi_vue.php';
 
 ?>

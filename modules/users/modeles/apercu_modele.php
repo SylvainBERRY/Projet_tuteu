@@ -1,13 +1,6 @@
 <?php
 
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=getnotes', 'root', '');
-}
-catch (Exception $exp)
-{
-    die('Erreur : ' . $exp->getMessage());
-}
+$bdd = PDOSingleton::getInstance();
 
 foreach (array_keys($_POST) as $checkbox) 
 {

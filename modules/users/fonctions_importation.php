@@ -2,7 +2,7 @@
 
 function lectureExcel($url)
 {
-	require_once '../../libs/PHPExcel/IOFactory.php';
+	require_once CHEMIN_LIB.'PHPExcel/IOFactory.php';
 	$fichier_excel = PHPExcel_IOFactory::load($url);
 	$feuille = $fichier_excel->getSheet(0);
 	return $feuille;

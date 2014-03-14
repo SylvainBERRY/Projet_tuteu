@@ -1,5 +1,7 @@
 <?php
    
+    $bdd = PDOSingleton::getInstance();
+    
     foreach (array_keys($_POST) as $checkbox) 
     {
         if(preg_match("/checkbox/", $checkbox))    $checkboxs[]=preg_replace("/checkbox_/","",$checkbox);

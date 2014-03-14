@@ -1,26 +1,27 @@
 <?php
-/*
-BERRY Sylvain & El-Hocine Takouert
-Page config.php
-
-Deux define et la variable de queries.
-
-Quelques indications : (utiliser l'outil de recherche et rechercher les mentions donn?es)
-
-Liste des fonctions :
---------------------------
-Aucune fonction
---------------------------
-
-
-Liste des informations/erreurs :
---------------------------
-Aucune information/erreur
---------------------------
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page config.php
+*
+*Définit les variables de bases qui vont être utilisé dans toutes l'application
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions donn?es)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
 */
 
 // Confgiuration developpement
-define('DEBUG', true);
+define('DEBUG_SESSION', true);
+define('DEBUG_POST', true);
+define('DEBUG_GET', true);
 
 // Informations relatives au site
 define('ROOTPATH', 'http://'.$_SERVER['HTTP_HOST'].'/GitHub/Projet_tuteu', true);
@@ -29,11 +30,14 @@ define('TITRESITE', 'Gestion note', true);
 // Chemins d'accès
 define('CHEMIN_MODELE', 'modeles/');
 define('CHEMIN_VUE', 'vues/');
-define('CHEMIN_MODULE', ROOTPATH.'/modules/');
-define('CHEMIN_LIB', ROOTPATH.'/libs/');
-define('CHEMIN_JS', ROOTPATH.'/js/');
-define('CHEMIN_STYLE', ROOTPATH.'/styles/');
-define('CHEMIN_EXCEL', ROOTPATH.'/modules/users/excels/');
+define('CHEMIN_MODULE', 'modules/');
+define('CHEMIN_LIB', 'libs/');
+define('CHEMIN_JS', 'js/');
+define('CHEMIN_STYLE', 'styles/');
+define('CHEMIN_USERS', 'users/');
+define('CHEMIN_PUBLIC', 'public/');
+define('CHEMIN_ADMINISTRATORS', 'administrators/');
+define('CHEMIN_EXCEL', CHEMIN_MODULE.'/'.CHEMIN_USERS.'excels/');
 
 
 // Configuration de la base de données
@@ -45,7 +49,8 @@ define('DB_HOST', 'localhost');
 
 // Configuration redirections
 define('LOGIN_REDIRECT','index.php?module=users&action=accueil_users');
-define('LOGOUT_REDIRECT','index.php');
+define('LOGIN_REDIRECT_ADMIN','index.php?module=administrators&action=accueil_administrators');
+define('LOGOUT_REDIRECT','index.php?module=public&action=connexion');
 
 // Sécurité
 // Modifier lors de l'installation (différent du git) et ne plus le toucher
@@ -69,7 +74,5 @@ define ('DIFFERENT', 'different');
 // Configuration page par défaut
 define ('DEFAULT_ACTION','accueil_public');
 define ('DEFAULT_MODULE','public');
-
-$queries = 0;
 
 ?>

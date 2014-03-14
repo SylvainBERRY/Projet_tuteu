@@ -1,27 +1,25 @@
 <?php
-/*
-BERRY Sylvain & El-Hocine Takouert
-Page bas.php
-
-Pied de page.
-
-Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
-
-Liste des fonctions :
---------------------------
-Aucune fonction
---------------------------
-
-
-Liste des informations/erreurs :
---------------------------
-Aucune information/erreur
---------------------------
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page bas_administrators_vue.php
+*
+*Bas de page administrateur.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
 */
 ?>
-		<div id="footer">
+		<footer>
 			Site realise par BERRY Sylvain & El-Hocine Takouert.<br/>
-			<?php// echo $queries; ?>
-		</div>
+		</footer>
 	</body>
 </html>

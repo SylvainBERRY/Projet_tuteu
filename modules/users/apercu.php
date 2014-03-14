@@ -1,9 +1,7 @@
 <?php
 
-session_start();
+include_once CHEMIN_MODELE.'apercu_modele.php';
 
-include_once 'modeles/apercu_modele.php';
-
-include_once 'vue/apercu_vue.php';
+include_once CHEMIN_VUE.'apercu_vue.php';
 
 ?>
