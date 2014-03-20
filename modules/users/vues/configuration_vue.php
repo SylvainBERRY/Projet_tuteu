@@ -19,7 +19,7 @@
         <section>
             <h1>Configuration des mails</h1>
 
-             <form action="index.php?module=users&amp;action=apercu" method="post" >
+             <form action="index.php?module=users&amp;action=envoi" method="post" >
                 <label for="ue" >UE :</label>
                 <input id="ue" type="text" name="ue" />
                 <br/>
