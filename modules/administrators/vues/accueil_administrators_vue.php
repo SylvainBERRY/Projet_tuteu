@@ -28,19 +28,20 @@
 		<tr><th>Nom</th> <th>Pr&egrave;nom</th> <th>Email</th> <th>Login</th> </tr>
 		<?php
 		$reponse = lectureUti();
-		while ($donnees = $reponse->fetch())
-		{
+
+		foreach ($reponse as $donnees) {
 		?>
 			<tr><td>
-			<input type="checkbox" name="<?php echo $donnees['id']; ?>" checked="checked" onclick="afficherLigne("<?php echo $donnees['id']; ?>");"></td>
+			<!-- Effectuer le traitement AJAX pour afficher les données de la ligne coché dans le formulaire ci-dessous (dataUti) -->
+			<input type="checkbox" name="<?php echo $donnees['uti_id']; ?>"/></td>
 			<td>
-			<?php echo $donnees['nom']; ?></td>
+			<?php echo $donnees['uti_nom']; ?></td>
 			<td>
-			<?php echo $donnees['prenom']; ?></td>
+			<?php echo $donnees['uti_prenom']; ?></td>
 			<td>
-			<?php echo $donnees['email']; ?></td>
+			<?php echo $donnees['uti_mail']; ?></td>
 			<td>
-			<?php echo $donnees['login']; ?></td>
+			<?php echo $donnees['uti_login']; ?></td>
 			</tr>
 			<?php
 		}
@@ -48,28 +49,28 @@
 	</table> 
 </p>
 <p class="gestionUti">
-	<form id="dataUti" method="post" action="traitDataUti.php">
-		<p class="showDataUti">
+	<form id="dataUti" method="post" action="index.php?module=administrators&action=traite_administrators">
+		<p>
 		<!-- Affichage des donn&egrave;es de l'utilisateur s&egrave;lectionn&egrave; -->
 			Nom
-			<input type="text" id="nom" name="Nom" value="" size="15" />
+			<input type="text" name="Nom" value="" size="15" />
 			<br>
 			Pr&egrave;nom
-			<input type="text" id="prenom" name="Pr&egrave;nom" value="" size="15" />
+			<input type="text" name="Prenom" value="" size="15" />
 			<br>
 			Email
-			<input type="text" id="email"name="Email" value="" size="15" />
+			<input type="text" name="Email" value="" size="15" />
 			<br>
 			Login
-			<input type="text" id="login" name="Login" value="" size="15" />
+			<input type="text" name="Login" value="" size="15" />
 		</p>
 		<h1>
 		<!-- Bouton de gestion utilisateur -->
-			<input type="button" name="Modifier" value="Modifier l&apos;utilisateur" onclick="index.php?module=public&amp;action=modif_admin"/>
+			<input type="submit" name="modif_uti" value="Modifier" />
 			<br>
-			<input type="button" name="Supprimer" value="Supprimer l&apos;utilisateur" onclick="index.php?module=public&amp;action=suppr_admin" />
+			<input type="submit" name="modif_uti" value="Supprimer" />
 			<br>
-			<input type="button" name="Creer" value="Nouveau utilisateur" onclick="index.php?module=public&amp;action=new_admin"  />
+			<input type="submit" name="modif_uti" value="Nouveau" />
 		</h1>
 	</form>
 </p>

@@ -83,9 +83,9 @@ if (is_file($chemin_page)) {
 
 				// Inclusion de la page
 				modifTitre('Administration');
-				include_once (CHEMIN_MODULE.'administrators/haut_admin.php');
+				include_once (CHEMIN_MODULE.'administrators/haut_administrators.php');
 				include_once ($chemin_page);
-				include_once (CHEMIN_MODULE.'administrators/bas_admin.php');
+				include_once (CHEMIN_MODULE.'administrators/bas_administrators.php');
 			}
 			else{
 				if (utilisateur_est_connecte()) {

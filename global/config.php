@@ -26,6 +26,7 @@ define('DEBUG_GET', true);
 // Informations relatives au site
 define('ROOTPATH', 'http://'.$_SERVER['HTTP_HOST'].'/GitHub/Projet_tuteu', true);
 define('TITRESITE', 'Gestion note', true);
+$titre_head = 'GetNote';
 
 // Chemins d'accès
 define('CHEMIN_MODELE', 'modeles/');
@@ -49,6 +50,7 @@ define('DB_HOST', 'localhost');
 
 // Configuration redirections
 define('LOGIN_REDIRECT','index.php?module=users&action=accueil_users');
+define('INSCRIPTION_REDIRECT', 'index.php?module=public&action=inscription');
 define('LOGIN_REDIRECT_ADMIN','index.php?module=administrators&action=accueil_administrators');
 define('LOGOUT_REDIRECT','index.php?module=public&action=connexion');
 
@@ -72,7 +74,7 @@ define ('NOUPCAP', 'noupcap');
 define ('DIFFERENT', 'different');
 
 // Configuration page par défaut
-define ('DEFAULT_ACTION','accueil_public');
+define ('DEFAULT_ACTION','connexion');
 define ('DEFAULT_MODULE','public');
 
 ?>

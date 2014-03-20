@@ -1,16 +1,43 @@
 <?php
-
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page inscription.php
+*
+*Page d'inscription par defaut.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
 // Si des données sont postées
 if (!empty($_POST)) {
 
 	// Inclusion du modèle nécessaire
-  // include_once CHEMIN_MODELE.'inscription_modele.php';
-  include_once CHEMIN_MODELE.'inscription_modele.php';
+	include_once CHEMIN_MODELE.'inscription_modele.php';
 
 if($_SESSION['login'] == $_POST['login'] && trim($_POST['login']) != '')
 {
-	// Créer message flash et redirection utilisateur déjà inscrit et connecté avec le login $_POST['login']
-	// Redirection accueil
+	// Création message flash utilisateur déjà inscrit et connecté avec le login
+    setMessageFlash('Vous êtes déjà connecté(e) '.$_POST['login'].'.');
+
+	// Redirection si administrateur ou utilisateur
+	if (administrateur_est_connecte()) {
+              // Si administrateur redirection page d'administration
+              header( 'Location: '.LOGIN_REDIRECT_ADMIN);
+          }
+          else {
+            
+              // Redirection page utilisateur
+              header( 'Location: '.LOGIN_REDIRECT );
+          }
 }
 
 //Login
@@ -206,7 +233,8 @@ else
 {
 	// Réaffichage du formulaire d'inscription erreur survenu
 }
-
+}
+/*
 //mail
 if(isset($_POST['mail']))
 {
@@ -294,7 +322,7 @@ else
 				$_SESSION['inscrit'] = $login;
 				/*informe qu'il s'est déjà inscrit s'il actualise, si son navigateur
 				bugue avant l'affichage de la page et qu'il recharge la page, etc.*/
-?>
+/*?>
 	<h1>Inscription validée !</h1>
 	<p>Nous vous remercions de vous être inscrit sur notre site, votre inscription a été validée !<br/>
 	Vous pouvez vous connecter avec vos identifiants <a href="connexion.php">ici</a>.
@@ -348,4 +376,5 @@ else
 		echo $_SESSION['mail_info'];
 		echo $_SESSION['mail_verif_info'];
 	}
+?> */
 ?>
