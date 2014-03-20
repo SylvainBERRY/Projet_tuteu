@@ -32,7 +32,6 @@
 
 		foreach ($reponse as $donnees) {
 		?>
-
 			<tr>
 			<td>
 			<!-- Effectuer le traitement AJAX pour afficher les données de la ligne coché dans le formulaire ci-dessous (dataUti) -->
@@ -44,7 +43,6 @@
 			<td>
 			<?php echo $donnees['uti_mail']; ?></td>
 			<td>
-
 			<?php echo $donnees['uti_login']; ?></td>
 			</tr>
 			

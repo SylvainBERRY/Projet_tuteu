@@ -1,3 +1,23 @@
+<?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page inscription_vue.php
+*
+*Page vue d'inscription par defaut.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
+?>
 <!-- Formulaire d'inscription -->
 	<div id="contenu">
 		<h1>Formulaire d'inscription</h1>
@@ -12,6 +32,7 @@
 				<label for="mdp_verif" class="float">Mot de passe (vérification) :</label> <input type="password" name="mdp_verif" id="mdp_verif" size="30" /><br />
 				<label for="mail" class="float">Mail :</label> <input type="text" name="mail" id="mail" size="30" /> <br />
 				<label for="mail_verif" class="float">Mail (vérification) :</label> <input type="text" name="mail_verif" id="mail_verif" size="30" /><br />
+				<label for="ue" class="float">UE (Plusieurs choix possible) :</label> <input type="text" name="ue" id="ue" size="30" /><br />
 				<div class="center"><input type="submit" value="Inscription" /></div>
 			</fieldset>
 		</form>

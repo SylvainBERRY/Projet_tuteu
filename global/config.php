@@ -53,6 +53,7 @@ define('LOGIN_REDIRECT','index.php?module=users&action=accueil_users');
 define('INSCRIPTION_REDIRECT', 'index.php?module=public&action=inscription');
 define('LOGIN_REDIRECT_ADMIN','index.php?module=administrators&action=accueil_administrators');
 define('LOGOUT_REDIRECT','index.php?module=public&action=connexion');
+define('LOGIN_REDIRECT_INSCRIPTION','index.php?action=inscription');
 
 // Sécurité
 // Modifier lors de l'installation (différent du git) et ne plus le toucher
