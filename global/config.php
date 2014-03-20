@@ -38,7 +38,7 @@ define('CHEMIN_STYLE', 'styles/');
 define('CHEMIN_USERS', 'users/');
 define('CHEMIN_PUBLIC', 'public/');
 define('CHEMIN_ADMINISTRATORS', 'administrators/');
-define('CHEMIN_EXCEL', CHEMIN_MODULE.'/'.CHEMIN_USERS.'excels/');
+define('CHEMIN_EXCEL', 'excels/');
 
 
 // Configuration de la base de données
@@ -76,5 +76,6 @@ define ('DIFFERENT', 'different');
 // Configuration page par défaut
 define ('DEFAULT_ACTION','connexion');
 define ('DEFAULT_MODULE','public');
+define ('DEFAULT_ACTION_ADMIN','accueil_administrators');
 
 ?>

@@ -1,5 +1,7 @@
 <?php
    
+    $bdd = PDOSingleton::getInstance();
+    
     foreach (array_keys($_POST) as $checkbox) 
     {
         if(preg_match("/checkbox/", $checkbox))    $checkboxs[]=preg_replace("/checkbox_/","",$checkbox);
@@ -22,6 +24,13 @@
     $notes=$bdd->query('SELECT * FROM note
         WHERE id_etud IN '.$num_etud);
 
+    $types_notes = $bdd->query('SELECT DISTINCT type_note FROM note');
+
+    while($type=$types_notes->fetch())
+    {
+        $tab_type_note[]=$type[0];
+    }
+
     $message_globale='';
 
     $objet = $_POST['objet'];
@@ -31,18 +40,18 @@
     // L'envoi des mail etudiant
     while($etudiant=$etudiants->fetch()) 
     {
-        $message = $_POST['message'];
+        $message = $_POST['message'].'<br/>';
 
-        for ($i=1; $i<=2; $i++) 
+        foreach ($tab_type_note as $type)
         {
             $note=$notes->fetch();
-            $message.=$note['valeur'].' : '. $note['valeur'].'<br/>';
+            $message.=$type.' : '. $note['valeur'].'<br/>';
         }
  
-        $email_to = $etudiant['mail1']
-        envoiMail($email_from,$email_to,$objet,$message);
+        $email_to = $etudiant['mail1'];
+        envoiMail($email_from,$email_to,$email_replay,$objet,$message);
 
-        $email_to = $etudiant['mail2']
+        $email_to = $etudiant['mail2'];
         envoiMail($email_from,$email_to,$email_replay,$objet,$message);
         
         $message_globale.=$message;

@@ -25,13 +25,16 @@
 	</h1>
 	<!-- Affichage de la liste des utilisateurs avec choix possible -->
 	 <table name="tableauUti">
-		<tr><th>Nom</th> <th>Pr&egrave;nom</th> <th>Email</th> <th>Login</th> </tr>
+		<thead><tr><th></th><th>Nom</th> <th>Pr&egrave;nom</th> <th>Email</th> <th>Login</th> </tr></thead>
+		<tbody>
 		<?php
 		$reponse = lectureUti();
 
 		foreach ($reponse as $donnees) {
 		?>
-			<tr><td>
+
+			<tr>
+			<td>
 			<!-- Effectuer le traitement AJAX pour afficher les données de la ligne coché dans le formulaire ci-dessous (dataUti) -->
 			<input type="checkbox" name="<?php echo $donnees['uti_id']; ?>"/></td>
 			<td>
@@ -41,11 +44,14 @@
 			<td>
 			<?php echo $donnees['uti_mail']; ?></td>
 			<td>
+
 			<?php echo $donnees['uti_login']; ?></td>
 			</tr>
+			
 			<?php
 		}
 		?>
+	</tbody>
 	</table> 
 </p>
 <p class="gestionUti">

@@ -2,14 +2,7 @@
 
 function envoiMail($email_from,$email_to,$email_replay,$objet,$message)
 {
-
-	$header = "From: \"WeaponsB\" ".$email_from.$passage_ligne;
-	$header.= "Reply-to: \"WeaponsB\" ".$email_replay.$passage_ligne;
-	$headers  .= 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-    /*
-    if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
+	if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
 	{
 		$passage_ligne = "\r\n";
 	}
@@ -17,6 +10,14 @@ function envoiMail($email_from,$email_to,$email_replay,$objet,$message)
 	{
 		$passage_ligne = "\n";
 	}
+	
+	$header = "From: \"WeaponsB\" ".$email_from.$passage_ligne;
+	$header.= "Reply-to: \"WeaponsB\" ".$email_replay.$passage_ligne;
+	$headers  .= 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+    /*
+    
 	//=====Déclaration des messages au format texte et au format HTML.
 	$message_txt = "Salut à tous, voici un e-mail envoyé par un script PHP.";
 	$message_html = "<html><head></head><body><b>Salut à tous</b>, voici un e-mail envoyé par un <i>script PHP</i>.</body></html>";
