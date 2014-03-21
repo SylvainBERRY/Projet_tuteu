@@ -117,7 +117,20 @@ function logout() {
  * @param string $category [Catégorie dans laquelle ajouter le message.]
  */
 function setMessageFlash($message = "", $category = MESSAGE_FLASH_DEFAULT) {
-  $_SESSION[MESSAGE_FLASH][$category][] = $message;
+
+  
+  //S'il y a plusieurs messages (tableau)
+  if (is_array($message)) {
+    foreach ($message as $aMessage) {
+      $_SESSION[MESSAGE_FLASH][$category][] = $aMessage;
+    }
+  }
+  else {
+
+    // Si il n'y a qu'une message (string)
+    $_SESSION[MESSAGE_FLASH][$category][] = $message;
+  }
+
 }
 
 /**
@@ -141,4 +154,47 @@ function getMessageFlash($category = MESSAGE_FLASH_DEFAULT) {
   // Sinon on retourn un tableau vide
   return array();
 }
+
+/**
+ * Affiche les messages d'une catégorie (purge session catégorie)
+ */
+function printAllMessagesFlash() {
+  
+  $output = '';
+
+  // Lister les catégories à afficher
+  $output .= printAllMessagesCategorie();
+  $output .= printAllMessagesCategorie(MESSAGE_FLASH_ERREUR);
+
+  return $output;
+}
+
+/**
+ * Affiche les messages d'une catégorie (purge session catégorie)
+ */
+function printAllMessagesCategorie($category = MESSAGE_FLASH_DEFAULT) {
+  
+  // Si des messages disponibles pour la catégorie
+  if (isset($_SESSION[MESSAGE_FLASH][$category]) && is_array($_SESSION[MESSAGE_FLASH][$category]) && !empty($_SESSION[MESSAGE_FLASH][$category])) {
+
+    // Purge categorie
+    $data = getMessageFlash($category);
+
+    // Chaine résultat
+    $output = '<ul class="flash '.$category.'">';
+
+    // Pour chaque message
+    foreach ($data as $aData) {
+      $output .= '<li>'.$aData.'</li>';
+    }
+
+    $output .= '</ul>';
+
+    return $output;
+  }
+
+  // Return vide
+  return '';
+}
+
 ?>

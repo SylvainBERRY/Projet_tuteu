@@ -50,7 +50,7 @@ function check_login($login) {
     $requete->execute();
     
     if($result = $requete->fetch(PDO::FETCH_ASSOC)) {
-    $requete->closeCursor();
+  	  $requete->closeCursor();
     }
     
 	if($result['nbr'] > 0) return EXISTS;
@@ -121,48 +121,68 @@ function check_mdp_conf($mdp_verif, $mdp2)
  */
 function checkmail($mail)
 {
- // @todo: faire fonction de vérification mail
+	if($mail == '') return VIDE;
+	else if(!preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#is', $mail)) return ISNT;
+	
+	else
+	{
+		$pdo = PDOSingleton::getInstance();
+
+	    $requete = $pdo->prepare("SELECT COUNT(*) AS nbr FROM utilisateurs WHERE uti_mail = :uti_mail");
+
+	    $requete->bindValue(':uti_mail', $mail);
+
+	    $requete->execute();
+	    
+	    if($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+	    	$requete->closeCursor();
+	    }
+    
+		if($result['nbr'] > 0) return EXISTS;
+			else return OK;
+	}
 }
 /**
- * Retourne le résultat des test sur l'adresse mail du formulaire d'inscription.
- * ISNT = l'adresse mail n'a pas une bonne structure
- * VIDE = adresse mail non renseigné
+ * Retourne le résultat des test sur l'adresse mail de vérification du formulaire d'inscription.
  * OK = l'adresse mail peut être utilisé pour l'inscription
- * EXIST = l'adresse mail est déjà utilisé par un autre utilisateur
+ * DIFFERENT = l'adresse mail de vérification est différente de l'adresse 1er adresse mail
  * @return string
  */
 function checkmailS($mail_verif, $mail)
 {
- // @todo: faire fonction comparaison mail et mail de vérification
+	if($mail_verif != $mail && $mail != '' && $mail_verif != '') return DIFFERENT;
+	else return OK;
 }
 /**
  * Création d'un nouvel utilisateur en base de données
  * @return boolean // true si la création c'est bien passé false dans le cas contraire
  */
-function createUti()
+function createUti($mdp, $nom, $prenom, $login, $mail)
 {	
 	$pdo = PDOSingleton::getInstance();
 	
 	$requete = $pdo->prepare("INSERT INTO utilisateurs (uti_nom, uti_prenom, uti_login, uti_mdp, uti_mail, uti_is_admin)
-				VALUES (uti_nom = :uti_nom, uit_prenom = :uti_prenom, uti_login = :uti_login, uti_mdp = :uti_mdp, uti_mail = :uti_mail, 0)");
+				VALUES (:uti_nom, :uti_prenom, :uti_login, :uti_mdp, :uti_mail, 0)");
 
-	$requete->bindValue(':uti_mdp', $_POST['mdp']);
-	$requete->bindValue(':uti_nom', $_POST['nom']);
-	$requete->bindValue(':uti_prenom', $_POST['prenom']);
-	$requete->bindValue(':uti_login', $_POST['login']);
-	$requete->bindValue(':uti_mail', $_POST['mail']);
+	$requete->bindValue(':uti_mdp', $mdp);
+	$requete->bindValue(':uti_nom', $nom);
+	$requete->bindValue(':uti_prenom', $prenom);
+	$requete->bindValue(':uti_login', $login);
+	$requete->bindValue(':uti_mail', $mail);
 	
 	$requete->execute();
 
-	if ($result = $requete->fetch(PDO::FETCH_BOTH)) {
-		$requete->closeCursor();
-		$retour = true;
-		// @todo : créer une fonction qui envoie un mail de notification à l'administrateur
-		return $retour;
-	} else {
-		$retour = false;
-		return $retour;
-	}
+	//@todo : test execution à revoir
+	// if ($result = $requete->fetch(PDO::FETCH_BOTH)) {
+	// 	$requete->closeCursor();
+	// 	$retour = true;
+	// 	// @todo : créer une fonction qui envoie un mail de notification à l'administrateur
+	// 	return $retour;
+	// } else {
+	// 	$retour = false;
+	// 	return $retour;
+	// }
 	
+	return true; //temporaire
 }
 ?>

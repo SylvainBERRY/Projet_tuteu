@@ -1,4 +1,24 @@
 <?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page users_modele.php
+*
+*Page modele pour l'inscription
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*get_information_user($id_user) [Retourne les informaitons de l'utilisateur avec l'id donné en paramètre]
+*get_user($login) [Retourne l'id et le rang (admin ou non) d'un utilisateur]
+*couple_login_mdp_valide($login,$mdp) [Vérifie si le couple login/mdp est valide]
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
 
 /**
  * Retourne les informations sur un utilisateur donné

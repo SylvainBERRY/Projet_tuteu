@@ -63,6 +63,7 @@ define ('SALT2', 'mnkerz65khUCvz');
 // Message flash (session)
 define ('MESSAGE_FLASH', 'Message_flash');
 define ('MESSAGE_FLASH_DEFAULT', 'default');
+define ('MESSAGE_FLASH_ERREUR', 'erreur');
 
 //Configuration variable de test pour l'inscription
 define ('TOOSHORT','tooshort');
@@ -73,6 +74,7 @@ define ('OK','ok');
 define ('NOFIGURE', 'nofigure');
 define ('NOUPCAP', 'noupcap');
 define ('DIFFERENT', 'different');
+define ('ISNT', 'isnt');
 
 // Configuration page par défaut
 define ('DEFAULT_ACTION','connexion');

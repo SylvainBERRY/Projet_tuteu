@@ -1,3 +1,23 @@
+<?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page connexion_vue.php
+*
+*Page formulaire de connexion par defaut.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
+?>
 <h1>Page de connexion</h1>
 
 <form name="connexion" id="connexion" method="post" action="index.php?action=connexion">

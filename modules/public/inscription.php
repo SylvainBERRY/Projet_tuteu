@@ -25,23 +25,29 @@ if (!empty($_POST)) {
 	include_once CHEMIN_MODELE.'inscription_modele.php';
 
 	// Initialisation de la variable erreur pour les catégories de message flash
-	$erreur = "DEFAULT_ERREUR";
-	if($_SESSION['login'] == $_POST['login'] && trim($_POST['login']) != '')
-	{
-		// Création message flash utilisateur déjà inscrit et connecté avec le login
-		setMessageFlash('Vous êtes déjà connecté(e) '.$_POST['login'].'.');
+	if (isset($_SESSION['login'])) {
 
-		// Redirection si administrateur ou utilisateur
-		if (administrateur_est_connecte()) {
-				  // Si administrateur redirection page d'administration
-				  header( 'Location: '.LOGIN_REDIRECT_ADMIN);
-			  }
-			  else {
-				
-				  // Redirection page utilisateur
-				  header( 'Location: '.LOGIN_REDIRECT );
-			  }
+		if($_SESSION['login'] == $_POST['login'] && trim($_POST['login']) != '')
+		{
+			// Création message flash utilisateur déjà inscrit et connecté avec le login
+			setMessageFlash('Vous êtes déjà connecté(e) '.$_POST['login'].'.');
+
+			// Redirection si administrateur ou utilisateur
+			if (administrateur_est_connecte()) {
+					  // Si administrateur redirection page d'administration
+					  header( 'Location: '.LOGIN_REDIRECT_ADMIN);
+				  }
+				  else {
+					
+					  // Redirection page utilisateur
+					  header( 'Location: '.LOGIN_REDIRECT );
+				  }
+		}
+
 	}
+
+	// Erreur retroubées
+	$errors_array = array();
 
 	//Login
 	if(isset($_POST['login']))
@@ -52,19 +58,19 @@ if (!empty($_POST)) {
 		if($login_result == TOOSHORT)
 		{
 			// Ajout de l'erreur login trop court en message flash
-			setMessageFlash('Le login renseigné est trop court !', $erreur);
+			$errors_array[] = 'Le login renseigné est trop court !';
 		}
 
 		else if($login_result == TOOLONG)
 		{
 			// Ajout de l'erreur login trop long en message flash
-			setMessageFlash('Le login renseigné est trop long !', $erreur);
+			$errors_array[] = 'Le login renseigné est trop long !';
 		}
 
 		else if($login_result == EXISTS)
 		{
 			// Ajout de l'erreur login déjà utilisé en message flash
-			setMessageFlash('Le login renseigné est déjà utilisé !', $erreur);
+			$errors_array[] = 'Le login renseigné est déjà utilisé !';
 		}
 
 		else if($login_result == OK)
@@ -76,9 +82,15 @@ if (!empty($_POST)) {
 		else if($login_result == VIDE)
 		{
 			// Ajout de l'erreur vous n'avez pas rentré de login en message flash
-			setMessageFlash('Vous devez renseigner un login !', $erreur);
+			$errors_array[] = 'Vous devez renseigner un login !';
 		}
 	}
+	else {
+
+		// Doit être renseigné
+		$errors_array[] = 'Vous devez renseigner un login !';
+	}
+
 
 	//Prenom
 	if(isset($_POST['prenom']))
@@ -89,13 +101,13 @@ if (!empty($_POST)) {
 		if($prenom_result == TOOSHORT)
 		{
 			// Ajout de l'erreur prénom trop court en message flash
-			setMessageFlash('Le prénom renseigné est trop court !', $erreur);
+			$errors_array[] = 'Le prénom renseigné est trop court !';
 		}
 
 		else if($prenom_result == TOOLONG)
 		{
 			// Ajout de l'erreur prénom trop long en message flash
-			setMessageFlash('Le prénom renseigné est trop long !', $erreur);
+			$errors_array[] = 'Le prénom renseigné est trop long !';
 		}
 
 		else if($prenom_result == OK)
@@ -107,9 +119,15 @@ if (!empty($_POST)) {
 		else if($prenom_result == VIDE)
 		{
 			// Ajout de l'erreur vous n'avez pas rentré de prénom en message flash
-			setMessageFlash('Vous devez renseigner un prénom !', $erreur);
+			$errors_array[] = 'Vous devez renseigner un prénom !';
 		}
 	}
+	else {
+
+		// Doit être renseigné
+		$errors_array[] = 'Vous devez renseigner un prénom !';
+	}
+
 
 	//Nom
 	if(isset($_POST['nom']))
@@ -120,13 +138,13 @@ if (!empty($_POST)) {
 		if($nom_result == TOOSHORT)
 		{
 			// Ajout de l'erreur nom trop court en message flash
-			setMessageFlash('Le nom renseigné est trop court !', $erreur);
+			$errors_array[] = 'Le nom renseigné est trop court !';
 		}
 
 		else if($nom_result == TOOLONG)
 		{
 			// Ajout de l'erreur nom trop long en message flash
-			setMessageFlash('Le nom renseigné est trop long !', $erreur);
+			$errors_array[] = 'Le nom renseigné est trop long !';
 		}
 
 		else if($nom_result == OK)
@@ -138,8 +156,13 @@ if (!empty($_POST)) {
 		else if($nom_result == VIDE)
 		{
 			// Ajout de l'erreur vous n'avez pas rentré de nom en message flash
-			setMessageFlash('Vous devez renseigner un nom !', $erreur);
+			$errors_array[] = 'Vous devez renseigner un nom !';
 		}
+	}
+	else {
+
+		// Doit être renseigné
+		$errors_array[] = 'Vous devez renseigner un nom !';
 	}
 
 	//Mot de passe
@@ -150,25 +173,25 @@ if (!empty($_POST)) {
 		if($mdp_result == TOOSHORT)
 		{
 			// Ajout de l'erreur mdp trop court en message flash
-			setMessageFlash('Le mot de passe renseigné est trop court !', $erreur);
+			$errors_array[] = 'Le mot de passe renseigné est trop court !';
 		}
 
 		else if($mdp_result == TOOLONG)
 		{
 			// Ajout de l'erreur mdp trop long en message flash
-			setMessageFlash('Le mot de passe renseigné est trop long !', $erreur);
+			$errors_array[] = 'Le mot de passe renseigné est trop long !';
 		}
 
 		else if($mdp_result == NOFIGURE)
 		{
 			// Ajout de l'erreur votre mot de passe doit contenir au moins un chiffre
-			setMessageFlash('Votre mot de passe doit contenir au moins 1 chiffre !', $erreur);
+			$errors_array[] = 'Votre mot de passe doit contenir au moins 1 chiffre !';
 		}
 
 		else if($mdp_result == NOUPCAP)
 		{
 			// Ajout de l'erreur votre mot de passe doit contenir au moins une majuscule
-			setMessageFlash('Votre mot de passe doit contenir au moins 1 majuscule !', $erreur);
+			$errors_array[] = 'Votre mot de passe doit contenir au moins 1 majuscule !';
 		}
 
 		else if($mdp_result == OK)
@@ -180,9 +203,14 @@ if (!empty($_POST)) {
 		else if($mdp_result == VIDE)
 		{
 			// Ajout de l'erreur vous n'avez pas rentré de mdp en message flash
-			setMessageFlash('Vous devez renseigner un mot de passe !', $erreur);
+			$errors_array[] = 'Vous devez renseigner un mot de passe !';
 
 		}
+	}
+	else {
+
+		// Doit être renseigné
+		$errors_array[] = 'Vous devez renseigner un mot de passe !';
 	}
 
 	//Mot de passe confirmation
@@ -193,7 +221,7 @@ if (!empty($_POST)) {
 		if($mdp_verif_result == DIFFERENT)
 		{
 			// Ajout de l'erreur mot de passe de confirmation différent du mot de passe initial
-			setMessageFlash('Le mot de passe de confirmation est différent du mot de passe initial !', $erreur);
+			$errors_array[] = 'Le mot de passe de confirmation est différent du mot de passe initial !';
 		}
 
 		else
@@ -207,9 +235,14 @@ if (!empty($_POST)) {
 			else
 			{
 				// Ajout erreur $mdp_verif_result trop court, trop long ...
-				setMessageFlash('Mot de passe de confiration incorrecte');
+				$errors_array[] = 'Mot de passe de confiration incorrecte';
 			}
 		}
+	}
+	else {
+
+		// Doit être renseigné
+		$errors_array[] = 'Vous devez renseigner un mot de passe de vérification !';
 	}
 
 	//Adresse mail
@@ -217,29 +250,34 @@ if (!empty($_POST)) {
 	{
 		$mail = trim($_POST['mail']);
 		$mail_result = checkmail($mail);
-		if($mail_result == 'ISNT')
+		if($mail_result == ISNT)
 		{
 			// Ajout de l'erreur adresse mail invalide
-			setMessageFlash('Adresse mail invalide !', $erreur);
+			$errors_array[] = 'Adresse mail invalide !';
 		}
 
-		else if($mail_result == 'EXIST')
+		else if($mail_result == EXISTS)
 		{
 			// Ajout de l'erreur adresse mail déjà utilisé
-			setMessageFlash('Adresse mail déjà utilisé !', $erreur);
+			$errors_array[] = 'Adresse mail déjà utilisé !';
 		}
 
-		else if($mail_result == 'OK')
+		else if($mail_result == OK)
 		{
 			// Adresse mail ok pas de message d'erreur en flash
 			setMessageFlash('Adresse mail validé');
 		}
 
-		else if($mail_result == 'VIDE')
+		else if($mail_result == VIDE)
 		{
 			// Ajout de l'erreur adresse mail non renseigné
-			setMessageFlash('Adresse mail non renseigné !', $erreur);
+			$errors_array[] = 'Adresse mail non renseigné !';
 		}
+	}
+	else {
+
+		// Doit être renseigné
+		$errors_array[] = 'Vous devez renseigner une adresse mail !';
 	}
 
 	//Mail suite
@@ -247,15 +285,15 @@ if (!empty($_POST)) {
 	{
 		$mail_verif = trim($_POST['mail_verif']);
 		$mail_verif_result = checkmailS($mail_verif, $mail);
-		if($mail_verif_result == 'DIFFERENT')
+		if($mail_verif_result == DIFFERENT)
 		{
 			// Ajout de l'erreur adresse mail de vérification différente de la première adresse mail
-			setMessageFlash('Adresse mail de vérification différente de la première adresse mail !', $erreur);
+			$errors_array[] = 'Adresse mail de vérification différente de la première adresse mail !';
 		}
 
 		else
 		{
-			if($mail_result == 'ok')
+			if($mail_result == OK)
 			{
 				// Adresse mail de vérification ok pas de message d'erreur en flash
 				setMessageFlash('Adresse mail de vérification validé');
@@ -264,12 +302,48 @@ if (!empty($_POST)) {
 			else
 			{
 				// Adresse mail de vérification incorrecte
-				setMessageFlash('Adresse mail de vérification incorrecte !', $erreur);
+				$errors_array[] = 'Adresse mail de vérification incorrecte !';
 			}
 		}
 	}
-//@todo : vérifier les messages flash et lancer l'inscription si ok sinon afficher les erreurs a l'utilisateur
+	else {
+
+		// Doit être renseigné
+		$errors_array[] = 'Vous devez renseigner une adresse mail de vérification !';
+	}
+	
+	// Si aucune erreur n'est trouvée
+	if (empty($errors_array)) {
+
+		// Inscription base de données
+		if (createUti($_POST['mdp'], $_POST['nom'],$_POST['prenom'],$_POST['login'],$_POST['mail'])) {
+
+			// Création de l'utilisateur et ajout d'un message flash de succès
+			setMessageFlash("L'inscription a été effectuée avec succès.");
+
+			// Redirection connexion
+			// @todo : voir pourquoi la redirection ne fonctionne pas
+			header( 'Location: '.LOGOUT_REDIRECT ) ;
+		}
+		else {
+
+			$errors_array[] = 'Une erreur est survenue. Merci de réessayer ultérieurement.';
+		
+		}
+	}
+	else {
+		
+		// Ajouter les messages du tableau en message flash
+		setMessageFlash($errors_array,MESSAGE_FLASH_ERREUR);
+
+		// Redirection vers la page d'inscription
+		header( 'Location: '.INSCRIPTION_REDIRECT);
+	}
+
+
 }
+
 // Inclusion de la vue d'inscription
 include_once (CHEMIN_VUE.'inscription_vue.php');
+
 ?>

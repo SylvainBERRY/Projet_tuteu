@@ -65,12 +65,11 @@ if (!empty($_GET['action'])) {
 	$action = $_GET['action'];
 }
 
-// @todo : déplacer ou vous le voulez
-// Afficher les messages flash
-var_dump(getMessageFlash());
-
 // Calcul du chemin de la page
 $chemin_page = 	dirname(__FILE__).'/'.CHEMIN_MODULE.$module.'/'.$action.'.php';
+
+// @todo : déplacer dans chaque header
+echo printAllMessagesFlash();
 
 // Vérification de l'existance de la page
 if (is_file($chemin_page)) {

@@ -36,7 +36,7 @@ if (!empty($_POST)) {
 			// Ajout de l'utilisateur en session
 			if (login($login)) {
 
-				// @todo : Mettre message flash de succès
+				// Message flash de succès vous avez bien été connecté
 				setMessageFlash('Vous avez bien été connecté(e).');
 				
 				if (administrateur_est_connecte()) {
@@ -54,5 +54,5 @@ if (!empty($_POST)) {
 }
 
 // Inclusion de la vue du formulaire
-include_once CHEMIN_VUE.'connexion_vue.php';
+include_once (CHEMIN_VUE.'connexion_vue.php');
 ?>

@@ -3,7 +3,7 @@
 *BERRY Sylvain & El-Hocine Takouert
 *Page bas_administrators.php
 *
-*inclusion de la vu bas de page administrateur
+*Inclusion de la vu bas de page administrateur
 *
 *Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
 *
