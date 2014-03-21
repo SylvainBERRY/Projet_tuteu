@@ -42,33 +42,42 @@ function lectureUti()
  * Création d'un nouvel utilisateur en base de données
  * @return boolean // true si la création c'est bien passé false dans le cas contraire
  */
-function createUti()
+function createUti($nom, $prenom, $login, $mail)
 {	
-	echo ('test');
 	$pdo = PDOSingleton::getInstance();
 	
-	$requete = $pdo->prepare("INSERT INTO utilisateurs (uti_nom, uti_prenom, uti_login, uti_mdp, uti_mail, uti_is_admin)
-				VALUES (uti_nom = :uti_nom, uit_prenom = :uti_prenom, uti_login = :uti_login, uti_mdp = :uti_mdp, uti_mail = :uti_mail, 0)");
+	try {
 
-	// @todo : générer mot de passe aléatoire
-	$requete->bindValue(':uti_mdp', '0000');
-	$requete->bindValue(':uti_nom', $_POST['Nom']);
-	$requete->bindValue(':uti_prenom', $_POST['Prenom']);
-	$requete->bindValue(':uti_login', $_POST['Login']);
-	$requete->bindValue(':uti_mail', $_POST['Email']);
-	var_dump($requete);
-	$requete->execute();
+		// Initialisation des variable d'erreur PDO pour le cath
+	    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	if ($result = $requete->fetchall(PDO::FETCH_BOTH)) {
-		$requete->closeCursor();
-		$retour = true;
-		// @todo : créer une fonction qui envoie un mail de notification à l'utilisateur nouvellement créé avec le mot de passe généré et à l'administrateur
-	return $retour;
-	} else {
-		$retour = false;
-		return $retour;
+	    //Commencer une transaction
+	    $pdo->beginTransaction();	
+
+		$requete = $pdo->prepare("INSERT INTO utilisateurs (uti_nom, uti_prenom, uti_login, uti_mdp, uti_mail, uti_is_admin)
+					VALUES (:uti_nom, :uti_prenom, :uti_login, :uti_mdp, :uti_mail, 0)");
+
+		$mdp_random = getMdpRandom();
+		$requete->bindValue(':uti_mdp', $mdp_random);
+		$requete->bindValue(':uti_nom', $nom);
+		$requete->bindValue(':uti_prenom', $prenom);
+		$requete->bindValue(':uti_login', $login);
+		$requete->bindValue(':uti_mail', $mail);
+
+		$requete->execute();
+
+	//Gestion des erreurs causées par les requêtes PDO
+	} catch (PDOException $e) {  
+
+		//Annuler la transaction
+	    if ($pdo) $pdo->rollBack();
+
+	    //Ajoute l'erreur dans les message flash et retourne false
+		setMessageFlash($e->getMessage(),MESSAGE_FLASH_ERREUR);
+		return false;
 	}
-	
+	// L'insertion c'est bien déroulé retourne true
+	return true; 
 }
 
 /**
@@ -78,22 +87,32 @@ function createUti()
 function supprUti()
 {
 	$pdo = PDOSingleton::getInstance();
-	
-	$requete = $pdo->prepare("DELETE FROM utilisateurs
-				WHERE uti_login = :uti_login");
 
-	$requete->bindValue(':uti_login', $_POST['login']);
+	try {
+		// Initialisation des variable d'erreur PDO pour le cath
+	    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	$requete->execute();
+	    //Commencer une transaction
+	    $pdo->beginTransaction();	
 
-	if ($result = $requete->fetchall(PDO::FETCH_BOTH)) {
-		$requete->closeCursor();
-		$retour = true;
-	return $retour;
-	} else {
-		$retour = false;
-		return $retour;
+		$requete = $pdo->prepare("DELETE FROM utilisateurs
+					WHERE uti_login = :uti_login");
+
+		$requete->bindValue(':uti_login', $_POST['login']);
+
+		$requete->execute();
+
+	} catch (PDOException $e) {  
+
+		//Annuler la transaction
+	    if ($pdo) $pdo->rollBack();
+
+	    //Ajoute l'erreur dans les message flash et retourne false
+		setMessageFlash($e->getMessage(),MESSAGE_FLASH_ERREUR);
+
+		return false;
 	}
+	return true;
 }
 
 /**
@@ -103,29 +122,40 @@ function supprUti()
 function modifUti()
 {
 	$pdo = PDOSingleton::getInstance();
-	
-	$requete = $pdo->prepare("UPDATE utilisateurs SET uti_nom = :uti_nom, uit_prenom = :uti_prenom, uti_login = :uti_login, uti_mail = :uti_mail
- 								WHERE uti_id = :uti_id");
 
-	// Permet de récupérer l'id de l'utilisateur avec son login
-	// A revoir si le login est modifier dans le formulaire il n'apparaitra pas dans la bd
-	$id = get_user($_POST['Login']);
-	$requete->bondValue(':uti_id', $id['uti_id']);
+	try {
 
-	$requete->bindValue(':uti_nom', $_POST['Nom']);
-	$requete->bindValue(':uti_prenom', $_POST['Prenom']);
-	$requete->bindValue(':uti_login', $_POST['Login']);
-	$requete->bindValue(':uti_mail', $_POST['Email']);
+		// Initialisation des variable d'erreur PDO pour le cath
+		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	$requete->execute();
+		//Commencer une transaction
+		$pdo->beginTransaction();	
 
-	if ($result = $requete->fetchall(PDO::FETCH_BOTH)) {
-		$requete->closeCursor();
-		$retour = true;
-	return $retour;
-	} else {
-		$retour = false;
-		return $retour;
+		$requete = $pdo->prepare("UPDATE utilisateurs SET :uti_nom, :uti_prenom, :uti_login, :uti_mail
+										WHERE uti_id = :uti_id");
+
+		// Permet de récupérer l'id de l'utilisateur avec son login
+		// A revoir si le login est modifier dans le formulaire il n'apparaitra pas dans la bd
+		$id = get_user($_POST['Login']);
+		$requete->bondValue(':uti_id', $id['uti_id']);
+
+		$requete->bindValue(':uti_nom', $_POST['Nom']);
+		$requete->bindValue(':uti_prenom', $_POST['Prenom']);
+		$requete->bindValue(':uti_login', $_POST['Login']);
+		$requete->bindValue(':uti_mail', $_POST['Email']);
+
+		$requete->execute();
+
+	} catch (PDOException $e) {  
+
+		//Annuler la transaction
+	    if ($pdo) $pdo->rollBack();
+
+	    //Ajoute l'erreur dans les message flash et retourne false
+		setMessageFlash($e->getMessage(),MESSAGE_FLASH_ERREUR);
+
+		return false;
 	}
+	return true;
 }
 ?>

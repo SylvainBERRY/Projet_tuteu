@@ -321,8 +321,14 @@ if (!empty($_POST)) {
 			// Création de l'utilisateur et ajout d'un message flash de succès
 			setMessageFlash("L'inscription a été effectuée avec succès.");
 
+			// Envoie d'un mail de notification à l'administrateur pour validation de l'utilisateur
+		//	$email_from = 'berry.sylvain@free.fr'; // @todo: définir l'expéditeur du mail (l'application GetNote)
+		//	$email_to = getMailAdmin(); // @todo: faire la fonction de récupération du mail de l'administrateur pour l'envoi.
+		//	$objet = "Mail de notification de l'application GetNote pour validation d'inscription.";
+		//	$message = "Une inscription a été effectué sur l'application GetNote. Veuillé valide ou supprimer l'utilisateur nouvellement inscrit".$_POST['login'];
+		//	envoiMail($email_from,$email_to,$email_replay,$objet,$message);
+
 			// Redirection connexion
-			// @todo : voir pourquoi la redirection ne fonctionne pas
 			header( 'Location: '.LOGOUT_REDIRECT ) ;
 		}
 		else {
@@ -345,5 +351,4 @@ if (!empty($_POST)) {
 
 // Inclusion de la vue d'inscription
 include_once (CHEMIN_VUE.'inscription_vue.php');
-
 ?>

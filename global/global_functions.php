@@ -197,4 +197,20 @@ function printAllMessagesCategorie($category = MESSAGE_FLASH_DEFAULT) {
   return '';
 }
 
+/**
+ * Récupére le mail de l'administrateur
+ */
+function getMailAdmin(){
+
+$pdo = PDOSingleton::getInstance();
+
+$requete = $pdo->prepare("SELECT uti_mail FROM utilisateurs WHERE uti_is_admin = 1");
+
+$requete->execute();
+
+if($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+  $requete->closeCursor();
+}
+return $result;
+}
 ?>
