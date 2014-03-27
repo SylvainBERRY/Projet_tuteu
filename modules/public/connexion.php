@@ -49,6 +49,11 @@ if (!empty($_POST)) {
 					header( 'Location: '.LOGIN_REDIRECT );
 				}
 			}
+		} else {
+			// Ajout message erreur mot de passe, login incorrecte ou compte non validé
+			setMessageFlash('Votre mot de passe ou votre login est incorrecte. (Il est possible que votre compte ne soit pas encore validé)');
+			// Redirection
+			header( 'Location: '.LOGOUT_REDIRECT );
 		}
 	}
 }

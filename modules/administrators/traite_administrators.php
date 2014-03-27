@@ -29,8 +29,10 @@ if ($_POST['modif_uti'] == 'Nouveau')
 	if ($retour) {
 		// Ajout message flash de succès
 		setMessageFlash("Vous avez bien créé l'utilisateur ".$_POST['Nom'].'. Un mail lui a été envoyé.');
+		
 		// Envoie d'un mail récapitulatif à l'utilisateur
 		// @todo: envoie d'un mail de notification à l'utilisateur
+
 		// Redirection sur la page d'accueil administrateur
 		header( 'Location: '.LOGIN_REDIRECT_ADMIN ) ;
 	} else {
@@ -49,6 +51,7 @@ if ($_POST['modif_uti'] == 'Nouveau')
 			
 			// Envoie d'un mail récapitulatif à l'utilisateur
 			// @todo: envoie d'un mail de notification à l'utilisateur
+
 			// Redirection sur la page d'accueil administrateur
 			header( 'Location: '.LOGIN_REDIRECT_ADMIN ) ;
 		} else {

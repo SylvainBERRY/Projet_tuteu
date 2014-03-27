@@ -28,7 +28,7 @@ function get_information_user($id_user) {
 
   $pdo = PDOSingleton::getInstance();
 
-  $requete = $pdo->prepare("SELECT uti_id, uti_nom, uti_prenom, uti_login, uti_mail FROM utilisateurs WHERE uti_id = :uti_id");
+  $requete = $pdo->prepare("SELECT uti_id, uti_nom, uti_prenom, uti_login, uti_mail, uti_is_valide, uti_ue_id FROM utilisateurs WHERE uti_id = :uti_id");
 
   $requete->bindValue(':uti_id', $id_user);
 
@@ -51,7 +51,7 @@ function get_user($login) {
 
   $pdo = PDOSingleton::getInstance();
 
-  $requete = $pdo->prepare("SELECT uti_id, uti_is_admin FROM utilisateurs WHERE uti_login = :uti_login");
+  $requete = $pdo->prepare("SELECT uti_id, uti_is_admin, uti_is_valide FROM utilisateurs WHERE uti_login = :uti_login");
 
   $requete->bindValue(':uti_login', $login);
 
@@ -74,10 +74,11 @@ function couple_login_mdp_valide($login,$mdp) {
 
   $pdo = PDOSingleton::getInstance();
 
-  $requete = $pdo->prepare("SELECT uti_id FROM utilisateurs WHERE uti_login = :uti_login AND uti_mdp = :uti_mdp");
+  $requete = $pdo->prepare("SELECT uti_id FROM utilisateurs WHERE uti_login = :uti_login AND uti_mdp = :uti_mdp AND uti_is_valide = :uti_is_valide");
 
   $requete->bindValue(':uti_login', $login);
   $requete->bindValue(':uti_mdp', password($mdp));
+  $requete->bindValue(':uti_is_valide', true);
 
   $requete->execute();
 

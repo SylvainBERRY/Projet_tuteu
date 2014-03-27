@@ -25,7 +25,7 @@
 	</h1>
 	<!-- Affichage de la liste des utilisateurs avec choix possible -->
 	 <table name="tableauUti">
-		<thead><tr><th></th><th>Nom</th> <th>Pr&egrave;nom</th> <th>Email</th> <th>Login</th> </tr></thead>
+		<thead><tr><th></th><th>Nom</th> <th>Pr&egrave;nom</th> <th>Email</th> <th>Login</th> <th>Valide</th> </tr></thead>
 		<tbody>
 		<?php
 		$reponse = lectureUti();
@@ -44,6 +44,12 @@
 			<?php echo $donnees['uti_mail']; ?></td>
 			<td>
 			<?php echo $donnees['uti_login']; ?></td>
+			<td>
+			<?php 
+			if ($donnees['uti_is_valide']) 
+			{ echo 'Validé'; }
+			else { echo 'Non validé';}
+			?></td>
 			</tr>
 			
 			<?php
@@ -67,6 +73,27 @@
 			<br>
 			Login
 			<input type="text" name="Login" value="" size="15" />
+
+		<!-- Affichage les ue de l'utilisateur -->
+			<table name="tableauUE">
+			<thead><tr><th></th><th>Nom UE</th></tr></thead>
+			<tbody>
+			<?php
+			$reponse = lectureUE();
+			$compteur = 0;
+
+			foreach ($reponse as $donnees) {
+			?>
+			<tr>
+				<td><input type="checkbox" name="<?php echo $compteur ?>"/></td>
+				<td><label for="ue" class="float"><?php echo $donnees['ue_nom']; ?></label></td>
+			</tr>
+			<?php
+			$compteur ++;
+			}
+			?>
+			</tbody>
+			</table> 
 		</p>
 		<h1>
 		<!-- Bouton de gestion utilisateur -->

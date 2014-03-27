@@ -14,6 +14,7 @@
 *check_mdp($mdp) [Test le mot de passe renseigné dans le formulaire]
 *check_mdp_conf($mdp_verif, $mdp2) [Test le mot de passe de confirmation renseigné dans le formulaire]
 *createUti() [Ajoute l'utilisateur nouvellement inscrit dans la table utilisateurs]
+*lectureUE() [Renvoi le nom de tous les UE]
 *--------------------------
 *
 *Liste des informations/erreurs :
@@ -157,7 +158,7 @@ function checkmailS($mail_verif, $mail)
  * Création d'un nouvel utilisateur en base de données
  * @return boolean // true si la création c'est bien passé false dans le cas contraire
  */
-function createUti($mdp, $nom, $prenom, $login, $mail)
+function createUti($mdp, $nom, $prenom, $login, $mail, $ue_id)
 {	
 	$pdo = PDOSingleton::getInstance();
 	
@@ -169,19 +170,22 @@ function createUti($mdp, $nom, $prenom, $login, $mail)
 	    //Commencer une transaction
 	    $pdo->beginTransaction();
 
-		$requete = $pdo->prepare("INSERT INTO utilisateurs (uti_nom, uti_prenom, uti_login, uti_mdp, uti_mail, uti_is_admin)
-					VALUES (:uti_nom, :uti_prenom, :uti_login, :uti_mdp, :uti_mail, 0)");
+		$requete = $pdo->prepare("INSERT INTO utilisateurs (uti_nom, uti_prenom, uti_login, uti_mdp, uti_mail, uti_is_admin, uti_is_valide, uti_ue_id)
+					VALUES (:uti_nom, :uti_prenom, :uti_login, :uti_mdp, :uti_mail, 0, 0, :uti_ue_id)");
 
 		$requete->bindValue(':uti_mdp', $mdp);
 		$requete->bindValue(':uti_nom', $nom);
 		$requete->bindValue(':uti_prenom', $prenom);
 		$requete->bindValue(':uti_login', $login);
 		$requete->bindValue(':uti_mail', $mail);
+		$requete->bindValue(':uti_ue_id', $ue_id);
 		
 		$requete->execute();
+    
+		$pdo->commit();
 	}
 	//Gestion des erreurs causées par les requêtes PDO
-	} catch (PDOException $e) {  
+	catch (PDOException $e) {  
 
 		//Annuler la transaction
 	    if ($pdo) $pdo->rollBack();
@@ -192,6 +196,24 @@ function createUti($mdp, $nom, $prenom, $login, $mail)
 	}
 	// L'insertion c'est bien déroulé retourne true
 	return true; 
+}
+/**
+ * Retourne un tableau de tous les enseignements contenu dans la table enseignement
+ * @return array | $result
+ */
+function lectureUE()
+{
+	$pdo = PDOSingleton::getInstance();
+
+   	$requete = $pdo->prepare("SELECT ue_id, ue_nom FROM enseignement");
+
+  	$requete->execute();
+
+	if ($result = $requete->fetchall(PDO::FETCH_ASSOC)) {
+		$requete->closeCursor();
+	return $result;
+	}
+
 }
 /**
  * Envoie d'un mail de notification

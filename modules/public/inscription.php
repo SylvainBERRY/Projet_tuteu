@@ -18,12 +18,12 @@
 *--------------------------
 */
 
+// Inclusion du modèle nécessaire
+include_once CHEMIN_MODELE.'inscription_modele.php';
+
 // Si des données sont postées
 if (!empty($_POST)) {
 	
-	// Inclusion du modèle nécessaire
-	include_once CHEMIN_MODELE.'inscription_modele.php';
-
 	// Initialisation de la variable erreur pour les catégories de message flash
 	if (isset($_SESSION['login'])) {
 
@@ -315,18 +315,31 @@ if (!empty($_POST)) {
 	// Si aucune erreur n'est trouvée
 	if (empty($errors_array)) {
 
+		// Initialisation du tableau d'ue
+		$reponse = lectureUE();
+		$tableau_ue = "";
+		$i = 0;
+
+		// Remplissage du tableau d'ue avec les id ue
+		foreach ($reponse as $donnees) {
+			if (isset($_POST[$i])) {
+				$tableau_ue .= $donnees['ue_id'];
+				$tableau_ue .= ',';
+			}
+			$i++;
+		}
 		// Inscription base de données
-		if (createUti($_POST['mdp'], $_POST['nom'],$_POST['prenom'],$_POST['login'],$_POST['mail'])) {
+		if (createUti($_POST['mdp'], $_POST['nom'],$_POST['prenom'],$_POST['login'],$_POST['mail'],$tableau_ue)) {
 
 			// Création de l'utilisateur et ajout d'un message flash de succès
 			setMessageFlash("L'inscription a été effectuée avec succès.");
 
 			// Envoie d'un mail de notification à l'administrateur pour validation de l'utilisateur
-		//	$email_from = 'berry.sylvain@free.fr'; // @todo: définir l'expéditeur du mail (l'application GetNote)
-		//	$email_to = getMailAdmin(); // @todo: faire la fonction de récupération du mail de l'administrateur pour l'envoi.
-		//	$objet = "Mail de notification de l'application GetNote pour validation d'inscription.";
-		//	$message = "Une inscription a été effectué sur l'application GetNote. Veuillé valide ou supprimer l'utilisateur nouvellement inscrit".$_POST['login'];
-		//	envoiMail($email_from,$email_to,$email_replay,$objet,$message);
+			$email_from = 'berry.sylvain@free.fr'; // @todo: définir l'expéditeur du mail (l'application GetNote)
+			$email_to = 'berry.sylvain@free.fr'; // @todo: getMailAdmin() faire la fonction de récupération du mail de l'administrateur pour l'envoi.
+			$objet = "Mail de notification de l'application GetNote pour validation d'inscription.";
+			$message = "Une inscription a été effectué sur l'application GetNote. Veuillé valide ou supprimer l'utilisateur nouvellement inscrit".$_POST['login'];
+			envoiMail($email_from,$email_to,$email_replay,$objet,$message);
 
 			// Redirection connexion
 			header( 'Location: '.LOGOUT_REDIRECT ) ;

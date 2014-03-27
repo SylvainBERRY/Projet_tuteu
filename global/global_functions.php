@@ -48,7 +48,9 @@ function administrateur_est_connecte() {
  * @return bool [vrai si l'utilisateur est connecté, faux sinon
  */
 function utilisateur_est_connecte() {
-  return !empty($_SESSION['id_user']);
+  if (!empty($_SESSION['id_user']) && $_SESSION['is_valide'])
+    return true;
+  else return false;
 }
 
 /**
@@ -83,6 +85,12 @@ function login($login) {
     else {
       $_SESSION['is_admin'] = false;
     }
+    if ($user_information['uti_is_valide']) {
+      $_SESSION['is_valide'] = true;
+    }
+    else {
+      $_SESSION['is_valide'] = false;
+    }
 
     return true;
   }
@@ -102,6 +110,10 @@ function logout() {
   // Clean user id
   if (isset($_SESSION['id_user'])) {
     unset($_SESSION['id_user']);
+  }
+  // Clean is valide
+  if (isset($_SESSION['is_valide'])) {
+    unset($_SESSION['is_valide']);
   }
 }
 

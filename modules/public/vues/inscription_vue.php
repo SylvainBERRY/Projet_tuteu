@@ -33,7 +33,26 @@
 			<label for="mdp_verif" class="float">Mot de passe (vérification) :</label> <input type="password" name="mdp_verif" id="mdp_verif" size="30" /><br />
 			<label for="mail" class="float">Mail :</label> <input type="text" name="mail" id="mail" size="30" /> <br />
 			<label for="mail_verif" class="float">Mail (vérification) :</label> <input type="text" name="mail_verif" id="mail_verif" size="30" /><br />
-			<label for="ue" class="float">UE (Plusieurs choix possible) :</label> <input type="text" name="ue" id="ue" size="30" /><br />
+			
+			<table name="tableauUE">
+			<thead><tr><th></th><th>Nom UE</th></tr></thead>
+			<tbody>
+			<?php
+			$reponse = lectureUE();
+			$compteur = 0;
+
+			foreach ($reponse as $donnees) {
+			?>
+			<tr>
+				<td><input type="checkbox" name="<?php echo $compteur ?>"/></td>
+				<td><label for="ue" class="float"><?php echo $donnees['ue_nom']; ?></label></td>
+			</tr>
+			<?php
+			$compteur ++;
+			}
+			?>
+			</tbody>
+			</table> 
 			<div class="center"><input type="submit" value="Inscription" /></div>
 		</fieldset>
 	</form>
