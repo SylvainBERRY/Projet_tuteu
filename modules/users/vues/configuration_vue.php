@@ -17,7 +17,10 @@
 *Aucune information/erreur
 *--------------------------
 */
-?>   
+
+$user_information = get_information_user($_SESSION['id_user']);
+
+?>  
 <section>
     <h1>Configuration des mails</h1>
 
@@ -26,12 +29,12 @@
         <input id="ue" type="text" name="ue" />
         <br/>
         <label for="enseignant" >Enseignant :</label>
-        <input id="enseignant" type="text" name="enseignant" />
+        <input id="enseignant" type="text" name="enseignant" disabled value="<?php echo strtoupper($user_information['uti_nom']).' '.$user_information['uti_prenom'] ?>"/>
         <br/>
         <label for="objet" >Objet :</label>
         <input id="objet" type="text" name="objet" value="Note" />
         <br/>
-        <label for="message" >Enseignant :</label>
+        <label for="message" >Texte :</label>
         <br/>
         <textarea id="message" name="message" >Bonjour, Voici le note du :
 

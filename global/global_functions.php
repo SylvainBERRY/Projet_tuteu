@@ -417,7 +417,7 @@ function envoiMail($email_from,$email_to,$email_replay,$objet,$message)
 	$headers = "From: \"WeaponsB\" ".$email_from.$passage_ligne;
 	$headers.= "Reply-to: \"WeaponsB\" ".$email_replay.$passage_ligne;
 	$headers  .= 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
     /*
     

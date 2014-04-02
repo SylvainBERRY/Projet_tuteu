@@ -99,7 +99,6 @@ if(isset($_SESSION['upload_notes']))
         
     if(isset($_POST['valider']))
     {
-    	$echo="dddddd";
         effacerContenuTable('note');
     	sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes,$type_notes);
     }

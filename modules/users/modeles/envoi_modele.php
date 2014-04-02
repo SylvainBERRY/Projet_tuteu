@@ -75,8 +75,9 @@ while($etudiant=$etudiants->fetch())
 }
 
 // L'envoi du mail recapitulatif au prof
-$objet='Recapitulatif des message envoyé';
-$email_to = $_SESSION['mail_prof'];
+$objet='Recapitulatif des message envoyés';
+
+$email_to = 'timlepart@gmail.com'; // get_information_user($_SESSION['id_user'])['uti_mail'];
 envoiMail($email_from,$email_to,$email_replay,$objet,$message_globale);
 
 ?>
