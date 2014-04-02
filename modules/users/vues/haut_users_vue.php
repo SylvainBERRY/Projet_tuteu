@@ -27,12 +27,20 @@
         <link rel="stylesheet" type="text/css" href="<?php echo CHEMIN_STYLE ?>jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery-1.8.2.min.js"></script>
         <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery.dataTables.min.js"></script>
+        <?php if($_GET['action']=='importation')
+                {
+
+        ?>
         <!-- Importation fichiers pour importation -->
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>importation.css" />
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_import.js"></script>
+        <?php 
+           }elseif ($_GET['action']=='configuration') {
+        ?>
         <!-- Importation fichiers pour configuration -->
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>configuration.css" />
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_config.js"></script>
+        <?php        } ?>
         <!-- Importation fichiers pour l'apercu et l'envoi-->
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables.js"></script>
         <!-- Importation fichiers pour l'historique-->
