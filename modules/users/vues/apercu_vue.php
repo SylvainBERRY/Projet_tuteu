@@ -1,51 +1,46 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>globale.css" />
-        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables.js"></script>
-        <title>Aperçu</title>
-    </head>
-    <body>
+<?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page apercu_vue.php
+*
+*Page vue de l'aperçu utilisateur.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
+?>  
+<title>Aperçu</title>
+<section>
+<?php
 
-        <header>
+$objet = $_POST['objet'];
+$message = $_POST['message'];
 
-        </header>
+while($etudiant=$etudiants->fetch()) 
+{
     
-        <section>
+    echo 'Etudiant : '.$etudiant['nom'].' '.$etudiant['prenom'].' - < '.$etudiant['mail1'].' > < '.$etudiant['mail2'].' > <br/>';
+    echo 'Objet : '.$objet.'<br/>';
 
-        <?php
+    echo 'Message : <br/>';
+    echo $message.'<br/>';
+    echo 'Notes : <br/>';
 
-            $objet = $_POST['objet'];
-            $message = $_POST['message'];
-
-            while($etudiant=$etudiants->fetch()) 
-            {
-                
-                echo 'Etudiant : '.$etudiant['nom'].' '.$etudiant['prenom'].' - < '.$etudiant['mail1'].' > < '.$etudiant['mail2'].' > <br/>';
-                echo 'Objet : '.$objet.'<br/>';
-
-                echo 'Message : <br/>';
-                echo $message.'<br/>';
-                echo 'Notes : <br/>';
-
-                for ($i=1; $i <=2 ; $i++) 
-                {
-                    $note=$notes->fetch();
-                    echo 'Note '.$i.' :'. $note['valeur'].'<br/>';
-                }
-                echo '<br/><br/>';
-            }
-
-        ?>
-
-        </section>
-
-        <footer>
-
-        </footer>
-
-    </body>
-</html>
+    for ($i=1; $i <=2 ; $i++) 
+    {
+        $note=$notes->fetch();
+        echo 'Note '.$i.' :'. $note['valeur'].'<br/>';
+    }
+    echo '<br/><br/>';
+}
+?>
+</section>

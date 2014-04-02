@@ -1,4 +1,22 @@
 <?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page apercu_modele.php
+*
+*Page modele pour l'aperçu utilisateur
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
 
 $bdd = PDOSingleton::getInstance();
 

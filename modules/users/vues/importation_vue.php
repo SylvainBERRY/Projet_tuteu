@@ -1,35 +1,38 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>globale.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo CHEMIN_STYLE ?>jquery.dataTables.css">
-        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>importation.css" />
-        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_import.js"></script>
-        <title>Importation</title>
-    </head>
-    <body>
-
-        <header>
-
-        </header>
-    
-        <section>
-            <h1>Importation fichier Excel</h1>
-            <form action="index.php?module=users&amp;action=importation" method="post" enctype="multipart/form-data" >
-                <label for="info" >Emails étudiants :</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="2097152">  
-                <input type="file" id="excel_mails" name="excel_mails" value="ddd" />
-                <br/>
-                <label for="Notes" >Notes des étudiants :</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="2097152">  
-                <input type="file" id="excel_notes" name="excel_notes" />
-                <br/>
-                <input name="charger" type="submit" value="Charger" />
-                <input name="valider" type="submit" value="Valider" <?php if(!($_SESSION['emails_valides'] AND $_SESSION['notes_valides'])) echo "disabled" ?> />
-            </form>
+<?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page importation_vue.php
+*
+*Page d'accueil de l'utilisateur.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
+?>   
+<title>Importation</title>
+<section>
+    <h1>Importation fichier Excel</h1>
+    <form action="index.php?module=users&amp;action=importation" method="post" enctype="multipart/form-data" >
+        <label for="info" >Emails étudiants :</label>
+        <input type="hidden" name="MAX_FILE_SIZE" value="2097152">  
+        <input type="file" id="excel_mails" name="excel_mails" value="ddd" />
+        <br/>
+        <label for="Notes" >Notes des étudiants :</label>
+        <input type="hidden" name="MAX_FILE_SIZE" value="2097152">  
+        <input type="file" id="excel_notes" name="excel_notes" />
+        <br/>
+        <input name="charger" type="submit" value="Charger" />
+        <input name="valider" type="submit" value="Valider" <?php if(!($_SESSION['emails_valides'] AND $_SESSION['notes_valides'])) echo "disabled" ?> />
+    </form>
 
 <?php
 
@@ -82,11 +85,4 @@ if($_SESSION['notes_valides'])
 
 ?>
 
-        </section>
-
-        <footer>
-
-        </footer>
-
-    </body>
-</html>
+</section>

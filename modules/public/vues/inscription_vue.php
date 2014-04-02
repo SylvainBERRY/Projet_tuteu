@@ -39,7 +39,7 @@
 			<tbody>
 			<?php
 			$reponse = lectureUE();
-			$compteur = 0;
+			$compteur = 1;
 
 			foreach ($reponse as $donnees) {
 			?>

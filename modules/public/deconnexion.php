@@ -17,7 +17,6 @@
 *Aucune information/erreur
 *--------------------------
 */
-
 // Fait une déconnexion de l'utilisateur
 logout();
 

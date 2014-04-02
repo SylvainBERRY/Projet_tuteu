@@ -25,26 +25,6 @@
 
 include_once('global/init.php');
 
-//////////////////////////
-// Affichage pour debug //
-//////////////////////////
-
-// Affichage SESSION si debug niveau 1 actif
-if (DEBUG_SESSION) {
-	echo 'Tableau des variables de session <br>';
-	var_dump($_SESSION);
-}
-// Affichage POST si debug niveau 2 actif
-if (DEBUG_POST) {
-	echo '<br> Tableau des variables de post <br>';
-	var_dump($_POST);
-}
-// Affichage GET si debug niveau 3 actif
-if (DEBUG_GET) {
-	echo '<br> Tableau des variables de get <br>';
-	var_dump($_GET);
-}
-
 //////////////////////////////////////
 // Récupération de la page demandée //
 //////////////////////////////////////
@@ -68,6 +48,31 @@ if (!empty($_GET['action'])) {
 // Calcul du chemin de la page
 $chemin_page = 	dirname(__FILE__).'/'.CHEMIN_MODULE.$module.'/'.$action.'.php';
 
+//////////////////////////
+// Affichage pour debug //
+//////////////////////////
+
+// No debug for ajax
+if (strpos($action, '_ajax') === false) {
+
+	// Affichage SESSION si debug niveau 1 actif
+	if (DEBUG_SESSION) {
+		echo 'Tableau des variables de session <br>';
+		var_dump($_SESSION);
+	}
+	// Affichage POST si debug niveau 2 actif
+	if (DEBUG_POST) {
+		echo '<br> Tableau des variables de post <br>';
+		var_dump($_POST);
+	}
+	// Affichage GET si debug niveau 3 actif
+	if (DEBUG_GET) {
+		echo '<br> Tableau des variables de get <br>';
+		var_dump($_GET);
+	}
+
+}
+
 // @todo : déplacer dans chaque header
 echo printAllMessagesFlash();
 
@@ -76,19 +81,26 @@ if (is_file($chemin_page)) {
 
 		// Tentative d'accès à l'administration
 		if ($module == 'administrators') {
-		
+
 			//Vérification de l'authentification de l'administrateur
 			if (administrateur_est_connecte()) {
 
 				// Inclusion de la page
 				modifTitre('Administration');
-				include_once (CHEMIN_MODULE.'administrators/haut_administrators.php');
+				// No header for ajax pages
+				if (strpos($action, '_ajax') === false) {
+					include_once (CHEMIN_MODULE.'administrators/haut_administrators.php');
+				}
+				// Include content
 				include_once ($chemin_page);
-				include_once (CHEMIN_MODULE.'administrators/bas_administrators.php');
+				// No footer for ajax pages
+				if (strpos($action, '_ajax') === false) {
+					include_once (CHEMIN_MODULE.'administrators/bas_administrators.php');
+				}
 			}
 			else{
 				if (utilisateur_est_connecte()) {
-				
+
 					// Inclusion de la page de connexion
 					modifTitre('Accès interdit');
 					include_once (CHEMIN_MODULE.'public/haut_public.php');
@@ -96,7 +108,7 @@ if (is_file($chemin_page)) {
 					include_once (CHEMIN_MODULE.'public/bas_public.php');
 				}
 				else {
-				
+
 					// Inclusion de la page de connexion
 					modifTitre('Connexion');
 					include_once (CHEMIN_MODULE.'public/haut_public.php');
@@ -111,15 +123,15 @@ if (is_file($chemin_page)) {
 
 			//Vérification de l'authentification de l'utilisateur
 			if (utilisateur_est_connecte()) {
-			
+
 				// Inclusion de la page
 				modifTitre('Importation');
 				include_once (CHEMIN_MODULE.'users/haut_users.php');
 				include_once ($chemin_page);
-				include_once (CHEMIN_MODULE.'users/haut_users.php');
+				include_once (CHEMIN_MODULE.'users/bas_users.php');
 			}
 			else{
-			
+
 				// Inclusion de la page de connexion
 				modifTitre('Connexion');
 				include_once (CHEMIN_MODULE.'public/haut_public.php');

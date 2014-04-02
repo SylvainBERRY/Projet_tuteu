@@ -1,27 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="styles/globale.css" />
-        <script type="text/javascript" charset="utf8" src="scripts/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="scripts/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="scripts/tables.js"></script>
-        <title>Envoi</title>
-    </head>
-    <body>
+<?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page envoi_vue.php
+*
+*Page vue pour l'envoi des mails.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
+?>  
+<title>Envoi</title>    
+<section>
 
-        <header>
 
-        </header>
-    
-        <section>
-
-
-        </section>
-
-        <footer>
-
-        </footer>
-
-    </body>
-</html>
+</section>

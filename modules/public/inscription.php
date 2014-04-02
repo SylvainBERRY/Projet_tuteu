@@ -78,12 +78,6 @@ if (!empty($_POST)) {
 			//Login ok pas de message d'erreur en flash
 			setMessageFlash('Login validé');
 		}
-
-		else if($login_result == VIDE)
-		{
-			// Ajout de l'erreur vous n'avez pas rentré de login en message flash
-			$errors_array[] = 'Vous devez renseigner un login !';
-		}
 	}
 	else {
 
@@ -115,12 +109,6 @@ if (!empty($_POST)) {
 			//Prénom ok pas de message d'erreur en flash
 			setMessageFlash('Prénom validé');
 		}
-
-		else if($prenom_result == VIDE)
-		{
-			// Ajout de l'erreur vous n'avez pas rentré de prénom en message flash
-			$errors_array[] = 'Vous devez renseigner un prénom !';
-		}
 	}
 	else {
 
@@ -151,12 +139,6 @@ if (!empty($_POST)) {
 		{
 			// Nom ok pas de message d'erreur en flash
 			setMessageFlash('Nom validé');
-		}
-
-		else if($nom_result == VIDE)
-		{
-			// Ajout de l'erreur vous n'avez pas rentré de nom en message flash
-			$errors_array[] = 'Vous devez renseigner un nom !';
 		}
 	}
 	else {
@@ -198,13 +180,6 @@ if (!empty($_POST)) {
 		{
 			// Mdp ok pas de message d'erreur en flash
 			setMessageFlash('Mot de passe validé');
-		}
-
-		else if($mdp_result == VIDE)
-		{
-			// Ajout de l'erreur vous n'avez pas rentré de mdp en message flash
-			$errors_array[] = 'Vous devez renseigner un mot de passe !';
-
 		}
 	}
 	else {
@@ -267,12 +242,6 @@ if (!empty($_POST)) {
 			// Adresse mail ok pas de message d'erreur en flash
 			setMessageFlash('Adresse mail validé');
 		}
-
-		else if($mail_result == VIDE)
-		{
-			// Ajout de l'erreur adresse mail non renseigné
-			$errors_array[] = 'Adresse mail non renseigné !';
-		}
 	}
 	else {
 
@@ -318,7 +287,7 @@ if (!empty($_POST)) {
 		// Initialisation du tableau d'ue
 		$reponse = lectureUE();
 		$tableau_ue = "";
-		$i = 0;
+		$i = 1;
 
 		// Remplissage du tableau d'ue avec les id ue
 		foreach ($reponse as $donnees) {

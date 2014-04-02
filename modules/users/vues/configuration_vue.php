@@ -1,41 +1,44 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>globale.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo CHEMIN_STYLE ?>jquery.dataTables.css">
-        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>configuration.css" />
-        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_config.js"></script>
-        <title>Configuration</title>
-    </head>
-    <body>
+<?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page configuration_vue.php
+*
+*Page vue de configuration pour l'utilisateur.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
+?>   
+<title>Configuration</title>
+<section>
+    <h1>Configuration des mails</h1>
 
-        <header>
-
-        </header>
-
-        <section>
-            <h1>Configuration des mails</h1>
-
-             <form action="index.php?module=users&amp;action=envoi" method="post" >
-                <label for="ue" >UE :</label>
-                <input id="ue" type="text" name="ue" />
-                <br/>
-                <label for="enseignant" >Enseignant :</label>
-                <input id="enseignant" type="text" name="enseignant" />
-                <br/>
-                <label for="objet" >Objet :</label>
-                <input id="objet" type="text" name="objet" value="Note" />
-                <br/>
-                <label for="message" >Enseignant :</label>
-                <br/>
-                <textarea id="message" name="message" >Bonjour, Voici le note du :
+     <form action="index.php?module=users&amp;action=envoi" method="post" >
+        <label for="ue" >UE :</label>
+        <input id="ue" type="text" name="ue" />
+        <br/>
+        <label for="enseignant" >Enseignant :</label>
+        <input id="enseignant" type="text" name="enseignant" />
+        <br/>
+        <label for="objet" >Objet :</label>
+        <input id="objet" type="text" name="objet" value="Note" />
+        <br/>
+        <label for="message" >Enseignant :</label>
+        <br/>
+        <textarea id="message" name="message" >Bonjour, Voici le note du :
 
 Cordialement</textarea>
-                <br/>
-                <input type="submit" value="envoyer" /><input type="submit" value="aperçu" /></br>
+        <br/>
+        <input type="submit" value="envoyer" /><input type="submit" value="aperçu" /></br>
 
 <?php
 
@@ -74,12 +77,5 @@ Cordialement</textarea>
     echo '</tbody>';
     echo '</table>';
 ?>
-            </form>
-        </section>
-
-        <footer>
-
-        </footer>
-
-    </body>
-</html>
+    </form>
+</section>

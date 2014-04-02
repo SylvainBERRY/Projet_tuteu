@@ -1,5 +1,24 @@
 <?php
 /**
+*BERRY Sylvain & El-Hocine Takouert
+*Page historique_modele.php
+*
+*Page modele pour l'historique d'envoi de l'utilisateur
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
+
+/**
  * Retourne le résultat de la requete en fonction du login du formulaire d'inscription.
  * TOOSHORT = login trop court
  * TOOLONG = login trop long

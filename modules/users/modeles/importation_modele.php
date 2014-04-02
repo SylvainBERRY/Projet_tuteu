@@ -1,7 +1,26 @@
 <?php
-
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page importation_modele.php
+*
+*Page modele pour l'utilisateur
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
 
 $bdd = PDOSingleton::getInstance();
+
+// @todo : A commenter ^^
 
 if(!(isset($_SESSION['emails_valides']) AND isset($_SESSION['charger'])))
 {
@@ -86,5 +105,4 @@ if(isset($_SESSION['upload_notes']))
 
     $_SESSION['notes_valides']=true;
 }
-
 ?>

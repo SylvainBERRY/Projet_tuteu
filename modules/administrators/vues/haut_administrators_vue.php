@@ -24,11 +24,11 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>globale.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo CHEMIN_STYLE ?>jquery.dataTables.css">
-        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>configuration.css" />
+        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>administrators.css" />
+		<link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>configuration.css" />
         <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery-1.8.2.min.js"></script>
         <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_config.js"></script>
-        <script type="text/javascript" src="<?php echo CHEMIN_JS?>administrators.js"></script>
         <title> <?php echo $titre_head; ?> </title>
     </head>
     <body>
@@ -37,6 +37,16 @@
             <form id= "logout" action="index.php?action=deconnexion" method="post">
                 <p>
                     <input type="submit" value="Logout" />
+                </p>
+            </form>
+            <form id= "importation" action="<?php echo LOGIN_REDIRECT; ?>" method="post">
+                <p>
+                    <input type="submit" value="Gestion des notes" />
+                </p>
+            </form>
+            <form id= "profil" action="<?php echo LOGIN_REDIRECT_PROFIL; ?>" method="post">
+                <p>
+                    <input type="submit" value="Gestion profil" />
                 </p>
             </form>
 		</header>
