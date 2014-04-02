@@ -58,7 +58,7 @@
     }
 
     // L'envoi du mail recapitulatif au prof
-    $objet='Recapitulatif des message envoyé';
+    $objet='Recapitulatif des message envoyÃ©';
     $email_to = $_SESSION['mail_prof'];
     envoiMail($email_from,$email_to,$email_replay,$objet,$message_globale);
 
