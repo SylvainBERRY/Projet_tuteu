@@ -405,7 +405,7 @@ function checkmailS($mail_verif, $mail)
  */
 function envoiMail($email_from,$email_to,$email_replay,$objet,$message)
 {
-	if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bug.
+	if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $email_to)) // On filtre les serveurs qui rencontrent des bug.
 	{
 		$passage_ligne = "\r\n";
 	}
@@ -414,8 +414,8 @@ function envoiMail($email_from,$email_to,$email_replay,$objet,$message)
 		$passage_ligne = "\n";
 	}
 	
-	$header = "From: \"WeaponsB\" ".$email_from.$passage_ligne;
-	$header.= "Reply-to: \"WeaponsB\" ".$email_replay.$passage_ligne;
+	$headers = "From: \"WeaponsB\" ".$email_from.$passage_ligne;
+	$headers.= "Reply-to: \"WeaponsB\" ".$email_replay.$passage_ligne;
 	$headers  .= 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 

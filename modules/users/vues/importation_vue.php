@@ -18,7 +18,6 @@
 *--------------------------
 */
 ?>   
-<title>Importation</title>
 <section>
     <h1>Importation fichier Excel</h1>
     <form action="index.php?module=users&amp;action=importation" method="post" enctype="multipart/form-data" >

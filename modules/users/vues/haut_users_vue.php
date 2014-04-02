@@ -34,12 +34,14 @@
         <!-- Importation fichiers pour importation -->
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>importation.css" />
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_import.js"></script>
+        <title>Importation</title>
         <?php 
            }elseif ($_GET['action']=='configuration') {
         ?>
         <!-- Importation fichiers pour configuration -->
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>configuration.css" />
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_config.js"></script>
+        <title>Importation</title>
         <?php        } ?>
         <!-- Importation fichiers pour l'apercu et l'envoi-->
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables.js"></script>

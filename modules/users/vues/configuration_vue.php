@@ -18,7 +18,6 @@
 *--------------------------
 */
 ?>   
-<title>Configuration</title>
 <section>
     <h1>Configuration des mails</h1>
 

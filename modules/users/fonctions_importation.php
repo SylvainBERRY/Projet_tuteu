@@ -87,7 +87,7 @@ function sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 	for ($i=0; $i < $nb_etud ; $i++)
 	{ 
 		$resultat=$bdd->query('SELECT id_etud FROM etudiant WHERE nom="'.$tab_noms[$i].'" and prenom="'.$tab_prenoms[$i].'"');
-		$id_etud=$resultat->fetch(); // A revoir à la fin du fetch()[0] erreur de parseur
+		$id_etud=$resultat->fetch()[0]; // A revoir à la fin du fetch()[0] erreur de parseur
 		
 		for ($j=0; $j < count($type_notes) ; $j++)
 		{

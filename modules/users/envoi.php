@@ -17,8 +17,6 @@
 *Aucune information/erreur
 *--------------------------
 */
-// Inclusion des fonctions d'envoi
-include_once 'fonctions_envoi.php';
 
 // Inclusion du modele pour l'envoi
 include_once CHEMIN_MODELE.'envoi_modele.php';
