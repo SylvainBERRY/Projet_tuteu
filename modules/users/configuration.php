@@ -1,10 +1,26 @@
 <?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page configuration.php
+*
+*Page d'accueil de l'utilisateur.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
 
-// @todo : vérifier mais normalement déjà présent dans l'index
-// session_start();
-
+// Inclusion du modele
 include_once CHEMIN_MODELE.'configuration_modele.php';
 
+// Inclusion de la vue
 include_once CHEMIN_VUE.'configuration_vue.php';
-
 ?>

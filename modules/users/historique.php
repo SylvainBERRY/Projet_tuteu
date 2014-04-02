@@ -1,14 +1,26 @@
 <?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page historique.php
+*
+*Page pour l'historique d'envoi de l'utilisateur.
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*Aucune fonction
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
+// Inclusion du modèle utilisateur, importation et des fonctions d'importation
+include_once (CHEMIN_MODULE.CHEMIN_PUBLIC.CHEMIN_MODELE.'users_modele.php');
 
-  // Inclusion du modèle utilisateur
-  // include_once CHEMIN_MODELE.'users.php';
-  include_once 'modeles/users_modele.php';
+include_once (CHEMIN_MODELE.'historique_modele.php');
 
-  //Récupération login utilisateur
-  $info_user = get_information_user( $_SESSION['id_user']);
-
-  // Appel de la vue
-  include_once '/vue/accueil_users_vue.php';
-
-
+include_once CHEMIN_VUE.'historique_vue.php';
 ?>

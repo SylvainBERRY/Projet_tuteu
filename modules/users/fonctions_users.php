@@ -1,5 +1,36 @@
 <?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page fonctions_importation.php
+*
+*Page modele pour l'administrateur
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*lectureExcel($url) [Lit le fichier Excel renseigné]
+*rechercheColonne($feuille) []
+*sauvgEtudBd($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2) []
+*sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes1,$tab_notes2) []
+*sauvgNoteBd1($tab_noms,$tab_prenoms,$tab_notes,$type_notes) []
+*effacerContenuTable($table) []
+*afficherEtudiant($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2) []
+*afficherNote($tab_noms,$tab_prenoms,$tab_notes1,$tab_notes2) []
+*afficherNote1($tab_noms,$tab_prenoms,$tab_notes,$type_notes) []
+*lireColonne($feuille,$coord_cell) []
+*erreurUpload($nom_fichier) []
+*afficherTable() []
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
 
+// @todo : utilisation du PDO Singleton
+//$bdd = PDOSingleton::getInstance();
 try
 {
     $bdd = new PDO('mysql:host=localhost;dbname=getnotes', 'root', '');
@@ -9,7 +40,10 @@ catch (Exception $exp)
     die('Erreur : ' . $exp->getMessage());
 }
 
-
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function lectureExcel($url)
 {
 	require_once '../../libs/PHPExcel/IOFactory.php';
@@ -18,7 +52,10 @@ function lectureExcel($url)
 	return $feuille;
 }
 
-
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function rechercheColonne($feuille)
 {
 	foreach($feuille->getRowIterator() as $ligne) 
@@ -37,6 +74,10 @@ function rechercheColonne($feuille)
 	return $coord_cell;
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function sauvgEtudBd($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2)
 {
 	global $bdd;
@@ -49,6 +90,10 @@ function sauvgEtudBd($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2)
 	}
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes1,$tab_notes2)
 {
 	global $bdd;
@@ -64,6 +109,10 @@ function sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes1,$tab_notes2)
 	}
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function sauvgNoteBd1($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 {
 	global $bdd;
@@ -82,7 +131,10 @@ function sauvgNoteBd1($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 	}
 }
 
-
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function effacerContenuTable($table)
 {
 
@@ -91,6 +143,10 @@ function effacerContenuTable($table)
 	$bdd->query('DELETE FROM '.$table);
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function afficherEtudiant($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2)
 {
 	$nb_etud=count($tab_noms);
@@ -111,6 +167,10 @@ function afficherEtudiant($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2)
 	echo '</table>';
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function afficherNote($tab_noms,$tab_prenoms,$tab_notes1,$tab_notes2)
 {
 	$nb_etud=count($tab_noms);
@@ -131,6 +191,10 @@ function afficherNote($tab_noms,$tab_prenoms,$tab_notes1,$tab_notes2)
 	echo '</table>';
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function afficherNote1($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 {
 	$nb_etud=count($tab_noms);
@@ -158,7 +222,10 @@ function afficherNote1($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 	echo '</table>';
 }
 
-
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function lireColonne($feuille,$coord_cell)
 {
 	$index_col=$coord_cell[0];
@@ -172,8 +239,10 @@ function lireColonne($feuille,$coord_cell)
 	return $tab;
 }
 
-
-
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function erreurUpload($nom_fichier)
 {
 	$extensions_valides = array( 'xls' , 'xlsx');
@@ -213,7 +282,10 @@ function erreurUpload($nom_fichier)
  	return false;
 }  
 
-
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function afficherTable()
 {
 	global $bdd;
@@ -256,5 +328,4 @@ function afficherTable()
 	echo '</tbody>';
 	echo '</table>';
 }
-
 ?>

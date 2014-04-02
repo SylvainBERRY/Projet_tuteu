@@ -1,5 +1,33 @@
 <?php
+/**
+*BERRY Sylvain & El-Hocine Takouert
+*Page fonctions_importation.php
+*
+*Page modele pour l'administrateur
+*
+*Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+*
+*Liste des fonctions :
+*--------------------------
+*lectureExcel($url) [Lit le fichier Excel renseigné]
+*rechercheColonne($feuille) []
+*sauvgEtudBd($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2) []
+*sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes,$type_notes) []
+*effacerContenuTable($table) []
+*lireColonne($feuille,$coord_cell) []
+*erreurUpload($nom_fichier) []
+*--------------------------
+*
+*Liste des informations/erreurs :
+*--------------------------
+*Aucune information/erreur
+*--------------------------
+*/
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function lectureExcel($url)
 {
 	require_once CHEMIN_LIB.'PHPExcel/IOFactory.php';
@@ -8,6 +36,10 @@ function lectureExcel($url)
 	return $feuille;
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function rechercheColonne($feuille)
 {
 	foreach($feuille->getRowIterator() as $ligne) 
@@ -26,6 +58,10 @@ function rechercheColonne($feuille)
 	return $coord_cell;
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function sauvgEtudBd($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2)
 {
 	global $bdd;
@@ -38,6 +74,10 @@ function sauvgEtudBd($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2)
 	}
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 {
 	global $bdd;
@@ -47,7 +87,7 @@ function sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 	for ($i=0; $i < $nb_etud ; $i++)
 	{ 
 		$resultat=$bdd->query('SELECT id_etud FROM etudiant WHERE nom="'.$tab_noms[$i].'" and prenom="'.$tab_prenoms[$i].'"');
-		$id_etud=$resultat->fetch()[0];
+		$id_etud=$resultat->fetch(); // A revoir à la fin du fetch()[0] erreur de parseur
 		
 		for ($j=0; $j < count($type_notes) ; $j++)
 		{
@@ -56,7 +96,10 @@ function sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 	}
 }
 
-
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function effacerContenuTable($table)
 {
 	global $bdd;
@@ -64,6 +107,10 @@ function effacerContenuTable($table)
 	$bdd->query('DELETE FROM '.$table);
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function lireColonne($feuille,$coord_cell)
 {
 	$index_col=$coord_cell[0];
@@ -77,6 +124,10 @@ function lireColonne($feuille,$coord_cell)
 	return $tab;
 }
 
+/**
+ * @todo: commenter la fonction
+ * @return array | $feuille
+ */
 function erreurUpload($nom_fichier)
 {
 	$extensions_valides = array( 'xls' , 'xlsx');
@@ -115,5 +166,4 @@ function erreurUpload($nom_fichier)
 
  	return false;
 }  
-
 ?>
