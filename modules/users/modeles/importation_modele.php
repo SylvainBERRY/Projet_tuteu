@@ -105,4 +105,9 @@ if(isset($_SESSION['upload_notes']))
 
     $_SESSION['notes_valides']=true;
 }
+    if(isset($_POST['ue'])) 
+    {
+        $_SESSION['ue']=$_POST['ue'];
+    }
+        
 ?>

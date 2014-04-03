@@ -403,7 +403,7 @@ function checkmailS($mail_verif, $mail)
 /**
  * Envoie d'un mail de notification
  */
-function envoiMail($email_from,$email_to,$email_replay,$objet,$message)
+function envoiMail($email_from,$name_from,$email_to,$email_replay,$objet,$message)
 {
 	if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $email_to)) // On filtre les serveurs qui rencontrent des bug.
 	{
@@ -414,8 +414,8 @@ function envoiMail($email_from,$email_to,$email_replay,$objet,$message)
 		$passage_ligne = "\n";
 	}
 	
-	$headers = "From: \"WeaponsB\" ".$email_from.$passage_ligne;
-	$headers.= "Reply-to: \"WeaponsB\" ".$email_replay.$passage_ligne;
+	$headers = "From: \"".$name_from."\" ".$email_from.$passage_ligne;
+	$headers.= "Reply-to: \"".$name_from."\" ".$email_replay.$passage_ligne;
 	$headers  .= 'MIME-Version: 1.0' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 

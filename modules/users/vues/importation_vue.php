@@ -17,6 +17,9 @@
 *Aucune information/erreur
 *--------------------------
 */
+
+$user_information = get_information_user($_SESSION['id_user']);
+
 ?>   
 <section>
     <h1>Importation fichier Excel</h1>
@@ -31,6 +34,15 @@
         <br/>
         <input name="charger" type="submit" value="Charger" />
         <input name="valider" type="submit" value="Valider" <?php if(!($_SESSION['emails_valides'] AND $_SESSION['notes_valides'])) echo "disabled" ?> />
+        <label for="ue" >UE :</label>
+        <select name="ue" >
+            <option>Genie logiciel</option>
+            <option>UML</option>
+        </select>
+        <br/>
+        <label for="enseignant" >Enseignant :</label>
+        <input id="enseignant" type="text" name="enseignant" disabled value="<?php echo strtoupper($user_information['uti_nom']).' '.$user_information['uti_prenom'] ?>"/>
+        <br/>
     </form>
 
 <?php

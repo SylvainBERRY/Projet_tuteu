@@ -25,24 +25,20 @@ $user_information = get_information_user($_SESSION['id_user']);
     <h1>Configuration des mails</h1>
 
      <form action="index.php?module=users&amp;action=envoi" method="post" >
-        <label for="ue" >UE :</label>
-        <input id="ue" type="text" name="ue" />
-        <br/>
-        <label for="enseignant" >Enseignant :</label>
-        <input id="enseignant" type="text" name="enseignant" disabled value="<?php echo strtoupper($user_information['uti_nom']).' '.$user_information['uti_prenom'] ?>"/>
-        <br/>
         <label for="objet" >Objet :</label>
-        <input id="objet" type="text" name="objet" value="Note" />
+        <input id="objet" type="text" name="objet" value="Note du module <?php echo $_SESSION['ue'] ?>" />
         <br/>
         <label for="message" >Texte :</label>
         <br/>
-        <textarea id="message" name="message" >Bonjour, Voici le note du :
-
-Cordialement</textarea>
+        <textarea id="message" name="message" >Bonjour,
+Ci-dessous vos notes du module <?php echo $_SESSION['ue'] ?> 
+Cordialement
+<?php echo $user_information['uti_prenom'].' '.strtoupper($user_information['uti_nom']) ?></textarea>
         <br/>
         <input type="submit" value="envoyer" /><input type="submit" value="aperçu" /></br>
 
 <?php
+echo $_SESSION['ue'];
 
     echo '<table border="1">';
     echo '<thead><tr>';
