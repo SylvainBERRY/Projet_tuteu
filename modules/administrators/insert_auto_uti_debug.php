@@ -43,8 +43,8 @@ function createUti($nbUti)
 	    $pdo->beginTransaction();
 		for($i = 0; $i < $nbUti ; $i++)
 		{
-			$requete = $pdo->prepare("INSERT INTO utilisateurs (uti_nom, uti_prenom, uti_login, uti_mdp, uti_mail, uti_is_admin, uti_is_valide, uti_ue_id)
-						VALUES (:uti_nom, :uti_prenom, :uti_login, :uti_mdp, :uti_mail, 0, 0, '1')");
+			$requete = $pdo->prepare("INSERT INTO utilisateurs (uti_nom, uti_prenom, uti_login, uti_mdp, uti_mail, uti_is_admin, uti_is_valide)
+						VALUES (:uti_nom, :uti_prenom, :uti_login, :uti_mdp, :uti_mail, 0, 0)");
 
 			$requete->bindValue(':uti_mdp', $auto_mdp.$i);
 			$requete->bindValue(':uti_nom', $nom.$i);

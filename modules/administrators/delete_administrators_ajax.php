@@ -43,7 +43,7 @@ if (isset($_POST['users_id_uti']))
 
 		// résultat
 		$array_result = array();
-		$array_result['message'] = "Les utilisateurs ont bien été supprimés.";
+		$array_result['message'] = "Le(s) utilisateur(s) ont bien été supprimés.";
 		$array_result['users_id_uti'] = $tableau_id;
 		$array_result_json = json_encode($array_result);
 
@@ -62,7 +62,7 @@ if (isset($_POST['users_id_uti']))
 
 		//lister dans un tableau les id error
 		$array_result = array();
-		$array_result['message'] = "Une erreur est survenue, les utilisateurs suivants n'ont pas été supprimés.";
+		$array_result['message'] = "Une erreur est survenue, le(s) utilisateur(s) suivants n'ont pas été supprimés.";
 		$array_result['users_id_uti'] = $errors_array;
 		$array_result_json = json_encode($array_result);
 

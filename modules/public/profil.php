@@ -60,11 +60,12 @@ if (!empty($_POST)) {
 				//Login ok pas de message d'erreur en flash
 				setMessageFlash('Login validé');
 			}
+			else
+			 {
+				// Doit être renseigné
+				$errors_array[] = 'Vous devez renseigner un login !';
+			}
 		}
-	} else {
-
-		// Doit être renseigné
-		$errors_array[] = 'Vous devez renseigner un login !';
 	}
 
 
@@ -95,11 +96,11 @@ if (!empty($_POST)) {
 				//Prénom ok pas de message d'erreur en flash
 				setMessageFlash('Prénom validé');
 			}
+			else {
+			// Doit être renseigné
+			$errors_array[] = 'Vous devez renseigner un prénom !';
+			}
 		}
-	}else {
-
-		// Doit être renseigné
-		$errors_array[] = 'Vous devez renseigner un prénom !';
 	}
 
 
@@ -128,19 +129,19 @@ if (!empty($_POST)) {
 			{
 				// Nom ok pas de message d'erreur en flash
 				setMessageFlash('Nom validé');
+			} else
+			{
+				// Doit être renseigné
+				$errors_array[] = 'Vous devez renseigner un nom !';
 			}
 		}
-	}else {
-
-		// Doit être renseigné
-		$errors_array[] = 'Vous devez renseigner un nom !';
 	}
 
 	//Mot de passe
 	if(!empty($_POST['mdp']))
 	{
 		$mdp = trim($_POST['mdp']);
-		
+
 		$mdp_result = check_mdp($mdp, '');
 		if($mdp_result == TOOSHORT)
 		{
@@ -231,13 +232,14 @@ if (!empty($_POST)) {
 				// Adresse mail ok pas de message d'erreur en flash
 				setMessageFlash('Adresse mail validé');
 			}
+			else {
+
+				// Doit être renseigné
+				$errors_array[] = 'Vous devez renseigner une adresse mail !';
+			}
 		}
 	}
-	else {
 
-		// Doit être renseigné
-		$errors_array[] = 'Vous devez renseigner une adresse mail !';
-	}
 
 	//Mail suite
 	if(isset($_POST['mail_verif']))
@@ -270,30 +272,26 @@ if (!empty($_POST)) {
 			}
 		}
 	}
-	else {
 
-		// Doit être renseigné
-		$errors_array[] = 'Vous devez renseigner une adresse mail de vérification !';
-	}
-	
+
 	// Si aucune erreur n'est trouvée
 	if (empty($errors_array)) {
 
 		// Initialisation du tableau d'ue
 		$reponse = lectureUE();
-		$tableau_ue = "";
+		$tableau_ue = array();
 		$i = 1;
 
 		// Remplissage du tableau d'ue avec les id ue
 		foreach ($reponse as $donnees) {
 			if (isset($_POST[$i])) {
-				$tableau_ue .= $donnees['ue_id'];
-				$tableau_ue .= ',';
+				$tableau_ue[$i] = $donnees['ue_id'];
 			}
 			$i++;
 		}
 		$mdp = $_POST['mdp'];
-		
+
+
 		// Inscription base de données
 		if (modifUti($_POST['nom'],$_POST['prenom'],$_POST['login'],$_POST['mail'],$mdp,$tableau_ue)) {
 
@@ -304,20 +302,20 @@ if (!empty($_POST)) {
 			//$email_from = 'berry.sylvain@free.fr';  // @todo: définir l'expéditeur du mail.
 			//$email_to = $_POST['mail'];
 			//$objet = "Mail de notification suite à la modification de votre profil.";
-			//$message = '"'"Une modification de votre profil a été effectué sur l'application GetNote. Voici le résumé de cette //modification: Nom: ".$_POST['nom']." Prenom: ".$_POST['prenom']." Login: ".$_POST['login']." Mail: ".$_POST['mail']. //" Mot de passe: ".$tableau_ue,$_POST['mdp'].'"';
+			//$message = "Une modification de votre profil a été effectué sur l'application GetNote. Voici le résumé de cette modification: Nom: ".$_POST['nom']." Prenom: ".$_POST['prenom']." Login: ".$_POST['login']." Mail: ".$_POST['mail']." Mot de passe: ".$_POST['mdp']." Enseignement: ".$tableau_ue;
 			//envoiMail($email_from,$email_to,$email_replay,$objet,$message);
 
 			// Redirection connexion
-			header( 'Location: '.LOGOUT_REDIRECT ) ;
+			header( 'Location: '.LOGOUT ) ;
 		}
 		else {
 
 			$errors_array[] = 'Une erreur est survenue. Merci de réessayer ultérieurement.';
-		
+
 		}
 	}
 	else {
-		
+
 		// Ajouter les messages du tableau en message flash
 		setMessageFlash($errors_array,MESSAGE_FLASH_ERREUR);
 
@@ -330,4 +328,5 @@ if (!empty($_POST)) {
 
 // Inclusion page vue profil
 include_once (CHEMIN_VUE.'profil_vue.php');
+
 ?>

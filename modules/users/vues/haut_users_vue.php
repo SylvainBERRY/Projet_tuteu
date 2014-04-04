@@ -67,5 +67,5 @@
             <?php } ?>
             </p>
             <?php $user_information = get_information_user($_SESSION['id_user']); ?>
-            <h3><?php echo strtoupper($user_information['uti_nom']).' '.$user_information['uti_prenom'] ?></h3>
+            <h3>Utilisateur : <?php echo strtoupper($user_information['uti_nom']).' '.$user_information['uti_prenom'] ?></h3>
         </header>

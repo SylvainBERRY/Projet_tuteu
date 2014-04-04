@@ -1,9 +1,9 @@
 <?php
 /**
 *BERRY Sylvain & El-Hocine Takouert
-*Page valide_administrators_ajax.php
+*Page tabUE_administrators_ajax.php
 *
-*Page effectuant les traitement sur la table utilisateurs
+*Page effectuant les traitement sur la table utilisateurs_ue
 *
 *Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
 *
@@ -18,22 +18,26 @@
 *--------------------------
 */
 
-// Validation des utilisateurs:
+// Traitement sur le tableau d'ue des utilisateurs:
 include_once (CHEMIN_MODELE.'administrators_modele.php');
 
-// Si des données sont postés ici des id_uti
-if (isset($_POST['users_id_uti']))
+// Si des données sont postés ici des uti_id
+if (isset($_POST['ue_id_uti']))
 {
-	$tableau_id = $_POST['users_id_uti'];
+	$user_id = $_POST['ue_id_uti']);
+		
 	// Erreur retrouvées
 	$errors_array = array();
-	foreach ($tableau_id as $user_id => $result) {
-		if(!valideUti($result))
-		{
-			// Ajout message d'erreur
-			$errors_array[] = $result;
-		}
+	
+	$tableau_ue = lectureUEUti($user_id);
+	
+	if($tableau_ue == false)
+	{
+		// Ajout message d'erreur
+		$errors_array[] = $tableau_ue;
 	}
+	
+
 
 	// Si il n'y a aucune erreure
 	if (empty($errors_array))
@@ -43,8 +47,8 @@ if (isset($_POST['users_id_uti']))
 
 		// résultat
 		$array_result = array();
-		$array_result['message'] = "Le(s) utilisateur(s) ont bien été validés.";
-		$array_result['users_id_uti'] = $tableau_id;
+		$array_result['message'] = "Le(s) ue ont bien été récupérés.";
+		$array_result['ue_id_uti'] = $tableau_ue;
 		$array_result_json = json_encode($array_result);
 
 		// Afficher résultat
@@ -62,8 +66,8 @@ if (isset($_POST['users_id_uti']))
 
 		//lister dans un tableau les id error
 		$array_result = array();
-		$array_result['message'] = "Une erreur est survenue, le(s) utilisateur(s) suivant(s) n'ont pas été validés.";
-		$array_result['users_id_uti'] = $errors_array;
+		$array_result['message'] = "Une erreur est survenue, le(s) ue suivant(s) n'ont pas été récupérés.";
+		$array_result['ue_id_uti'] = $errors_array;
 		$array_result_json = json_encode($array_result);
 
 		// Afficher la liste
