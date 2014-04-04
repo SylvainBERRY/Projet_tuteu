@@ -42,7 +42,7 @@
         <!-- Importation fichiers pour configuration -->
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>configuration.css" />
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_config.js"></script>
-        <title>Importation</title>
+        <title>Configuration</title>
         <?php        } ?>
         <!-- Importation fichiers pour l'apercu et l'envoi-->
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables.js"></script>
@@ -50,39 +50,22 @@
     </head>
     <body>
         <header>
-            <form id= "logout" action="index.php?action=deconnexion" method="post">
-                <p>
-                    <input type="submit" value="Logout" />
-                </p>
-            </form>
-            <form id= "profil" action="<?php echo LOGIN_REDIRECT_PROFIL; ?>" method="post">
-                <p>
-                    <input type="submit" value="Gestion profil" />
-                </p>
-            </form>
-            <?php
-            if ($_SESSION['is_admin']) {
-            ?>
-                <form id= "admin" action="<?php echo LOGIN_REDIRECT_ADMIN; ?>" method="post">
-                    <p>
-                        <input type="submit" value="Gestion des utilisateurs" />
-                    </p>
-                </form>
-            <?php
-            }
-            ?>
             <img id="logo" src="images/logo_pf.png" alt="Logo" />
 
-            <nav><!-- Menu -->
+            <nav style="background: url('<?php echo CHEMIN_IMAGE.'prog_'.$_GET['action'] ?>.png') no-repeat bottom;" ><!-- Menu -->
                 <ul>
-                    <li><a id="ici" href="">IMPORTATION</a></li>
-                    <li><a href="">CONFIGURATION</a></li>
-                    <li><a href="">ENVOI EMAIL</a></li>
+                    <li><a <?php if($_GET['action']=='importation') echo 'id="ici"' ?> href="index.php?module=users&amp;action=importation">IMPORTATION</a></li>
+                    <li><a <?php if($_GET['action']=='configuration') echo 'id="ici"' ?> href="index.php?module=users&amp;action=configuration">CONFIGURATION</a></li>
+                    <li><a <?php if($_GET['action']=='envoi') echo 'id="ici"' ?> href="index.php?module=users&amp;action=envoi">ENVOI EMAIL</a></li>
                 </ul>
             </nav>
             <p>
-                <a href=""><img src="images/logout.png" /><br/><span class="">LOGOUT</span></a>
-                <a href=""><img src="images/profile.png" /><br/><span class="">PROFILE</span></a>
-                <a href=""><img src="images/admin.png" /><br/><span class="">ADMIN</span></a>
+                <a href="<?php echo LOGIN_REDIRECT_PROFIL ?>"><img src="images/logout.png" /><br/><span class="">LOGOUT</span></a>
+                <a href="index.php?action=deconnexion"><img src="images/profile.png" /><br/><span class="">PROFILE</span></a>
+            <?php if ($_SESSION['is_admin']) { ?>
+                <a href="<?php echo LOGIN_REDIRECT_ADMIN ?>" ><img src="images/admin.png" /><br/><span class="">ADMIN</span></a>
+            <?php } ?>
             </p>
+            <?php $user_information = get_information_user($_SESSION['id_user']); ?>
+            <h3><?php echo strtoupper($user_information['uti_nom']).' '.$user_information['uti_prenom'] ?></h3>
         </header>

@@ -1,18 +1,15 @@
 td,th
 {
-	border: 1px solid black;
+	border: 1px solid gray;
 }
 
 table
 {
 	border-collapse: collapse;
 	max-width: 100%;
+	border: 2px solid gray;
 }
 
-body
-{
-	font: 14px calibri;
-}
 
 .dataTables_wrapper {
 	display: inline-block;

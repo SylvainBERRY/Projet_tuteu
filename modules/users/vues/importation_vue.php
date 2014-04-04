@@ -18,8 +18,6 @@
 *--------------------------
 */
 
-$user_information = get_information_user($_SESSION['id_user']);
-
 ?>   
 <section>
     <br/>
@@ -33,16 +31,14 @@ $user_information = get_information_user($_SESSION['id_user']);
         <input type="hidden" name="MAX_FILE_SIZE" value="2097152">  
         <input type="file" id="excel_notes" name="excel_notes" />
         <br/>
-        <input name="charger" type="submit" value="Charger" />
-        <input name="valider" type="submit" value="Valider" <?php if(!($_SESSION['emails_valides'] AND $_SESSION['notes_valides'])) echo "disabled" ?> />
-        <label for="ue" >UE :</label>
+        <label for="ue" >Choisissez l'UE :</label>
         <select name="ue" >
             <option>Genie logiciel</option>
             <option>UML</option>
         </select>
         <br/>
-        <label for="enseignant" >Enseignant :</label>
-        <input id="enseignant" type="text" name="enseignant" disabled value="<?php echo strtoupper($user_information['uti_nom']).' '.$user_information['uti_prenom'] ?>"/>
+        <input name="charger" type="submit" value="Charger" />
+        <input name="valider" type="submit" value="Valider" <?php if(!($_SESSION['emails_valides'] AND $_SESSION['notes_valides'])) echo "disabled" ?> />
         <br/>
     </form>
 

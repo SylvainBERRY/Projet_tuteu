@@ -18,10 +18,9 @@
 *--------------------------
 */
 
-$user_information = get_information_user($_SESSION['id_user']);
-
 ?>  
 <section>
+    <br/>
     <h1>Configuration des mails</h1>
 
      <form action="index.php?module=users&amp;action=envoi" method="post" >
@@ -38,11 +37,10 @@ Cordialement
         <input type="submit" value="envoyer" /><input type="submit" value="aperçu" /></br>
 
 <?php
-echo $_SESSION['ue'];
 
     echo '<table border="1">';
     echo '<thead><tr>';
-    echo '<th><input type="checkbox" id="select_tout" /></th><th>Nom</th><th>Prénom</th><th>Email 1</th><th>Email 2</th>';
+    echo '<th><input type="checkbox" id="select_tout" /></th><th>Nom</th><th>Prénom</th><th>Emails</th>';
 
     while ($type_note = $types_notes->fetch())
     {
@@ -58,9 +56,8 @@ echo $_SESSION['ue'];
     echo '<td><input type="checkbox" name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" /></td>';
     echo '<td>'.$etudiant['nom'].'</td>';
     echo '<td>'.$etudiant['prenom'].'</td>';
-    echo '<td>'.$etudiant['mail1'].'</td>';
-    echo '<td>'.$etudiant['mail2'].'</td>';
-
+    echo '<td>'.$etudiant['mail1'].'<br/>'.$etudiant['mail2'].'</td>';
+   
     // @todo : - requêtes dans le controleur - utilisation de pdo (injection) - faire une fonction dans le modèle
     $note_etudiant = $bdd->query('SELECT valeur FROM note WHERE id_etud="'.$etudiant['id_etud'].'"');
 
@@ -76,4 +73,5 @@ echo $_SESSION['ue'];
     echo '</table>';
 ?>
     </form>
+    <br/>
 </section>

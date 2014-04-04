@@ -19,10 +19,10 @@
 */
 
 // Confgiuration developpement
-define('DEBUG_SESSION', true);
-define('DEBUG_POST', true);
-define('DEBUG_GET', true);
-define('DEBUG_AUTO_UTI', true);
+define('DEBUG_SESSION', false);
+define('DEBUG_POST', false);
+define('DEBUG_GET', false);
+define('DEBUG_AUTO_UTI', false);
 
 // Informations relatives au site
 define('ROOTPATH', 'http://'.$_SERVER['HTTP_HOST'].'/GitHub/Projet_tuteu', true);
@@ -36,6 +36,7 @@ define('CHEMIN_MODULE', 'modules/');
 define('CHEMIN_LIB', 'libs/');
 define('CHEMIN_JS', 'js/');
 define('CHEMIN_STYLE', 'styles/');
+define('CHEMIN_IMAGE', 'images/');
 define('CHEMIN_USERS', 'users/');
 define('CHEMIN_PUBLIC', 'public/');
 define('CHEMIN_ADMINISTRATORS', 'administrators/');
