@@ -22,6 +22,7 @@ $user_information = get_information_user($_SESSION['id_user']);
 
 ?>   
 <section>
+    <br/>
     <h1>Importation fichier Excel</h1>
     <form action="index.php?module=users&amp;action=importation" method="post" enctype="multipart/form-data" >
         <label for="info" >Emails étudiants :</label>
@@ -95,5 +96,5 @@ if($_SESSION['notes_valides'])
 }
 
 ?>
-
+<br/>
 </section>

@@ -1,6 +1,219 @@
+/* 
+
+------------- Cette feuille de style définie les elements globale du site et commun à tout les autres pages 
+
+*/
+
+
+/* Définition des fonts du site */
+
+@font-face {
+    font-family: 'cahier';
+    src: url('../images/police/cahier.ttf');
+}
+@font-face {
+    font-family: 'complete_in_him';
+    src: url('../images/police/complete_in_him.ttf');
+}
+@font-face {
+    font-family: 'you_are_loved';
+    src: url('../images/police/you_are_loved.ttf');
+}
+
+/* Style des elements de le page */
+
 body
 {
+	background: url("../images/fond.jpg")  top center;
+	text-align:center;
+	font: 0.8em "cahier";
+	color:#5a5a5a;
+	padding:30px 0px;
+	margin:auto;
+}
+
+/* Elements de l'entete */
+
+header
+{
+	background-image:url("../images/header.png");
+	height:202px;
+	width:936px;
+	text-align:left;
+	margin:auto;
+	padding:0;
+	margin-top: 80px;
+}
+
+header img
+{
+	display:inline-block;
+	vertical-align:top;
+	margin-top:15px;
+}
+
+header #logo
+{
+	margin-right: -10px;
+	margin-top:-95px;
+	margin-left: 45px;
+}
+
+header #progression
+{
+	margin-top:-40px;
+}
+
+header #titre
+{
+	display:inline-block;
+	vertical-align:top;
+	margin:0 23px;
+	padding:0;
+	padding-top:20px;
+}
+
+header h1
+{
+	font-size: 4.2em;
+	padding:0;
+	margin:0;
+	font-family:"you_are_loved";
+	font-weight:normal;
+}
+
+header h2
+{
+	color:#036c99;
+	margin:0;
+	padding:0;
+	font-size: 3em;
+	font-family:"complete_in_him";
+	font-weight:normal;
+}
+
+/* Elements du menu */
+
+nav
+{
+	display: inline-block;
+	text-align: right;
+	background: url("../images/progression.png") no-repeat bottom;
+	width: 554px;
+	height: 100px;
+	position: relative;
+	margin-top: 15px;
+}
+
+nav ul
+{
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li
+{
+	display: inline-block;
+	width: 178px;
+	margin-top: -75px;
+	vertical-align: top;
+}
+
+nav a
+{
+	display: block;
+	width: 178px;
+	height: 160px;
+	padding-top: 10px;
+	background: url("../images/tooltip.png") no-repeat;
+	font-family:"you_are_loved";
+	color: gray;
+	font-size: 2em;
+	font-weight: normal;
 	text-align: center;
-	font-family: calibri;
-	background-color: #eee;
+	text-shadow: 0.1em 0.1em 0.5em white;
+}
+
+nav a#ici
+{
+	color: #1e6383;
+	background: url("../images/tooltip_ici.png") no-repeat;
+}
+
+nav a:hover
+{
+	
+}
+
+header p
+{
+	margin-left: 60px;
+	margin-top: -50px;
+}
+
+header p a
+{
+	display: inline-block;
+	text-align: center;
+	margin: 5px;
+}
+
+header p a img
+{
+	padding-bottom: 3px;
+}
+
+header p a span
+{	
+	display: inline-block;
+	margin: 0;
+	font: 1.1em "calibri";
+	font-weight: bold;
+	width: 55px;
+	color: #1e6383;
+	background-color: #eeeeee;
+	border-radius: 3px;
+	padding: 1px;
+	box-shadow: 0.1em 0.1em 0.4em #aaaaaa;
+}
+
+header p a:hover
+{
+	margin-bottom: -5px;
+}
+
+/* Element section */
+
+section
+{
+	background-image:url("../images/section.png");
+	min-height:230px;
+    margin:auto;
+    width:936px;
+    font-size:16px;
+    padding-bottom: 50px;
+}
+
+
+/* Pieds de page */
+
+footer
+{
+	background-image:url("../images/footer.png");
+	height:105px;
+    text-align:left;
+    margin:auto;
+    width:770px;
+    padding: 0;
+    padding-left: 166px;
+    padding-top: 10px;
+}
+
+
+/* Le style pour les liens */
+
+a
+{
+	text-decoration: none;
 }

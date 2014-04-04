@@ -79,7 +79,7 @@ while($etudiant=$etudiants->fetch())
     
     $message_globale.='<h3>Email '.$num_mail.' à '.$etudiant['prenom'].' '.strtoupper($etudiant['nom']).' : &lt;'.$etudiant['mail1'].'&gt; &lt;'.$etudiant['mail2'].'&gt;</h3><br/>';
     $message_globale.=$message;
-    $message_globale.='<br/>-------------------------2<br/><br/>';
+    $message_globale.='<br/>-------------------------<br/><br/>';
     $num_mail++;
 }
 

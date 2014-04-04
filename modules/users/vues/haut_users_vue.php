@@ -22,6 +22,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <link rel="shurtcut icon" href="images/ico.ico" />
         <!-- Importation fichiers globales -->
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>globale.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo CHEMIN_STYLE ?>jquery.dataTables.css">
@@ -49,7 +50,6 @@
     </head>
     <body>
         <header>
-            <h1> <?php echo $titre_head; ?> </h1>
             <form id= "logout" action="index.php?action=deconnexion" method="post">
                 <p>
                     <input type="submit" value="Logout" />
@@ -71,4 +71,18 @@
             <?php
             }
             ?>
+            <img id="logo" src="images/logo_pf.png" alt="Logo" />
+
+            <nav><!-- Menu -->
+                <ul>
+                    <li><a id="ici" href="">IMPORTATION</a></li>
+                    <li><a href="">CONFIGURATION</a></li>
+                    <li><a href="">ENVOI EMAIL</a></li>
+                </ul>
+            </nav>
+            <p>
+                <a href=""><img src="images/logout.png" /><br/><span class="">LOGOUT</span></a>
+                <a href=""><img src="images/profile.png" /><br/><span class="">PROFILE</span></a>
+                <a href=""><img src="images/admin.png" /><br/><span class="">ADMIN</span></a>
+            </p>
         </header>
