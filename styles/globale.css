@@ -191,6 +191,7 @@ section
     width:936px;
     font-size:16px;
     padding-bottom: 50px;
+    text-align: center;
 }
 
 
@@ -221,4 +222,17 @@ a
 form *
 {
 	margin-top: 10px;
+}
+
+.erreur
+{
+	color:  #fb4040;
+	margin-bottom: 15px;
+}
+
+.erreur img
+{
+	margin-right: 5px;
+	margin-bottom: -5px;
+	margin-top: 5px;
 }

@@ -128,10 +128,10 @@ function lireColonne($feuille,$coord_cell)
  * @todo: commenter la fonction
  * @return array | $feuille
  */
-function erreurUpload($nom_fichier)
+function erreurUpload($nom_fichier,$type)
 {
 	$extensions_valides = array( 'xls' , 'xlsx');
-    $extension_upload = strtolower(substr(strrchr($_FILES['excel_mails']['name'], '.'),1));
+    $extension_upload = strtolower(substr(strrchr($_FILES[$nom_fichier]['name'], '.'),1));
     $taille_max=2097152;
 
 	if ($_FILES[$nom_fichier]['error']) 
@@ -139,28 +139,28 @@ function erreurUpload($nom_fichier)
 		switch ($_FILES[$nom_fichier]['error'])
 		{     
 			case 1: // UPLOAD_ERR_INI_SIZE	taille autorisée par le serveur 
-				echo "La taille du fichier dépasse la limite autorisée par le serveur !"; 
+				setMessageFlash($type." : La taille du fichier dépasse la limite autorisée par le serveur !","upload"); 
 			break;       
 			case 2: // UPLOAD_ERR_FORM_SIZE	taille autorisée dans formulaire   
-				echo "La taille du fichier dépasse la limite autorisée par le formulaire !"; 
+				setMessageFlash($type." : La taille du fichier dépasse la limite autorisée par le formulaire !","upload"); 
 			break;     
 			case 3: // UPLOAD_ERR_PARTIAL     
-				echo "L'envoi du fichier a été interrompu pendant le transfert !";     
+				setMessageFlash($type." : L'envoi du fichier a été interrompu pendant le transfert !","upload");     
 			break;     
 			case 4: // UPLOAD_ERR_NO_FILE     
-				echo "Le fichier que vous avez envoyé a une taille nulle !"; 
+				setMessageFlash($type." : Le fichier que vous avez envoyé a une taille nulle !","upload"); 
 			break;
 		}
 		return true;
  	}
  	elseif($_FILES[$nom_fichier]['size'] > $taille_max)
  	{
- 		echo "Le fichier dépasse la limite autorisée !"; 
+ 		setMessageFlash($type." : Le fichier dépasse la limite autorisée !","upload"); 
  		return true;
  	}
  	elseif (!in_array($extension_upload,$extensions_valides))
  	{
- 		echo "Extension incorrecte !";
+ 		setMessageFlash($type." : Extension incorrecte !","upload");
  		return true;
  	}
 

@@ -44,6 +44,19 @@
 
 <?php
 
+$tab_erreur=getMessageFlash("upload");
+
+if (!empty($tab_erreur)) 
+{
+    echo '<p id="erreur_message" class="erreur">';
+    foreach ($tab_erreur as $erreur) {
+        echo '<img src="'.CHEMIN_IMAGE.'erreur.png" alt="icone Erreur"/>';
+        echo $erreur;
+        echo '<br/>';
+    }
+    echo '</p>';
+}
+
 if($_SESSION['emails_valides']) 
 {
     $nb_etud=count($tab_noms);

@@ -12,15 +12,16 @@ table
 
 
 .dataTables_wrapper {
-	margin: auto;
 }
 
 #DataTables_Table_0_wrapper
 {
-	width: 52%;
+	margin: auto;
+	width: 80%;
 }
 
 #DataTables_Table_1_wrapper
 {
-	width: 30%;
+	margin: auto;
+	width: 80%;
 }
