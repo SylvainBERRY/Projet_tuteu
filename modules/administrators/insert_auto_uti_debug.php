@@ -1,6 +1,6 @@
 <?php
 /**
-*BERRY Sylvain & El-Hocine Takouert
+*BERRY Sylvain & TAKOUERT El-Hocine 
 *Page insert_auto_uti.php
 *
 *Page de génération automatique d'utilisateur pour test
@@ -17,7 +17,6 @@
 *Aucune information/erreur
 *--------------------------
 */
-
 /**
  * Cr?ation d'utilisateur en base de donn?es
  * @return boolean // true si la cr?ation c'est bien pass? false dans le cas contraire
