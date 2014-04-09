@@ -24,8 +24,8 @@ include_once ('fonctions_importation.php');
 
 include_once (CHEMIN_MODELE.'importation_modele.php');
 
-
 if(isset($_POST['valider'])) {
+	$_SESSION['etape']="configuration";
     header('Location:index.php?module=users&action=configuration');
 }
 

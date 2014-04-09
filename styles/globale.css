@@ -9,15 +9,15 @@
 
 @font-face {
     font-family: 'cahier';
-    src: url('../images/police/cahier.ttf');
+    src: url('../images/polices/cahier.ttf');
 }
 @font-face {
     font-family: 'complete_in_him';
-    src: url('../images/police/complete_in_him.ttf');
+    src: url('../images/polices/complete_in_him.ttf');
 }
 @font-face {
     font-family: 'you_are_loved';
-    src: url('../images/police/you_are_loved.ttf');
+    src: url('../images/polices/you_are_loved.ttf');
 }
 
 /* Style des elements de le page */
@@ -120,8 +120,8 @@ nav a
 	padding-top: 10px;
 	background: url("../images/tooltip.png") no-repeat;
 	font-family:"you_are_loved";
-	color: gray;
-	font-size: 1.7em;
+	color:#999999;
+	font-size: 1.6em;
 	font-weight: normal;
 	text-align: center;
 	text-shadow: 0.1em 0.1em 0.5em white;
@@ -131,6 +131,7 @@ nav a#ici
 {
 	color: #1e6383;
 	background: url("../images/tooltip_ici.png") no-repeat;
+	font-size: 1.7em;
 }
 
 nav a:hover

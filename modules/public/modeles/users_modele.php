@@ -28,7 +28,7 @@ function get_information_user($id_user) {
 
   $pdo = PDOSingleton::getInstance();
 
-  $requete = $pdo->prepare("SELECT uti_id, uti_nom, uti_prenom, uti_login, uti_mail, uti_is_valide, uti_ue_id FROM utilisateurs WHERE uti_id = :uti_id");
+  $requete = $pdo->prepare("SELECT * FROM utilisateurs WHERE uti_id = :uti_id");
 
   $requete->bindValue(':uti_id', $id_user);
 

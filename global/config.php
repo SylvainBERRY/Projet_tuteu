@@ -56,7 +56,7 @@ define('INSCRIPTION_REDIRECT', 'index.php?module=public&action=inscription');
 define('LOGIN_REDIRECT_ADMIN','index.php?module=administrators&action=accueil_administrators');
 define('LOGOUT_REDIRECT','index.php?module=public&action=connexion');
 define('LOGIN_REDIRECT_INSCRIPTION','index.php?module=public&action=inscription');
-define('LOGIN_REDIRECT_PROFIL','index.php?module=public&action=profil');
+define('LOGIN_REDIRECT_PROFIL','index.php?module=users&action=profil');
 define('LOGOUT','index.php?module=public&action=deconnexion');
 
 // Sécurité

@@ -18,6 +18,8 @@
 *--------------------------
 */
 
+$_SESSION['etape']="envoi";
+
 // Inclusion du modele pour l'envoi
 include_once CHEMIN_MODELE.'envoi_modele.php';
 

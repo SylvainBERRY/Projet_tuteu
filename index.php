@@ -126,6 +126,7 @@ if (is_file($chemin_page)) {
 
 				// Inclusion de la page
 				modifTitre('Importation');
+
 				include_once (CHEMIN_MODULE.'users/haut_users.php');
 				include_once ($chemin_page);
 				include_once (CHEMIN_MODULE.'users/bas_users.php');

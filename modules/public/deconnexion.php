@@ -20,6 +20,9 @@
 // Fait une déconnexion de l'utilisateur
 logout();
 
+session_unset();
+session_destroy();
+
 // Message flash de succès vous avez bien été déconnecté
 setMessageFlash('Vous avez bien été déconnecté(e).');
 

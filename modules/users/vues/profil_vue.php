@@ -17,6 +17,7 @@
 *Aucune information/erreur
 *--------------------------
 */
+
 ?>
 
 <!-- Formulaire de modification de profil -->

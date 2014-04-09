@@ -17,6 +17,7 @@
 *Aucune information/erreur
 *--------------------------
 */
+echo $_SESSION['etape'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,15 +36,14 @@
         <!-- Importation fichiers pour importation -->
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>importation.css" />
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_import.js"></script>
-        <title>Importation</title>
         <?php 
            }elseif ($_GET['action']=='configuration') {
         ?>
         <!-- Importation fichiers pour configuration -->
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>configuration.css" />
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_config.js"></script>
-        <title>Configuration</title>
-        <?php        } ?>
+        <?php } ?>
+        <title><?php echo $_GET['action'] ?></title>
         <!-- Importation fichiers pour l'apercu et l'envoi-->
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables.js"></script>
         <!-- Importation fichiers pour l'historique-->
@@ -52,7 +52,7 @@
         <header>
             <a href="index.php?module=users&amp;action=importation"><img id="logo" src="images/logo_pf.png" alt="Logo" /></a>
 
-            <nav style="background: url('<?php echo CHEMIN_IMAGE.'prog_'.$_GET['action'] ?>.png') no-repeat bottom;" ><!-- Menu -->
+            <nav style="background: url('<?php echo CHEMIN_IMAGE.'prog_'.$_SESSION['etape'] ?>.png') no-repeat bottom;" ><!-- Menu -->
                 <ul>
                     <li><a <?php if($_GET['action']=='importation') echo 'id="ici"' ?> href="index.php?module=users&amp;action=importation">IMPORTATION</a></li>
                     <li><a <?php if($_GET['action']=='configuration') echo 'id="ici"' ?> href="index.php?module=users&amp;action=configuration">CONFIGURATION</a></li>
@@ -61,7 +61,7 @@
             </nav>
             <p>
                 <a href="index.php?action=deconnexion"><img src="images/logout.png" /><br/><span class="">LOGOUT</span></a>
-                <a href="<?php echo LOGIN_REDIRECT_PROFIL ?>"><img src="images/profile.png" /><br/><span class="">PROFILE</span></a>
+                <a href="<?php echo LOGIN_REDIRECT_PROFIL ?>"><img src="images/profile.png" /><br/><span class="">PROFIL</span></a>
             <?php if ($_SESSION['is_admin']) { ?>
                 <a href="<?php echo LOGIN_REDIRECT_ADMIN ?>" ><img src="images/admin.png" /><br/><span class="">ADMIN</span></a>
             <?php } ?>

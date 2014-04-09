@@ -1,18 +1,3 @@
-#dataUti
-{
-	display: none;
-}
-
-.dataTables_wrapper {
-
-}
-
-#tableauUti_wrapper
-{
-	margin: auto;
-	width: 90%;
-}
-
 #tableauUE_wrapper
 {
 	margin: auto;
@@ -38,11 +23,6 @@
 #tableauUE_wrapper label
 {
 	text-align: left;
-}
-
-fieldset
-{
-	border: 0;
 }
 
 #tableauUE_wrapper .dataTables_filter {
