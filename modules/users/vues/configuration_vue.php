@@ -25,7 +25,7 @@ Cordialement
 '.$user_information['uti_prenom'].' '.strtoupper($user_information['uti_nom']);
 
 echo '<script type="text/javascript">';
-
+echo 'var nb_etud_totale='; 
 echo '</script>';
 ?>  
 <section>

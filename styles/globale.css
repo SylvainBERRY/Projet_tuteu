@@ -269,10 +269,15 @@ table
 }
 
 
-input[type="submit"]
+input[type="submit"], button
 {
 	padding: 2px 7px;
 	margin-left: 10px;
 	font: 1em "calibri";
 	cursor: pointer;
 }
+
+.dataTables_wrapper .dataTables_filter {
+	margin-bottom: 10px;
+}
+

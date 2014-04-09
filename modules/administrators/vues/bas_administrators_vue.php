@@ -19,7 +19,7 @@
 */
 ?>
 		<footer>
-			Site realise par BERRY Sylvain & El-Hocine Takouert.<br/>
+		
 		</footer>
 	</body>
 </html>

@@ -463,4 +463,64 @@ function envoiMail($email_from,$name_from,$email_to,$email_replay,$objet,$messag
     mail($email_to, $objet, $message, $headers);
 
 }
+
+/**
+ * Retourne un tableau de tous les enseignements contenu dans la table enseignement
+ * @return array | $result
+ */
+function lectureUENom($ue_id)
+{
+  $pdo = PDOSingleton::getInstance();
+
+    $requete = $pdo->prepare("SELECT ue_nom FROM enseignement WHERE ue_id = :ue_id");
+
+  $requete->bindValue(':ue_id', $ue_id);
+  
+    $requete->execute();
+
+  if ($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+    $requete->closeCursor();
+  return $result['ue_nom'];
+  }
+  return false;
+
+}
+/**
+ * Retourne l'enseignements de l'utilisateur donn?e en param?tre
+ * @return array | $result
+ */
+function lectureTabUEUti($uti_id)
+{
+
+  $pdo = PDOSingleton::getInstance();
+
+    $requete = $pdo->prepare("SELECT ue_id FROM utilisateurs_ue WHERE uti_id = :uti_id");
+
+    $requete->bindValue(':uti_id', $uti_id);
+
+    $requete->execute();
+  
+    //get tableau vide
+  while($result = $requete->fetch(PDO::FETCH_ASSOC))
+  {
+    $ue_uti[]=$result['ue_id'];
+  }
+
+  $requete->closeCursor();
+
+  return $ue_uti;
+}
+/**
+ * Retourne les enseignements de l'utilisateur donn?e en param?tre
+ * @return array | $result
+ */
+function lectureUeUser($id)
+{
+    $tab_ue_uti = lectureTabUEUti($id);
+    $tab_nom_ue = array();
+    foreach ($tab_ue_uti as $id_tab => $value_id_ue) {
+      $tab_nom_ue[] = lectureUENom($value_id_ue);
+    }
+  return $tab_nom_ue;
+}
 ?>

@@ -18,6 +18,7 @@
 *--------------------------
 */
 ?>
+<!--
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,3 +51,29 @@
                 </p>
             </form>
 		</header>
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shurtcut icon" href="images/ico.ico" />
+        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>globale.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo CHEMIN_STYLE ?>jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_admin.js"></script>
+        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables.js"></script>
+        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>administrators.css" />
+        <title>Gestion utilisateur</title>
+    </head>
+    <body>
+        <header>
+            <a href="index.php?module=users&amp;action=importation"><img id="logo" src="images/logo_pf.png" alt="Logo" /><a>
+            <p>
+                <a href="index.php?action=deconnexion"><img src="images/logout.png" /><br/><span class="">LOGOUT</span></a>
+                <a href="<?php echo LOGIN_REDIRECT_PROFIL ?>"><img src="images/profile.png" /><br/><span class="">PROFILE</span></a>
+            </p>
+            <?php $user_information = get_information_user($_SESSION['id_user']); ?>
+            <h3>Utilisateur : <?php echo $user_information['uti_prenom'].' '.strtoupper($user_information['uti_nom']) ?></h3>
+        </header>

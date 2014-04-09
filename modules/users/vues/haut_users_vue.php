@@ -50,7 +50,7 @@
     </head>
     <body>
         <header>
-            <img id="logo" src="images/logo_pf.png" alt="Logo" />
+            <a href="index.php?module=users&amp;action=importation"><img id="logo" src="images/logo_pf.png" alt="Logo" /></a>
 
             <nav style="background: url('<?php echo CHEMIN_IMAGE.'prog_'.$_GET['action'] ?>.png') no-repeat bottom;" ><!-- Menu -->
                 <ul>

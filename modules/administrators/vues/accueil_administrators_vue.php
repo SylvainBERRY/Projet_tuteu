@@ -19,9 +19,11 @@
 */
 ?>
 <!-- Panneau de configuration utilisateurs -->
+<section>
+<br/>	
 <p class="listeUti">
 	<h1>
-		Utilisateurs
+		Gestion Utilisateurs
 	</h1>
 
 	<!-- Affichage de la liste des utilisateurs avec choix possible -->
@@ -96,10 +98,10 @@
 <?php } ?>
 
 <form id="dataUti" method="post" action="index.php?module=administrators&action=traite_administrators">
-	<fieldset><legend id="creation_from_legend">Création:</legend>
+	<fieldset><!-- <legend id="creation_from_legend">Création:</legend> -->
 		<p>
 			<h2 id="creation_from_title">Nouvel utilisateur :</h2>
-
+			<br/>
 		<!-- Affichage des donn&egrave;es de l'utilisateur s&egrave;lectionn&egrave; -->
 			Nom
 			<input id="creation_from_nom" type="text" name="Nom" size="30" ></input>
@@ -119,8 +121,10 @@
 			<input id="creation_from_uti_id" type="hidden" name="Uti_id" ></input>
 
 		<!-- Affichage les ue de l'utilisateur -->
+			<br/>
 			<table id="tableauUE">
-			<thead><tr><th></th><th>Nom UE</th></tr></thead>
+			<label>Nom des modules :<label>
+			<thead><tr><th></th><th></th></tr></thead>
 			<tbody>
 			<?php
 			$reponse = lectureUE();
@@ -359,3 +363,5 @@
 
 
 </script>
+<br/>
+</section>

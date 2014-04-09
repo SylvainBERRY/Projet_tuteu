@@ -17,8 +17,7 @@
 *Aucune information/erreur
 *--------------------------
 */
-
-$liste_ue= array('Genie logiciel','PHP','WEB');
+$liste_ue= lectureUeUser($_SESSION['id_user']);
 ?>   
 <section>
     <br/>
