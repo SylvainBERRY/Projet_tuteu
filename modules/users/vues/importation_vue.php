@@ -18,10 +18,11 @@
 *--------------------------
 */
 
+$liste_ue= array('Genie logiciel','PHP','WEB');
 ?>   
 <section>
     <br/>
-    <h1>Importation fichier Excel</h1>
+    <h1>Importation des fichiers Excels</h1>
     <form action="index.php?module=users&amp;action=importation" method="post" enctype="multipart/form-data" >
         <label for="info" >Emails étudiants :</label>
         <input type="hidden" name="MAX_FILE_SIZE" value="2097152">  
@@ -33,15 +34,19 @@
         <br/>
         <label for="ue" >Choisissez l'UE :</label>
         <select name="ue" >
-            <option>Genie logiciel</option>
-            <option>UML</option>
-        </select>
+            <?php  
+            foreach ($liste_ue as $ue) {
+                echo '<option '.((isset($_POST['ue']) AND ($_POST['ue']==$ue))?'selected ':'').'>'.$ue.'</option>';
+            }
+
+            ?>
+            </select>
         <br/>
-        <input name="charger" type="submit" value="Charger" />
+        <input name="charger" type="submit" value="Visualiser" />
         <input name="valider" type="submit" value="Valider" <?php if(!($_SESSION['emails_valides'] AND $_SESSION['notes_valides'])) echo "disabled" ?> />
         <br/>
     </form>
-
+<br/>
 <?php
 
 $tab_erreur=getMessageFlash("upload");
@@ -54,15 +59,17 @@ if (!empty($tab_erreur))
         echo $erreur;
         echo '<br/>';
     }
-    echo '</p>';
+    echo '</p><br/>';
+
 }
 
 if($_SESSION['emails_valides']) 
 {
+    echo '<h2>Emails :</h2>';
     $nb_etud=count($tab_noms);
 
     echo '<table border="1">';
-    echo '<thead><tr><th>Nom</th><th>Prenom</th><th>Mail 1</th><th>Mail 2</th></tr></thead>';
+    echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Mail 1</th><th>Mail 2</th></tr></thead>';
     echo '<tbody>';
     for ($i=0; $i < $nb_etud ; $i++)
     {
@@ -76,13 +83,17 @@ if($_SESSION['emails_valides'])
     echo '</tbody>';
     echo '</table>';
 }
-
+?>
+<br/>
+<br/>
+<br/>
+<?php
 if($_SESSION['notes_valides'])
 {
+    echo '<h2>Notes :</h2>';
     $nb_etud=count($tab_noms);
-
     echo '<table border="1">';
-    echo '<thead><tr><th>Nom</th><th>Prenom</th>';
+    echo '<thead><tr><th>Nom</th><th>Prénom</th>';
     foreach ($type_notes as $val) 
     {
         echo '<th>'.$val.'</th>';

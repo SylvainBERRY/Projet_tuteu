@@ -1,18 +1,26 @@
-td,th
-{
-	border: 1px solid gray;
-}
-
-table
-{
-	border-collapse: collapse;
-	max-width: 100%;
-	border: 2px solid gray;
-}
-
-
 .dataTables_wrapper {
 	display: inline-block;
-	margin: 15px;
+	margin: auto;
 	vertical-align: top;
+	width: 90%;
+}
+
+fieldset input[type="text"]
+{
+	width: 300px;
+	padding: 3px;
+	margin-bottom: 15px;
+	font: 0.9em "Time new roman";	
+}
+fieldset textarea
+{
+	width: 350px;
+	height: 130px;
+	padding: 5px;
+	font: 0.9em "Time new roman";	
+}
+
+fieldset
+{
+	border: 0;
 }

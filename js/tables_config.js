@@ -31,13 +31,15 @@ $(document).ready (function()
         "aoColumnDefs": [
           { 'bSortable': false, 'aTargets': [ 0 ] }
        ],
-        "sScrollY": "300px",
+        "sScrollY": "500px",
         "bPaginate": false,
-        "bScrollCollapse": true
+        "bScrollCollapse": true,
+        "bInfo": false
 
     });
 
     $('input#select_tout').on('click',selectTout);
+    $('input.select').on('click',select);
 
 });
 
@@ -47,5 +49,10 @@ function selectTout()
         $('td > input[type="checkbox"]').attr('checked', true);
     else
         $('td > input[type="checkbox"]').attr('checked', false);
+}
 
+function select()
+{
+    if(!this.checked)
+       $('input#select_tout').attr('checked', false);
 }

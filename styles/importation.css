@@ -1,23 +1,15 @@
-td,th
-{
-	border: 1px solid gray;
-}
-
-table
-{
-	border-collapse: collapse;
-	max-width: 100%;
-	border: 2px solid gray;
-}
-
-
 .dataTables_wrapper {
+
+}
+
+.dataTables_wrapper .dataTables_filter {
+	margin-bottom: 10px;
 }
 
 #DataTables_Table_0_wrapper
 {
 	margin: auto;
-	width: 80%;
+	width: 88%;
 }
 
 #DataTables_Table_1_wrapper

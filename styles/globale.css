@@ -76,12 +76,13 @@ header #titre
 section h1
 {
 	color:#036c99;
-	font-size: 2em;
+	font-size: 1.8em;
 	padding:0;
 	margin-top:-30px;
 	font-family:"calibri";
 	text-transform: uppercase;
 	font-weight: bold;
+	text-shadow: 0.1em 0.1em 0.05em #CCCCCC;
 }
 
 /* Elements du menu */
@@ -176,9 +177,16 @@ header p a:hover
 
 header h3
 {
-	margin-top: -30px;
-	margin-right: 15px;
-	float: right;
+	margin-top: -70px;
+	margin-left: 350px;
+	width: 470px;
+	text-align: center;
+	color: #888888;
+	background-color: #eeeeee;
+	padding: 1px 5px;
+	border-radius: 30px;
+	border: 1px solid #dddddd;
+	font-size: 1.2em;
 }
 
 /* Element section */
@@ -192,6 +200,12 @@ section
     font-size:16px;
     padding-bottom: 50px;
     text-align: center;
+}
+
+section h2
+{	
+	color:#036c99;;
+	margin: 0;
 }
 
 
@@ -224,6 +238,11 @@ form *
 	margin-top: 10px;
 }
 
+form option
+{
+	margin-top: 2px;
+}
+
 .erreur
 {
 	color:  #fb4040;
@@ -235,4 +254,25 @@ form *
 	margin-right: 5px;
 	margin-bottom: -5px;
 	margin-top: 5px;
+}
+
+td,th
+{
+	border: 1px solid gray;
+}
+
+table
+{
+	border-collapse: collapse;
+	max-width: 100%;
+	border: 2px solid gray;
+}
+
+
+input[type="submit"]
+{
+	padding: 2px 7px;
+	margin-left: 10px;
+	font: 1em "calibri";
+	cursor: pointer;
 }

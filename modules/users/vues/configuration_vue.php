@@ -17,24 +17,28 @@
 *Aucune information/erreur
 *--------------------------
 */
+$text ='Bonjour,
 
+Ci-dessous vos notes du module '.$_SESSION['ue'].'.
+
+Cordialement
+'.$user_information['uti_prenom'].' '.strtoupper($user_information['uti_nom']);
 ?>  
 <section>
     <br/>
     <h1>Configuration des mails</h1>
 
      <form action="index.php?module=users&amp;action=envoi" method="post" >
-        <label for="objet" >Objet :</label>
-        <input id="objet" type="text" name="objet" value="Note du module <?php echo $_SESSION['ue'] ?>" />
-        <br/>
-        <label for="message" >Texte :</label>
-        <br/>
-        <textarea id="message" name="message" >Bonjour,
-Ci-dessous vos notes du module <?php echo $_SESSION['ue'] ?> 
-Cordialement
-<?php echo $user_information['uti_prenom'].' '.strtoupper($user_information['uti_nom']) ?></textarea>
-        <br/>
-        <input type="submit" value="envoyer" /><input type="submit" value="aperçu" /></br>
+        <fieldset>
+            <label for="objet" >Objet :</label>
+            <input id="objet" type="text" name="objet" value="Note du module <?php echo $_SESSION['ue'] ?>" />
+            <br/>
+            <label for="message" >Texte :</label>
+            <br/>
+            <textarea id="message" name="message" ><?php echo $text ?></textarea>
+            <br/>
+            <input type="submit" value="envoyer" /><input type="submit" value="aperçu" /></br>
+        </fieldset>
 
 <?php
 
@@ -53,7 +57,7 @@ Cordialement
     while ($etudiant = $info_etudiants->fetch())
     {
     echo '<tr>';
-    echo '<td><input type="checkbox" name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" /></td>';
+    echo '<td><input type="checkbox" class="select" name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" /></td>';
     echo '<td>'.$etudiant['nom'].'</td>';
     echo '<td>'.$etudiant['prenom'].'</td>';
     echo '<td>'.$etudiant['mail1'].'<br/>'.$etudiant['mail2'].'</td>';
