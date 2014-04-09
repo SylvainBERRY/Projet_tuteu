@@ -20,13 +20,13 @@
 ?>
 
 <!-- Formulaire de modification de profil -->
+<section>
+	<br/>
 <div id="contenu">
 	<h1>Gestion de profil</h1>
 	<p>Bienvenue sur la page de gestion de votre profil<br/></p>
 
 	<form name="modifProfil" id="modifProfil" action="index.php?action=profil" method="post">
-		<fieldset>
-			<legend>Identifiants</legend>
 			<?php
 				$reponse = lectureUti();
 				foreach ($reponse as $key => $donnees) {
@@ -87,6 +87,7 @@
 				</tbody>
 			</table>
 			<div class="center"><input type="submit" value="Modifier" /></div>
-		</fieldset>
 	</form>
 </div>
+<br/>
+</section>
