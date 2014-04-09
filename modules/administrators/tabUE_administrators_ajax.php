@@ -24,26 +24,33 @@ include_once (CHEMIN_MODELE.'administrators_modele.php');
 // Si des données sont postés ici des uti_id
 if (isset($_POST['ue_id_uti']))
 {
-	$user_id = $_POST['ue_id_uti']);
-		
+	// Récupère l'id de l'utilisateur sélectionné
+	$user_id = $_POST['ue_id_uti'];
+
 	// Erreur retrouvées
 	$errors_array = array();
-	
-	$tableau_ue = lectureUEUti($user_id);
-	
-	if($tableau_ue == false)
+
+	// Récupère les UE de cet utilisateur
+	$tableau_ue_arrays = lectureUEUti($user_id);
+
+
+	if($tableau_ue_arrays === false)
 	{
 		// Ajout message d'erreur
-		$errors_array[] = $tableau_ue;
+		$errors_array[] = $tableau_ue_arrays;
 	}
-	
-
 
 	// Si il n'y a aucune erreure
 	if (empty($errors_array))
 	{
 		// retourn json
 		header('Content-type: application/json');
+
+		// Formatage des données
+		$tableau_ue = array();
+		foreach ($tableau_ue_arrays as $aCoupeUe) {
+			array_push($tableau_ue, intval($aCoupeUe['ue_id']));
+		}
 
 		// résultat
 		$array_result = array();

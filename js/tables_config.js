@@ -40,19 +40,44 @@ $(document).ready (function()
 
     $('input#select_tout').on('click',selectTout);
     $('input.select').on('click',select);
-
+    var nb_etudiant = 100;
 });
 
 function selectTout()
 {
     if($('input#select_tout').attr('checked'))
-        $('td > input[type="checkbox"]').attr('checked', true);
+    {
+            $('td > input[type="checkbox"]').attr('checked', true);
+            nb_etudiant=100;
+            MajNbEtudiant();
+    }
     else
+    {
         $('td > input[type="checkbox"]').attr('checked', false);
+        nb_etudiant=0;
+        MajNbEtudiant();
+    }
+    
 }
 
 function select()
 {
     if(!this.checked)
-       $('input#select_tout').attr('checked', false);
+    {
+        $('input#select_tout').attr('checked', false);
+        nb_etudiant--;
+    }
+    else
+    {
+        nb_etudiant++;
+    }
+    MajNbEtudiant();
+}
+
+function MajNbEtudiant()
+{
+    if(nb_etudiant==100)
+        $('#nb').html("Tous les étudiants sont sélectionnés");
+    else
+        $('#nb').html(nb_etudiant+" étudiant(s) sélectionnés");
 }

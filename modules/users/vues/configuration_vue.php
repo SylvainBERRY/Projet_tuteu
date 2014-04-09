@@ -23,6 +23,10 @@ Ci-dessous vos notes du module '.$_SESSION['ue'].'.
 
 Cordialement
 '.$user_information['uti_prenom'].' '.strtoupper($user_information['uti_nom']);
+
+echo '<script type="text/javascript">';
+
+echo '</script>';
 ?>  
 <section>
     <br/>
@@ -39,12 +43,12 @@ Cordialement
             <br/>
             <input type="submit" value="envoyer" /><input type="submit" value="aperçu" /></br>
         </fieldset>
-
+    <p id="nb" >Tous les etudiants sont sélectionnés</p>
 <?php
-
+    
     echo '<table border="1">';
     echo '<thead><tr>';
-    echo '<th><input type="checkbox" id="select_tout" /></th><th>Nom</th><th>Prénom</th><th>Emails</th>';
+    echo '<th><input type="checkbox" id="select_tout" checked /></th><th>Nom</th><th>Prénom</th><th>Emails</th>';
 
     while ($type_note = $types_notes->fetch())
     {
@@ -57,7 +61,7 @@ Cordialement
     while ($etudiant = $info_etudiants->fetch())
     {
     echo '<tr>';
-    echo '<td><input type="checkbox" class="select" name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" /></td>';
+    echo '<td><input type="checkbox" class="select" checked name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" /></td>';
     echo '<td>'.$etudiant['nom'].'</td>';
     echo '<td>'.$etudiant['prenom'].'</td>';
     echo '<td>'.$etudiant['mail1'].'<br/>'.$etudiant['mail2'].'</td>';

@@ -59,13 +59,13 @@ if (!empty($tab_erreur))
         echo $erreur;
         echo '<br/>';
     }
-    echo '</p><br/>';
+    echo '</p>';
 
 }
 
 if($_SESSION['emails_valides']) 
 {
-    echo '<h2>Emails :</h2>';
+    echo '<br/><h2>Emails :</h2>';
     $nb_etud=count($tab_noms);
 
     echo '<table border="1">';

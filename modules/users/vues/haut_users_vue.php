@@ -60,8 +60,8 @@
                 </ul>
             </nav>
             <p>
-                <a href="<?php echo LOGIN_REDIRECT_PROFIL ?>"><img src="images/logout.png" /><br/><span class="">LOGOUT</span></a>
-                <a href="index.php?action=deconnexion"><img src="images/profile.png" /><br/><span class="">PROFILE</span></a>
+                <a href="index.php?action=deconnexion"><img src="images/logout.png" /><br/><span class="">LOGOUT</span></a>
+                <a href="<?php echo LOGIN_REDIRECT_PROFIL ?>"><img src="images/profile.png" /><br/><span class="">PROFILE</span></a>
             <?php if ($_SESSION['is_admin']) { ?>
                 <a href="<?php echo LOGIN_REDIRECT_ADMIN ?>" ><img src="images/admin.png" /><br/><span class="">ADMIN</span></a>
             <?php } ?>

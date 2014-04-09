@@ -205,10 +205,11 @@ if (!empty($_POST)) {
 			// Remplissage du tableau d'ue avec les id ue
 			foreach ($reponse as $donnees) {
 				if (isset($_POST[$i])) {
-					$tableau_ue[] = $donnees['ue_id'];
+					$tableau_ue[$i] = $donnees['ue_id'];
 				}
 				$i++;
 			}
+
 			// Inscription base de données
 			$auto_mdp=ramdomMdp();
 			if (createUti($auto_mdp, $_POST['Nom'],$_POST['Prenom'],$_POST['Login'],$_POST['Email'],$tableau_ue)) {
@@ -216,17 +217,16 @@ if (!empty($_POST)) {
 				// Création de l'utilisateur et ajout d'un message flash de succès
 				setMessageFlash("L'utilisateur ".$_POST['Login']." a été créé avec succès.");
 
-				// // Envoie d'un mail de notification à l'utilisateur avec son login et $auto_mdp
-				// $email_from = 'berry.sylvain@free.fr'; // @todo: définir l'expéditeur du mail (l'application GetNote)
-				// $email_to = $_POST['Email']; // @todo: getMailAdmin() faire la fonction de récupération du mail de l'administrateur pour l'envoi.
+				// Envoie d'un mail de notification à l'utilisateur avec son login et $auto_mdp
+				$email_from = 'berry.sylvain@free.fr'; // @todo: définir l'expéditeur du mail (l'application GetNote)
+				$email_to = $_POST['Email']; // @todo: getMailAdmin() faire la fonction de récupération du mail de l'administrateur pour l'envoi.
 
-				// //@todo : temporaire
 				// $mail_admin = getMailAdmin();
-				// $email_to = $mail_admin; // @todo: getMailAdmin() faire la fonction de récupération du mail de l'administrateur pour l'envoi.
+				// $email_to = $mail_admin;
 
-				// $objet = "Mail de notification de l'application GetNote pour validation d'inscription.";
-				// $message = "Une inscription a été effectué sur l'application GetNote. Veuillé valide ou supprimer l'utilisateur nouvellement inscrit".$_POST['login']." (mot de passe : ".$auto_mdp.").";
-				// envoiMail($email_from,$email_to,$email_replay,$objet,$message);
+				$objet = "Mail de notification de l'application GetNote pour validation d'inscription.";
+				$message = "Une inscription a été effectué sur l'application GetNote. Veuillé valide ou supprimer l'utilisateur nouvellement inscrit".$_POST['Login']." (mot de passe : ".$auto_mdp.").";
+				envoiMail($email_from,$email_to,$email_replay,$objet,$message);
 
 			}
 			else {
@@ -244,7 +244,7 @@ if (!empty($_POST)) {
 	} else {
 		// Erreur retroubées
 		$errors_array = array();
-
+		
 		//Login
 		if(isset($_POST['Login']))
 		{
@@ -437,21 +437,21 @@ if (!empty($_POST)) {
 				$i++;
 			}
 
-			// Inscription base de données
-			if (modifUti($uti_update, $_POST['Nom'],$_POST['Prenom'],$_POST['Login'],$_POST['Email'],$tableau_ue)) {
+			// Modification base de données
+			if (modifUti($uti_update['uti_id'], $_POST['Nom'], $_POST['Prenom'], $_POST['Login'], $_POST['Email'], $tableau_ue)) {
 
 				// Modification de l'utilisateur et ajout d'un message flash de succès
 				setMessageFlash("La modification de votre profil a été effectuée avec succès.");
 
 				// Envoie d'un mail de notification à l'utilisateur pour la modification de son profil
-				//$email_from = 'berry.sylvain@free.fr';  // @todo: définir l'expéditeur du mail.
-				//$email_to = $_POST['mail'];
-				//$objet = "Mail de notification suite à la modification de votre profil.";
-				//$message = "Une modification de votre profil a été effectué sur l'application GetNote. Voici le résumé de cette modification: Nom: ".$_POST['nom']." Prenom: ".$_POST['prenom']." Login: ".$_POST['login']." Mail: ".$_POST['mail']." Mot de passe: ".$_POST['mdp']." Enseignement: ".$tableau_ue;
-				//envoiMail($email_from,$email_to,$email_replay,$objet,$message);
+				$email_from = 'berry.sylvain@free.fr';  // @todo: définir l'expéditeur du mail.
+				$email_to = $_POST['mail'];
+				$objet = "Mail de notification suite à la modification de votre profil.";
+				$message = "Une modification de votre profil a été effectué sur l'application GetNote. Voici le résumé de cette modification: Nom: ".$_POST['Nom']." Prenom: ".$_POST['Prenom']." Login: ".$_POST['Login']." Mail: ".$_POST['Email']." Enseignement: ".$tableau_ue;
+				envoiMail($email_from,$email_to,$email_replay,$objet,$message);
 
 				// Redirection connexion
-				header( 'Location: '.LOGOUT ) ;
+				header( 'Location: '.LOGIN_REDIRECT_ADMIN ) ;
 			}
 			else {
 

@@ -12,12 +12,12 @@
 *lectureUti() [Lit la totalit? de la table utilisateurs et la retourne]
 *createUti($auto_mdp, $nom, $prenom, $login, $mail, $tab_ue_id) [Cr?? un nouvel utilisateur avec les donn?es du formulaire fournit]
 *deleteUti($id_uti) [Supprime l'utilisateur s?lectionn?]
-*modifUti($id_user, $nom, $prenom, $login, $mail, $mdp, $tab_ue_id) [Modifie l'utilisateur s?lectionn?]
+*modifUti($id_user, $nom, $prenom, $login, $mail, $tab_ue_id) [Modifie l'utilisateur s?lectionn?]
 *lectureUE() [Renvoi le nom de tous les UE]
 *valideUti($id_uti) [Valide l'utilisateur en param?tre et retourne un boolean]
-*createUtiUE($uti_id, $ue_id) [Créé les ue de l'utilisateur correspondant]
+*createUtiUE($uti_id, $ue_id) [Cr?? les ue de l'utilisateur correspondant]
 *lectureUEUti($uti_id) [Lit les Ue de l'utilisateur correspondant]
-*purgeUtiUE($uti_id) [Vide la table utilisateurs_ue pour l'utilisateur envoyé en paramètre]
+*purgeUtiUE($uti_id) [Vide la table utilisateurs_ue pour l'utilisateur envoy? en param?tre]
 *--------------------------
 *
 *Liste des informations/erreurs :
@@ -41,6 +41,8 @@ function lectureUti()
 		$requete->closeCursor();
 	return $result;
 	}
+
+	return false;
 }
 
 /**
@@ -82,26 +84,21 @@ function createUti($auto_mdp, $nom, $prenom, $login, $mail, $tab_ue_id)
 		setMessageFlash($e->getMessage(),MESSAGE_FLASH_ERREUR);
 		return false;
 	}
-	
-	//Recuperation de l'uti_id grace au login renseigné
+
+	//Recuperation de l'uti_id grace au login renseign?
 	$info_user = get_user($login);
 	$uti_id = $info_user['uti_id'];
-	//Création des couples uti_id et ue_id
+	//Cr?ation des couples uti_id et ue_id
+	
 	foreach($tab_ue_id as $key => $ue_id)
 	{
 		if(!createUtiUE($uti_id, $ue_id))
 		{
 			//Ajoute l'erreur dans les message flash
-			setMessageFlash("Une erreur est survenu lors de la création des ue pour l'utilisateur",MESSAGE_FLASH_ERREUR);
+			setMessageFlash("Une erreur est survenu lors de la cr?ation des ue pour l'utilisateur",MESSAGE_FLASH_ERREUR);
 		}
+		
 	}
-
-	// Envoi d'un mail de notification ? l'utilisateur avec son mot de passe g?n?r? al?atoirement et son login
-	//$email_from = 'berry.sylvain@free.fr'; // @todo: définir l'expéditeur du mail (l'application GetNote)
-	//$email_to = $mail;
-	//$objet = "Mail de notification de l'application GetNote sur à la création de votre comtpe.";
-	//$message = "Votre compte a bien été créé voici votre login: ".$login." et votre mot de passe: ".$auto_mdp.". Vous pouvez maintenant accéder à notre application GetNote.";
-	//envoiMail($email_from,$email_to,$email_replay,$objet,$message);
 
 	// L'insertion c'est bien d?roul? retourne true
 	return true;
@@ -122,7 +119,7 @@ function deleteUti($id_uti)
 	    //Commencer une transaction
 	    $pdo->beginTransaction();
 
-	    //Supprimer l'utilisateur de la base de données
+	    //Supprimer l'utilisateur de la base de donn?es
 		$requete = $pdo->prepare("DELETE FROM utilisateurs
 					WHERE uti_id = :uti_id");
 
@@ -142,12 +139,13 @@ function deleteUti($id_uti)
 
 		return false;
 	}
+	purgeUtiUE($id_uti);
 	return true;
 }
 
 /**
- * Modifie les données de l'utilisateur
- * @return boolean [true si la modification c'est bien déroulé false dans le cas contraire]
+ * Modifie les donn?es de l'utilisateur
+ * @return boolean [true si la modification c'est bien d?roul? false dans le cas contraire]
  */
 function modifUti($id_user, $nom, $prenom, $login, $mail, $tab_ue_id)
 {
@@ -171,7 +169,7 @@ function modifUti($id_user, $nom, $prenom, $login, $mail, $tab_ue_id)
 		$requete->bindValue(':uti_mail', $mail);
 
 		$requete->execute();
-		
+
 		$pdo->commit();
 	} catch (PDOException $e) {
 
@@ -213,6 +211,7 @@ function lectureUE()
 		$requete->closeCursor();
 	return $result;
 	}
+	return false;
 
 }
 /**
@@ -254,13 +253,13 @@ function valideUti($id_uti)
 	return true;
 }
 /**
- * Prend en param?tre l'id d'un utilisateur et l'id d'un ue pour créer le couple correspondant dans la table de jointure
+ * Prend en param?tre l'id d'un utilisateur et l'id d'un ue pour cr?er le couple correspondant dans la table de jointure
  * @return boolean | true or false En fonction du resultat de l'insertion en bd
  */
 function createUtiUE($uti_id, $ue_id)
-{	
+{
 	$pdo = PDOSingleton::getInstance();
-	
+
 	try {
 
 		// Initialisation des variable d'erreur PDO pour le cath
@@ -271,15 +270,15 @@ function createUtiUE($uti_id, $ue_id)
 		// Prepare la requete pour l'insertion enseignement/utilisateur
 		$requete2 = $pdo->prepare("INSERT INTO utilisateurs_ue (uti_id, ue_id)
 					VALUES (:uti_id, :ue_id)");
-		
+
 		$requete2->bindValue(':uti_id', $uti_id);
 		$requete2->bindValue(':ue_id', $ue_id);
-		
+
 		$requete2->execute();
 		$pdo->commit();
 	}
-	//Gestion des erreurs causées par les requêtes PDO
-	catch (PDOException $e) {  
+	//Gestion des erreurs caus?es par les requ?tes PDO
+	catch (PDOException $e) {
 
 		//Annuler la transaction
 	    if ($pdo) $pdo->rollBack();
@@ -288,9 +287,9 @@ function createUtiUE($uti_id, $ue_id)
 		setMessageFlash($e->getMessage(),MESSAGE_FLASH_ERREUR);
 		return false;
 	}
-		
-	// L'insertion c'est bien déroulé retourne true
-	return true; 
+
+	// L'insertion c'est bien d?roul? retourne true
+	return true;
 }
 /**
  * Retourne l'enseignements de l'utilisateur donn?e en param?tre
@@ -298,6 +297,7 @@ function createUtiUE($uti_id, $ue_id)
  */
 function lectureUEUti($uti_id)
 {
+
 	$pdo = PDOSingleton::getInstance();
 
    	$requete = $pdo->prepare("SELECT ue_id FROM utilisateurs_ue WHERE uti_id = :uti_id");
@@ -306,12 +306,19 @@ function lectureUEUti($uti_id)
 
   	$requete->execute();
 
+  	//get tableau vide
+  	$result = $requete->fetchall(PDO::FETCH_ASSOC);
 
-	if ($result = $requete->fetchall(PDO::FETCH_ASSOC)) {
-		$requete->closeCursor();
-		return $result;
-	}
-	return false;
+  	// Check if no errors
+		if (is_array($result)) {
+
+			$requete->closeCursor();
+
+			return $result;
+
+		}
+
+		return false;
 
 }
 

@@ -96,7 +96,7 @@
 <?php } ?>
 
 <form id="dataUti" method="post" action="index.php?module=administrators&action=traite_administrators">
-	<fieldset><legend>Création:</legend>
+	<fieldset><legend id="creation_from_legend">Création:</legend>
 		<p>
 			<h2 id="creation_from_title">Nouvel utilisateur :</h2>
 
@@ -128,7 +128,7 @@
 			foreach ($reponse as $donnees) {
 			?>
 			<tr id="tr_ue_"<?php echo $donnees['ue_id'];?> value="<?php echo $donnees['ue_id'];?>" >
-				<td><input type="checkbox" validid_check_ue="<?php echo $donnees['ue_id']; ?>" /></td>
+				<td><input id="<?php echo $donnees['ue_id']; ?>" type="checkbox" validid_check_ue="<?php echo $donnees['ue_id']; ?>" /></td>
 				<td><label for="ue" class="float"><?php echo $donnees['ue_nom']; ?></label></td>
 			</tr>
 			<?php
@@ -161,7 +161,6 @@
 					alert('Une erreur survenue, merci de réessayer');
 				},
 		});
-
 	}
 
 	// Valider plusieurs utilisateurs
@@ -191,8 +190,6 @@
 					alert('Une erreur survenue, merci de réessayer');
 				},
 		});
-
-
 	}
 
 	// Supprimer un utilisateur via ajax
@@ -211,7 +208,6 @@
 					alert('Une erreur survenue, merci de réessayer');
 				},
 		});
-
 	}
 
 	// Supprimer plusieurs utilisateurs
@@ -242,8 +238,6 @@
 					alert('Une erreur survenue, merci de réessayer');
 				},
 		});
-
-
 	}
 
 	/**
@@ -303,13 +297,14 @@
 		$('#creation_from_login').val($.trim(login));
 		$('#creation_from_uti_id').val($.trim(id));
 		$('#creation_from_uti_submit').val('Modifier');
-		
-	/*	// Appel ajax avec l'id en hidden donné en paramètre
+		$('#creation_from_legend').html('Modification');
+
+		// Appel ajax avec l'id en hidden donné en paramètre
 		$.ajax({
 			 	type: "POST",
 				url: 'index.php?module=administrators&action=tabUE_administrators_ajax',
 				data: {
-					ue_id_uti : [id]
+					ue_id_uti : id
 				},
 				dataType: 'json',
 				success : successCreateForm,
@@ -317,12 +312,12 @@
 					alert(data.message);
 				},
 		});
-	*/
+
 		$('#dataUti').show("slow");
 
 	}
 
-	// Onclick button, toggle form
+	// Onclick button, toggle form and clean
 	function setDeleteForm() {
 
 		$('#creation_from_title').html('Nouvel utilisateur');
@@ -333,7 +328,8 @@
 		$('#creation_from_login').val("");
 		$('#creation_from_uti_id').val("");
 		$('#creation_from_uti_submit').val('Créer');
-		
+		$('#creation_from_legend').html('Création');
+
 		// Modifier le tableau d'ue pour décocher les éléments
 		$('table#tableauUE input[type=checkbox]').each(function(){
 			// Décoche les checkbox des ue
@@ -342,22 +338,21 @@
 
 		// hide / show form
 		$('#dataUti').show("slow");
-
 	};
 
 	/**
-	* Fonction appelée en cas de succès de suppression par requête ajax/
+	* Fonction appelée en cas de succès de création / modification par requête ajax/
 	*/
 	function successCreateForm(data) {
-		
+
 		// Message pour le bon déroulemant de l'opération
 		// alert(data.message);
-		
+
 		// Modifier le tableau pour cocher les éléments
 		for (var x = 0; x < data.ue_id_uti.length; x++) {
 
 			// Coche les checkbox correspondant au ue obtenu
-			$('table#tableauUE input[type=checkbox][validid_check_ue='+data.ue_id_uti[x]+']').attr('checked');
+			$('table#tableauUE input[type=checkbox][validid_check_ue='+data.ue_id_uti[x]+']').prop('checked', true);
 
 		}
 	}
