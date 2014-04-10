@@ -78,25 +78,25 @@ function ramdomMdp() {
     // initialiser la variable $mdp
     $mdp = "";
 	$longueur = 8;
- 
+
     // Définir tout les caractères possibles dans le mot de passe,
     $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
- 
+
     // obtenir le nombre de caractères dans la chaîne précédente
     $longueurMax = strlen($possible);
- 
+
     if ($longueur > $longueurMax) {
         $longueur = $longueurMax;
     }
- 
+
     // initialiser le compteur
     $i = 0;
- 
+
     // ajouter un caractère aléatoire à $mdp jusqu'à ce que $longueur soit atteint
     while ($i < $longueur) {
         // prendre un caractère aléatoire
         $caractere = substr($possible, mt_rand(0, $longueurMax-1), 1);
- 
+
         // vérifier si le caractère est déjà utilisé dans $mdp
         if (!strstr($mdp, $caractere)) {
             // Si non, ajouter le caractère à $mdp et augmenter le compteur
@@ -174,7 +174,7 @@ function logout() {
  */
 function setMessageFlash($message = "", $category = MESSAGE_FLASH_DEFAULT) {
 
-  
+
   //S'il y a plusieurs messages (tableau)
   if (is_array($message)) {
     foreach ($message as $aMessage) {
@@ -215,7 +215,7 @@ function getMessageFlash($category = MESSAGE_FLASH_DEFAULT) {
  * Affiche les messages d'une catégorie (purge session catégorie)
  */
 function printAllMessagesFlash() {
-  
+
   $output = '';
 
   // Lister les catégories à afficher
@@ -229,7 +229,7 @@ function printAllMessagesFlash() {
  * Affiche les messages d'une catégorie (purge session catégorie)
  */
 function printAllMessagesCategorie($category = MESSAGE_FLASH_DEFAULT) {
-  
+
   // Si des messages disponibles pour la catégorie
   if (isset($_SESSION[MESSAGE_FLASH][$category]) && is_array($_SESSION[MESSAGE_FLASH][$category]) && !empty($_SESSION[MESSAGE_FLASH][$category])) {
 
@@ -251,6 +251,31 @@ function printAllMessagesCategorie($category = MESSAGE_FLASH_DEFAULT) {
 
   // Return vide
   return '';
+}
+
+/**
+ * Affiche les messages flashb souhaités.
+ * @return [type] [description]
+ */
+function printHtmlFlashMessages() {
+
+  $result = "";
+  $result_errors .= printAllMessagesCategorie(MESSAGE_FLASH_ERREUR);
+  $result_success .= printAllMessagesCategorie();
+
+  if ($result_success != '') {
+    $result = '<div class="success">';
+    $result .= $result_success;
+    $result .= '</div>';
+  }
+
+  if ($result_errors != '') {
+    $result .= '<div class="erreur">';
+    $result .= $result_errors;
+    $result .= '</div>';
+  }
+
+  return $result;
 }
 
 /**
@@ -281,11 +306,11 @@ return $result;
 function check_login($login) {
 
   if($login == '') return VIDE;
-  
+
   else if(strlen($login) < 3) return TOOSHORT;
-  
+
   else if(strlen($login) > 32) return TOOLONG;
-  
+
   else
   {
     $pdo = PDOSingleton::getInstance();
@@ -295,13 +320,13 @@ function check_login($login) {
     $requete->bindValue(':uti_login', $login);
 
     $requete->execute();
-    
+
     if($result = $requete->fetch(PDO::FETCH_ASSOC)) {
   	  $requete->closeCursor();
     }
-    
+
 	if($result['nbr'] > 0) return EXISTS;
-   
+
 	else return OK;
   }
 }
@@ -316,9 +341,9 @@ function check_login($login) {
 function check_nom_prenom($nom_prenom) {
 
   if($nom_prenom == '') return VIDE;
-  
+
   else if(strlen($nom_prenom) < 3) return TOOSHORT;
-  
+
   else if(strlen($nom_prenom) > 32) return TOOLONG;
 
   else return OK;
@@ -336,7 +361,7 @@ function check_mdp($mdp)
 	if($mdp == '') return VIDE;
 	else if(strlen($mdp) < 4) return TOOSHORT;
 	else if(strlen($mdp) > 50) return TOOLONG;
-	
+
 	else
 	{
 		if(!preg_match('#[0-9]{1,}#', $mdp)) return NOFIGURE;
@@ -370,7 +395,7 @@ function checkmail($mail)
 {
 	if($mail == '') return VIDE;
 	else if(!preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#is', $mail)) return ISNT;
-	
+
 	else
 	{
 		$pdo = PDOSingleton::getInstance();
@@ -380,11 +405,11 @@ function checkmail($mail)
 	    $requete->bindValue(':uti_mail', $mail);
 
 	    $requete->execute();
-	    
+
 	    if($result = $requete->fetch(PDO::FETCH_ASSOC)) {
 	    	$requete->closeCursor();
 	    }
-    
+
 		if($result['nbr'] > 0) return EXISTS;
 			else return OK;
 	}
@@ -413,34 +438,34 @@ function envoiMail($email_from,$name_from,$email_to,$email_replay,$objet,$messag
 	{
 		$passage_ligne = "\n";
 	}
-	
+
 	$headers = "From: \"".$name_from."\" ".$email_from.$passage_ligne;
 	$headers.= "Reply-to: \"".$name_from."\" ".$email_replay.$passage_ligne;
 	$headers  .= 'MIME-Version: 1.0' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
     /*
-    
+
 	//=====Déclaration des messages au format texte et au format HTML.
 	$message_txt = "Salut à tous, voici un e-mail envoyé par un script PHP.";
 	$message_html = "<html><head></head><body><b>Salut à tous</b>, voici un e-mail envoyé par un <i>script PHP</i>.</body></html>";
 	//==========
-	 
+
 	//=====Création de la boundary
 	$boundary = "-----=".md5(rand());
 	//==========
-	 
+
 	//=====Définition du sujet.
 	$objet = "salut !";
 	//=========
-	 
+
 	//=====Création du header de l'e-mail.
 	$header = "From: \"WeaponsB\"<hoctac@hotmail.fr>".$passage_ligne;
 	$header.= "Reply-to: \"WeaponsB\" <hoctac@hotmail.fr>".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 	//==========
-	 
+
 	//=====Création du message.
 	$message = $passage_ligne."--".$boundary.$passage_ligne;
 	//=====Ajout du message au format texte.
@@ -475,7 +500,7 @@ function lectureUENom($ue_id)
     $requete = $pdo->prepare("SELECT ue_nom FROM enseignement WHERE ue_id = :ue_id");
 
   $requete->bindValue(':ue_id', $ue_id);
-  
+
     $requete->execute();
 
   if ($result = $requete->fetch(PDO::FETCH_ASSOC)) {
@@ -499,7 +524,7 @@ function lectureTabUEUti($uti_id)
     $requete->bindValue(':uti_id', $uti_id);
 
     $requete->execute();
-  
+
     //get tableau vide
   while($result = $requete->fetch(PDO::FETCH_ASSOC))
   {

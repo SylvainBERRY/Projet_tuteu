@@ -33,7 +33,7 @@
 				<label for="mdp_verif" class="float">Mot de passe (vérification) :</label> <input type="password" name="mdp_verif" id="mdp_verif" size="30" /><br />
 				<label for="mail" class="float">Mail :</label> <input type="text" name="mail" id="mail" size="30" /> <br />
 				<label for="mail_verif" class="float">Mail (vérification) :</label> <input type="text" name="mail_verif" id="mail_verif" size="30" /><br />
-				
+
 				<table name="tableauUE">
 				<label>Nom des modules :<label>
 				<thead><tr><th></th><th></th></tr></thead>
@@ -53,7 +53,7 @@
 				}
 				?>
 				</tbody>
-				</table> 
+				</table>
 				<div class="center"><input type="submit" value="Inscription" /></div>
 		</form>
 	</div>

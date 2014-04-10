@@ -74,7 +74,7 @@ if (strpos($action, '_ajax') === false) {
 }
 
 // @todo : déplacer dans chaque header
-echo printAllMessagesFlash();
+// echo printAllMessagesFlash();
 
 // Vérification de l'existance de la page
 if (is_file($chemin_page)) {
@@ -90,6 +90,7 @@ if (is_file($chemin_page)) {
 				// No header for ajax pages
 				if (strpos($action, '_ajax') === false) {
 					include_once (CHEMIN_MODULE.'administrators/haut_administrators.php');
+					echo printHtmlFlashMessages();
 				}
 				// Include content
 				include_once ($chemin_page);
@@ -104,6 +105,7 @@ if (is_file($chemin_page)) {
 					// Inclusion de la page de connexion
 					modifTitre('Accès interdit');
 					include_once (CHEMIN_MODULE.'public/haut_public.php');
+					echo printHtmlFlashMessages();
 					include_once (CHEMIN_MODULE.'public/acces_interdit.php');
 					include_once (CHEMIN_MODULE.'public/bas_public.php');
 				}
@@ -112,6 +114,7 @@ if (is_file($chemin_page)) {
 					// Inclusion de la page de connexion
 					modifTitre('Connexion');
 					include_once (CHEMIN_MODULE.'public/haut_public.php');
+					echo printHtmlFlashMessages();
 					include_once (CHEMIN_MODULE.'public/connexion.php');
 					include_once (CHEMIN_MODULE.'public/bas_public.php');
 				}
@@ -128,6 +131,7 @@ if (is_file($chemin_page)) {
 				modifTitre('Importation');
 
 				include_once (CHEMIN_MODULE.'users/haut_users.php');
+				echo printHtmlFlashMessages();
 				include_once ($chemin_page);
 				include_once (CHEMIN_MODULE.'users/bas_users.php');
 			}
@@ -136,6 +140,7 @@ if (is_file($chemin_page)) {
 				// Inclusion de la page de connexion
 				modifTitre('Connexion');
 				include_once (CHEMIN_MODULE.'public/haut_public.php');
+				echo printHtmlFlashMessages();
 				include_once (CHEMIN_MODULE.'public/connexion.php');
 				include_once (CHEMIN_MODULE.'public/bas_public.php');
 			}
@@ -146,6 +151,7 @@ if (is_file($chemin_page)) {
 			// Inclusion de la page
 			modifTitre('Connexion');
 			include_once (CHEMIN_MODULE.'public/haut_public.php');
+			echo printHtmlFlashMessages();
 			include_once ($chemin_page);
 			include_once (CHEMIN_MODULE.'public/bas_public.php');
 
@@ -157,6 +163,7 @@ if (is_file($chemin_page)) {
 	// Inclusion erreur 404
 	modifTitre('Erreur 404');
 	include_once (CHEMIN_MODULE.'public/haut_public.php');
+	echo printHtmlFlashMessages();
 	include_once (CHEMIN_MODULE.'public/erreur404.php');
 	include_once (CHEMIN_MODULE.'public/bas_public.php');
 }

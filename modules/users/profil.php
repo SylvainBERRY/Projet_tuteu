@@ -273,7 +273,6 @@ if (!empty($_POST)) {
 		}
 	}
 
-
 	// Si aucune erreur n'est trouvée
 	if (empty($errors_array)) {
 
@@ -285,7 +284,7 @@ if (!empty($_POST)) {
 		// Remplissage du tableau d'ue avec les id ue
 		foreach ($reponse as $donnees) {
 			if (isset($_POST[$i])) {
-				$tableau_ue[$i] = $donnees['ue_id'];
+				$tableau_ue[] = $donnees['ue_id'];
 			}
 			$i++;
 		}

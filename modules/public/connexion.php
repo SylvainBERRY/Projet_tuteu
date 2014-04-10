@@ -41,20 +41,20 @@ if (!empty($_POST)) {
 				$_SESSION['etape']="aucune";
 				$_SESSION['emails_valides']=false;
 				$_SESSION['notes_valides']=false;
-				
+
 				if (administrateur_est_connecte()) {
 					// Si administrateur redirection page d'administration
 					header( 'Location: '.LOGIN_REDIRECT_ADMIN);
 				}
 				else {
-				  
+
 					// Redirection
 					header( 'Location: '.LOGIN_REDIRECT );
 				}
 			}
 		} else {
 			// Ajout message erreur mot de passe, login incorrecte ou compte non validé
-			setMessageFlash('Votre mot de passe ou votre login est incorrecte. (Il est possible que votre compte ne soit pas encore validé)');
+			setMessageFlash('Votre mot de passe ou votre login est incorrecte. (Il est possible que votre compte ne soit pas encore validé)',MESSAGE_FLASH_ERREUR);
 			// Redirection
 			header( 'Location: '.LOGOUT_REDIRECT );
 		}
