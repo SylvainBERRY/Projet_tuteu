@@ -260,8 +260,8 @@ function printAllMessagesCategorie($category = MESSAGE_FLASH_DEFAULT) {
 function printHtmlFlashMessages() {
 
   $result = "";
-  $result_errors .= printAllMessagesCategorie(MESSAGE_FLASH_ERREUR);
-  $result_success .= printAllMessagesCategorie();
+  $result_errors = printAllMessagesCategorie(MESSAGE_FLASH_ERREUR);
+  $result_success = printAllMessagesCategorie();
 
   if ($result_success != '') {
     $result = '<div class="success">';
