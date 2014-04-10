@@ -282,3 +282,7 @@ input[type="submit"], button
 	margin-bottom: 10px;
 }
 
+a.none:hover
+{
+	cursor: default;
+}

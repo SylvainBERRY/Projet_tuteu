@@ -27,46 +27,5 @@
     </head>
     <body>
 		<header>
-			<h1> <?php echo $titre_head; ?> </h1>
-            <?php
-            if (!empty($_SESSION['id_user'])) {
-            ?>
-                <form id= "logout" action="<?php echo LOGOUT; ?>" method="post">
-                    <p>
-                        <input type="submit" value="Logout" />
-                    </p>
-                </form>
-                <form id= "importation" action="<?php echo LOGIN_REDIRECT; ?>" method="post">
-                    <p>
-                        <input type="submit" value="Gestion des notes" />
-                    </p>
-                </form>
-                <?php
-                if ($_SESSION['is_admin']) {
-                ?>
-                    <form id= "admin" action="<?php echo LOGIN_REDIRECT_ADMIN; ?>" method="post">
-                        <p>
-                            <input type="submit" value="Gestion des utilisateurs" />
-                        </p>
-                    </form>
-                <?php
-                }
-            }
-            ?>
-            <?php
-            if (!empty($_GET['action']))
-            {
-                $action = $_GET['action'];
-                if ($action == 'inscription' || $action == 'acces_interdit' || $action == 'erreur404')
-                {
-                ?>
-                    <form id= "connexion" action="<?php echo LOGOUT_REDIRECT; ?>" method="post">
-                        <p>
-                            <input type="submit" value="Connexion" />
-                          </p>
-                    </form>
-                <?php
-                }
-            }
-            ?>
+			
 		</header>

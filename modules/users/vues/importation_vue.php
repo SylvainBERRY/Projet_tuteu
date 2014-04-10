@@ -51,7 +51,7 @@ $liste_ue= lectureUeUser($_SESSION['id_user']);
             </select>
         <br/>
         <input name="charger" type="submit" value="Visualiser" />
-        <input name="valider" type="submit" value="Valider" <?php if(!($_SESSION['emails_valides'] AND $_SESSION['notes_valides'])) echo "disabled" ?> />
+        <input name="valider" type="submit" value="Valider" <?php if($_SESSION['etape']!=1) echo "disabled" ?> />
         <br/>
     </form>
 <br/>
