@@ -22,6 +22,23 @@ $bdd = PDOSingleton::getInstance();
 
 // @todo : A commenter ^^
 
+if(isset($_POST['charger']))
+{
+    $_SESSION['etape']=0;
+    $_SESSION['emails_valides']=false;
+    $_SESSION['notes_valides']=false;
+    unset($_SESSION['upload_mails']);
+    unset($_SESSION['upload_notes']);
+    
+    @unlink(CHEMIN_EXCEL.'notes_'.$_SESSION['id_user'].'.xls');
+    @unlink(CHEMIN_EXCEL.'notes_'.$_SESSION['id_user'].'.xlsx');
+    @unlink(CHEMIN_EXCEL.'mails_'.$_SESSION['id_user'].'.xls');
+    @unlink(CHEMIN_EXCEL.'mails_'.$_SESSION['id_user'].'.xlsx');
+
+    $bdd->query('DELETE FROM note WHERE uti_id = '.$_SESSION['id_user']);
+    $bdd->query('DELETE FROM etdiant WHERE uti_id = '.$_SESSION['id_user']);
+}
+
 if(!(isset($_SESSION['emails_valides']) AND isset($_SESSION['charger'])))
 {
     $_SESSION['emails_valides']=false;

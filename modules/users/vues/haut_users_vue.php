@@ -54,8 +54,8 @@ echo $_SESSION['etape'];
             <nav style="background: url('<?php echo CHEMIN_IMAGE.'prog_'.$_SESSION['etape'] ?>.png') no-repeat bottom;" ><!-- Menu -->
                 <ul>
                     <li><a <?php if($_GET['action']=='importation') echo 'id="ici"' ?> href="index.php?module=users&amp;action=importation">IMPORTATION</a></li>
-                    <li><a <?php if($_GET['action']=='configuration') echo 'id="ici"' ?> href="index.php?module=users&amp;action=configuration">CONFIGURATION</a></li>
-                    <li><a <?php if($_GET['action']=='envoi') echo 'id="ici"' ?> href="index.php?module=users&amp;action=envoi">ENVOI EMAIL</a></li>
+                    <li><a <?php if($_GET['action']=='configuration') echo 'id="ici"' ?> href="<?php echo ($_SESSION['etape']>1)?'index.php?module=users&amp;action=configuration':'' ?>">CONFIGURATION</a></li>
+                    <li><a <?php if($_GET['action']=='envoi') echo 'id="ici"' ?> href="<?php echo ($_SESSION['etape']>2)?'index.php?module=users&amp;action=envoi':'' ?>">ENVOI EMAIL</a></li>
                 </ul>
             </nav>
             <p>

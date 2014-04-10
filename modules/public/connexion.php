@@ -38,7 +38,7 @@ if (!empty($_POST)) {
 
 				// Message flash de succès vous avez bien été connecté
 				setMessageFlash('Vous avez bien été connecté(e).');
-				$_SESSION['etape']="aucune";
+				$_SESSION['etape']=0;
 				$_SESSION['emails_valides']=false;
 				$_SESSION['notes_valides']=false;
 

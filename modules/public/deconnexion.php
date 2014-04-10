@@ -19,10 +19,10 @@
 */
 // Fait une déconnexion de l'utilisateur
 
-unlink(CHEMIN_EXCEL.'notes_'.$_SESSION['id_user'].'.xls');
-unlink(CHEMIN_EXCEL.'notes_'.$_SESSION['id_user'].'.xlsx');
-unlink(CHEMIN_EXCEL.'mails_'.$_SESSION['id_user'].'.xls');
-unlink(CHEMIN_EXCEL.'mails_'.$_SESSION['id_user'].'.xlsx');
+@unlink(CHEMIN_EXCEL.'notes_'.$_SESSION['id_user'].'.xls');
+@unlink(CHEMIN_EXCEL.'notes_'.$_SESSION['id_user'].'.xlsx');
+@unlink(CHEMIN_EXCEL.'mails_'.$_SESSION['id_user'].'.xls');
+@unlink(CHEMIN_EXCEL.'mails_'.$_SESSION['id_user'].'.xlsx');
 
 $bdd = PDOSingleton::getInstance();
 

@@ -14,8 +14,8 @@ fieldset input[type="text"]
 }
 fieldset textarea
 {
-	width: 350px;
-	height: 130px;
+	width: 450px;
+	height: 160px;
 	padding: 5px;
 	font: 0.9em "Time new roman";	
 }

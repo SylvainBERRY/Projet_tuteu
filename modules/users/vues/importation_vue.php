@@ -19,13 +19,11 @@
 */
 if($_SESSION['emails_valides'] AND $_SESSION['notes_valides'] AND ($_SESSION['etape']=="aucune"))
 {
-    $_SESSION['etape']="importation";
+    $_SESSION['etape']=1;
 }
 
-if($_SESSION['etape']=="importation")
-{
-    echo '<script type="text/javascript">$("nav").css("background-image", "url('.CHEMIN_IMAGE.'prog_importation.png)"); </script>';
-}
+echo '<script type="text/javascript">$("nav").css("background-image", "url('.CHEMIN_IMAGE.'prog_'.$_SESSION['etape'].'.png)"); </script>';
+
 
 
 $liste_ue= lectureUeUser($_SESSION['id_user']);

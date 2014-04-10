@@ -17,7 +17,9 @@
 *Aucune information/erreur
 *--------------------------
 */
-
+if($_SESSION['etape']<2) {
+    header('Location:index.php?module=users&action=importation');
+}
 // Inclusion du modele
 include_once CHEMIN_MODELE.'configuration_modele.php';
 

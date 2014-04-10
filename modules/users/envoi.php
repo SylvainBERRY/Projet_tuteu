@@ -17,8 +17,9 @@
 *Aucune information/erreur
 *--------------------------
 */
-
-$_SESSION['etape']="envoi";
+if($_SESSION['etape']<3) {
+    header('Location:index.php?module=users&action=importation');
+}
 
 // Inclusion du modele pour l'envoi
 include_once CHEMIN_MODELE.'envoi_modele.php';
