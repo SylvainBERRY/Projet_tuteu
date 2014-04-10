@@ -20,7 +20,7 @@
 ?>
 <!-- Panneau de configuration utilisateurs -->
 <section>
-<br/>	
+<br/>
 <p class="listeUti">
 	<h1>
 		Gestion Utilisateurs
@@ -132,7 +132,7 @@
 			foreach ($reponse as $donnees) {
 			?>
 			<tr id="tr_ue_"<?php echo $donnees['ue_id'];?> value="<?php echo $donnees['ue_id'];?>" >
-				<td><input id="<?php echo $donnees['ue_id']; ?>" type="checkbox" validid_check_ue="<?php echo $donnees['ue_id']; ?>" /></td>
+				<td><input name="<?php echo $donnees['ue_id']; ?>"  type="checkbox" validid_check_ue="<?php echo $donnees['ue_id']; ?>" /></td>
 				<td><label for="ue" class="float"><?php echo $donnees['ue_nom']; ?></label></td>
 			</tr>
 			<?php

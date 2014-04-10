@@ -42,9 +42,9 @@ function lectureExcel($url)
  */
 function rechercheColonne($feuille)
 {
-	foreach($feuille->getRowIterator() as $ligne) 
+	foreach($feuille->getRowIterator() as $ligne)
 	{
-		foreach ($ligne->getCellIterator() as $cell) 
+		foreach ($ligne->getCellIterator() as $cell)
 		{
 			if(preg_match('#^nom$#i', trim($cell->getValue())))
 			{
@@ -68,8 +68,8 @@ function sauvgEtudBd($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2)
 
 	$nb_etud=count($tab_noms);
 
-	for ($i=0; $i < $nb_etud ; $i++) 
-	{ 
+	for ($i=0; $i < $nb_etud ; $i++)
+	{
 		$bdd->query('INSERT INTO etudiant VALUES ("","'.$tab_noms[$i].'","'.$tab_prenoms[$i].'","'.$tab_mails1[$i].'","'.$tab_mails2[$i].'")');
 	}
 }
@@ -85,10 +85,10 @@ function sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 	$nb_etud=count($tab_noms);
 
 	for ($i=0; $i < $nb_etud ; $i++)
-	{ 
+	{
 		$resultat=$bdd->query('SELECT id_etud FROM etudiant WHERE nom="'.$tab_noms[$i].'" and prenom="'.$tab_prenoms[$i].'"');
-		$id_etud=$resultat->fetch()[0]; // A revoir à la fin du fetch()[0] erreur de parseur
-		
+		$id_etud=$resultat->fetch(); // A revoir à la fin du fetch()[0] erreur de parseur
+
 		for ($j=0; $j < count($type_notes) ; $j++)
 		{
 			$bdd->query('INSERT INTO note VALUES ('.$id_etud.',"'.$type_notes[$j].'",'.intval($tab_notes[$j][$i]).')');
@@ -117,7 +117,7 @@ function lireColonne($feuille,$coord_cell)
 	$num_ligne=intval($coord_cell[1]);
 	$tab=array();
 	while (trim($cell_valeur=$feuille->getCell($index_col.$num_ligne)->getValue())!='')
-	{ 
+	{
 		$tab[]=$cell_valeur;
 		$num_ligne++;
 	}
@@ -134,28 +134,28 @@ function erreurUpload($nom_fichier,$type)
     $extension_upload = strtolower(substr(strrchr($_FILES[$nom_fichier]['name'], '.'),1));
     $taille_max=2097152;
 
-	if ($_FILES[$nom_fichier]['error']) 
-	{     
+	if ($_FILES[$nom_fichier]['error'])
+	{
 		switch ($_FILES[$nom_fichier]['error'])
-		{     
-			case 1: // UPLOAD_ERR_INI_SIZE	taille autorisée par le serveur 
-				setMessageFlash($type." : La taille du fichier dépasse la limite autorisée par le serveur !","upload"); 
-			break;       
-			case 2: // UPLOAD_ERR_FORM_SIZE	taille autorisée dans formulaire   
-				setMessageFlash($type." : La taille du fichier dépasse la limite autorisée par le formulaire !","upload"); 
-			break;     
-			case 3: // UPLOAD_ERR_PARTIAL     
-				setMessageFlash($type." : L'envoi du fichier a été interrompu pendant le transfert !","upload");     
-			break;     
-			case 4: // UPLOAD_ERR_NO_FILE     
-				setMessageFlash($type." : Le fichier que vous avez envoyé a une taille nulle !","upload"); 
+		{
+			case 1: // UPLOAD_ERR_INI_SIZE	taille autorisée par le serveur
+				setMessageFlash($type." : La taille du fichier dépasse la limite autorisée par le serveur !","upload");
+			break;
+			case 2: // UPLOAD_ERR_FORM_SIZE	taille autorisée dans formulaire
+				setMessageFlash($type." : La taille du fichier dépasse la limite autorisée par le formulaire !","upload");
+			break;
+			case 3: // UPLOAD_ERR_PARTIAL
+				setMessageFlash($type." : L'envoi du fichier a été interrompu pendant le transfert !","upload");
+			break;
+			case 4: // UPLOAD_ERR_NO_FILE
+				setMessageFlash($type." : Le fichier que vous avez envoyé a une taille nulle !","upload");
 			break;
 		}
 		return true;
  	}
  	elseif($_FILES[$nom_fichier]['size'] > $taille_max)
  	{
- 		setMessageFlash($type." : Le fichier dépasse la limite autorisée !","upload"); 
+ 		setMessageFlash($type." : Le fichier dépasse la limite autorisée !","upload");
  		return true;
  	}
  	elseif (!in_array($extension_upload,$extensions_valides))
@@ -165,5 +165,5 @@ function erreurUpload($nom_fichier,$type)
  	}
 
  	return false;
-}  
+}
 ?>

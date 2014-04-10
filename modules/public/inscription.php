@@ -23,7 +23,7 @@ include_once CHEMIN_MODELE.'inscription_modele.php';
 
 // Si des données sont postées
 if (!empty($_POST)) {
-	
+
 	// Initialisation de la variable erreur pour les catégories de message flash
 	if (isset($_SESSION['login'])) {
 
@@ -38,7 +38,7 @@ if (!empty($_POST)) {
 					  header( 'Location: '.LOGIN_REDIRECT_ADMIN);
 				  }
 				  else {
-					
+
 					  // Redirection page utilisateur
 					  header( 'Location: '.LOGIN_REDIRECT );
 				  }
@@ -280,23 +280,23 @@ if (!empty($_POST)) {
 		// Doit être renseigné
 		$errors_array[] = 'Vous devez renseigner une adresse mail de vérification !';
 	}
-	
+
 	// Si aucune erreur n'est trouvée
 	if (empty($errors_array)) {
 
 		// Initialisation du tableau d'ue
 		$reponse = lectureUE();
-		$tableau_ue = "";
+		$tableau_ue = array();
 		$i = 1;
 
 		// Remplissage du tableau d'ue avec les id ue
 		foreach ($reponse as $donnees) {
 			if (isset($_POST[$i])) {
-				$tableau_ue .= $donnees['ue_id'];
-				$tableau_ue .= ',';
+				$tableau_ue[] = $donnees['ue_id'];
 			}
 			$i++;
 		}
+
 		// Inscription base de données
 		if (createUti($_POST['mdp'], $_POST['nom'],$_POST['prenom'],$_POST['login'],$_POST['mail'],$tableau_ue)) {
 
@@ -316,11 +316,11 @@ if (!empty($_POST)) {
 		else {
 
 			$errors_array[] = 'Une erreur est survenue. Merci de réessayer ultérieurement.';
-		
+
 		}
 	}
 	else {
-		
+
 		// Ajouter les messages du tableau en message flash
 		setMessageFlash($errors_array,MESSAGE_FLASH_ERREUR);
 

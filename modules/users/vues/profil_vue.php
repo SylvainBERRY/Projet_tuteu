@@ -27,7 +27,7 @@
 	<h1>Gestion de profil</h1>
 	<p>Bienvenue sur la page de gestion de votre profil<br/></p>
 
-	<form name="modifProfil" id="modifProfil" action="index.php?action=profil" method="post">
+	<form name="modifProfil" id="modifProfil" action="index.php?action=profil&module=users" method="post">
 			<?php
 				$reponse = lectureUti();
 				foreach ($reponse as $key => $donnees) {

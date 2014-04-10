@@ -18,6 +18,7 @@
 *--------------------------
 */
 
+
 // Traitement des utilisateurs:
 include_once (CHEMIN_MODELE.'administrators_modele.php');
 
@@ -26,7 +27,7 @@ if (!empty($_POST)) {
 
 	// Erreur retroubées
 	$errors_array = array();
-	
+
 	// Récupération donnée utilisateur actuel
 	$uti_update = get_information_user($_POST['Uti_id']);
 
@@ -244,7 +245,7 @@ if (!empty($_POST)) {
 	} else {
 		// Erreur retroubées
 		$errors_array = array();
-		
+
 		//Login
 		if(isset($_POST['Login']))
 		{
@@ -468,7 +469,7 @@ if (!empty($_POST)) {
 
 	}
 }
-	
+
 // Redirection accueil administrators
 header( 'Location: '.LOGIN_REDIRECT_ADMIN) ;
 ?>

@@ -1,6 +1,6 @@
-/* 
+/*
 
-------------- Cette feuille de style définie les elements globale du site et commun à tout les autres pages 
+------------- Cette feuille de style définie les elements globale du site et commun à tout les autres pages
 
 */
 
@@ -136,7 +136,7 @@ nav a#ici
 
 nav a:hover
 {
-	
+
 }
 
 header p
@@ -158,7 +158,7 @@ header p a img
 }
 
 header p a span
-{	
+{
 	display: inline-block;
 	margin: 0;
 	font: 0.9em "calibri";
@@ -196,15 +196,15 @@ section
 {
 	background-image:url("../images/section.png");
 	min-height:230px;
-    margin:auto;
-    width:936px;
-    font-size:16px;
-    padding-bottom: 50px;
-    text-align: center;
+  margin:auto;
+  width:936px;
+  font-size:16px;
+  padding-bottom: 50px;
+  text-align: center;
 }
 
 section h2
-{	
+{
 	color:#036c99;;
 	margin: 0;
 }
