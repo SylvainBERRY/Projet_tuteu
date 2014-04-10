@@ -48,8 +48,10 @@
 			<?php
 				}
 			?>
-			<table name="tableauUE">
-				<thead><tr><th></th><th>Nom UE</th></tr></thead>
+			<br/>
+			<table id="tableauUE">
+				<label>Nom des modules :<label>
+				<thead><tr><th></th><th></th></tr></thead>
 				<tbody>
 					<?php
 

@@ -18,6 +18,17 @@
 *--------------------------
 */
 // Fait une déconnexion de l'utilisateur
+
+unlink(CHEMIN_EXCEL.'notes_'.$_SESSION['id_user'].'.xls');
+unlink(CHEMIN_EXCEL.'notes_'.$_SESSION['id_user'].'.xlsx');
+unlink(CHEMIN_EXCEL.'mails_'.$_SESSION['id_user'].'.xls');
+unlink(CHEMIN_EXCEL.'mails_'.$_SESSION['id_user'].'.xlsx');
+
+$bdd = PDOSingleton::getInstance();
+
+$bdd->query('DELETE FROM note WHERE uti_id = '.$_SESSION['id_user']);
+$bdd->query('DELETE FROM etdiant WHERE uti_id = '.$_SESSION['id_user']);
+
 logout();
 
 session_unset();

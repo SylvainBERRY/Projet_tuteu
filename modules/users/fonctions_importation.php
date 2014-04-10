@@ -70,7 +70,7 @@ function sauvgEtudBd($tab_noms,$tab_prenoms,$tab_mails1,$tab_mails2)
 
 	for ($i=0; $i < $nb_etud ; $i++) 
 	{ 
-		$bdd->query('INSERT INTO etudiant VALUES ("","'.$tab_noms[$i].'","'.$tab_prenoms[$i].'","'.$tab_mails1[$i].'","'.$tab_mails2[$i].'")');
+		$bdd->query('INSERT INTO etudiant VALUES ("","'.$tab_noms[$i].'","'.$tab_prenoms[$i].'","'.$tab_mails1[$i].'","'.$tab_mails2[$i].'","'.$_SESSION['id_user'].'")');
 	}
 }
 
@@ -86,25 +86,25 @@ function sauvgNoteBd($tab_noms,$tab_prenoms,$tab_notes,$type_notes)
 
 	for ($i=0; $i < $nb_etud ; $i++)
 	{ 
-		$resultat=$bdd->query('SELECT id_etud FROM etudiant WHERE nom="'.$tab_noms[$i].'" and prenom="'.$tab_prenoms[$i].'"');
+		$resultat=$bdd->query('SELECT id_etud FROM etudiant WHERE nom="'.$tab_noms[$i].'" AND prenom="'.$tab_prenoms[$i].'" AND uti_id = "'.$_SESSION['id_user'].'"');
 		$id_etud=$resultat->fetch()[0]; // A revoir à la fin du fetch()[0] erreur de parseur
 		
 		for ($j=0; $j < count($type_notes) ; $j++)
 		{
-			$bdd->query('INSERT INTO note VALUES ('.$id_etud.',"'.$type_notes[$j].'",'.intval($tab_notes[$j][$i]).')');
+			$bdd->query('INSERT INTO note VALUES ('.$id_etud.',"'.$type_notes[$j].'","'.$tab_notes[$j][$i].'","'.$_SESSION['id_user'].'")');
 		}
 	}
 }
 
 /**
- * @todo: commenter la fonction
+ * @todo : commenter la fonction
  * @return array | $feuille
  */
 function effacerContenuTable($table)
 {
 	global $bdd;
 
-	$bdd->query('DELETE FROM '.$table);
+	$bdd->query('DELETE FROM '.$table.' WHERE uti_id ='.$_SESSION['id_user']);
 }
 
 /**

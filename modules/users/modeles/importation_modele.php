@@ -30,8 +30,9 @@ if(!(isset($_SESSION['emails_valides']) AND isset($_SESSION['charger'])))
 
 if(isset($_FILES['excel_mails']) and (!erreurUpload('excel_mails','Emails étudiants')))
 {  
-    move_uploaded_file($_FILES['excel_mails']['tmp_name'], CHEMIN_EXCEL.$_FILES['excel_mails']['name']);
-	$_SESSION['upload_mails']= CHEMIN_EXCEL.$_FILES['excel_mails']['name'];
+    $extension_upload = strtolower(substr(strrchr($_FILES['excel_mails']['name'], '.'),1));
+    $_SESSION['upload_mails']= CHEMIN_EXCEL.'mails_'.$_SESSION['id_user'].'.'.$extension_upload;
+    move_uploaded_file($_FILES['excel_mails']['tmp_name'], $_SESSION['upload_mails']);
 }
 
 if(isset($_SESSION['upload_mails']))
@@ -66,8 +67,9 @@ if(isset($_SESSION['upload_mails']))
 
 if(isset($_FILES['excel_notes']) and (!erreurUpload('excel_notes','Notes étudiants')))
 {  
-	move_uploaded_file($_FILES['excel_notes']['tmp_name'], CHEMIN_EXCEL.$_FILES['excel_notes']['name']);
-	$_SESSION['upload_notes']= CHEMIN_EXCEL.$_FILES['excel_notes']['name'];
+    $extension_upload = strtolower(substr(strrchr($_FILES['excel_notes']['name'], '.'),1));
+    $_SESSION['upload_notes']= CHEMIN_EXCEL.'notes_'.$_SESSION['id_user'].'.'.$extension_upload;
+    move_uploaded_file($_FILES['excel_notes']['tmp_name'], $_SESSION['upload_notes']);
 }
 
 if(isset($_SESSION['upload_notes']))

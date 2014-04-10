@@ -13,38 +13,7 @@
 	width: 90%;
 }
 
-#tableauUE_wrapper
-{
-	margin: auto;
-	width: 50%;
-	text-align: left;
-}
-
-#tableauUE_paginate
-{
-	margin-top: -5px;
-}
-
-#tableauUE_info
-{
-	margin-top: 1px;
-}
-
-#tableauUE_wrapper thead
-{
-	display: none;
-}
-
-#tableauUE_wrapper label
-{
-	text-align: left;
-}
-
 fieldset
 {
 	border: 0;
-}
-
-#tableauUE_wrapper .dataTables_filter {
-	margin-bottom: -15px;
 }

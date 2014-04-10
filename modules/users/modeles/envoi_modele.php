@@ -41,7 +41,7 @@ $etudiants=$bdd->query('SELECT * FROM etudiant
 $notes=$bdd->query('SELECT * FROM note
     WHERE id_etud IN '.$num_etud);
 
-$types_notes = $bdd->query('SELECT DISTINCT type_note FROM note');
+$types_notes = $bdd->query('SELECT DISTINCT type_note FROM note WHERE uti_id = '.$_SESSION['id_user']);
 
 while($type=$types_notes->fetch())
 {

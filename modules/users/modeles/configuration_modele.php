@@ -17,17 +17,13 @@
 *Aucune information/erreur
 *--------------------------
 */
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=getnotes', 'root', '');
-}
-catch (Exception $exp)
-{
-    die('Erreur : ' . $exp->getMessage());
-}
+
+$bdd = PDOSingleton::getInstance();
+
 // @todo : modifier en récupérant l'instance PDO
 //$bdd = PDOSingleton::getInstance();
-$info_etudiants = $bdd->query('SELECT id_etud, nom, prenom, mail1, mail2  FROM etudiant');
-$types_notes = $bdd->query('SELECT DISTINCT type_note FROM note');
+$info_etudiants = $bdd->query('SELECT id_etud, nom, prenom, mail1, mail2  FROM etudiant WHERE uti_id = '.$_SESSION['id_user']);
+$types_notes = $bdd->query('SELECT DISTINCT type_note FROM note WHERE uti_id = '.$_SESSION['id_user']);
 
+echo $_SESSION['upload_mails'];
 ?>

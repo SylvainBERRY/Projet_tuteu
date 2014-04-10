@@ -28,8 +28,9 @@
         <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery-1.8.2.min.js"></script>
         <script type="text/javascript" charset="utf8" src="<?php echo CHEMIN_JS ?>jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_admin.js"></script>
-        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables.js"></script>
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>administrators.css" />
+        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>table_ue.js"></script>
+        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>table_ue.css" />
         <title>Gestion utilisateur</title>
     </head>
     <body>

@@ -41,7 +41,7 @@ echo '</script>';
             <br/>
             <textarea id="message" name="message" ><?php echo $text ?></textarea>
             <br/>
-            <input type="submit" value="envoyer" /><input type="submit" value="aperçu" /></br>
+            <input type="submit" value="envoyer" /></br>
         </fieldset>
     <p id="nb" >Tous les etudiants sont sélectionnés</p>
 <?php

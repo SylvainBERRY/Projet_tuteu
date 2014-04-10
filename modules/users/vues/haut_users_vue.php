@@ -44,9 +44,8 @@ echo $_SESSION['etape'];
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables_config.js"></script>
         <?php } ?>
         <title><?php echo $_GET['action'] ?></title>
-        <!-- Importation fichiers pour l'apercu et l'envoi-->
-        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>tables.js"></script>
-        <!-- Importation fichiers pour l'historique-->
+        <script type="text/javascript" src="<?php echo CHEMIN_JS ?>table_ue.js"></script>
+        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>table_ue.css" />
     </head>
     <body>
         <header>
