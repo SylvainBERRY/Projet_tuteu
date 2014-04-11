@@ -31,7 +31,8 @@ $liste_ue= lectureUeUser($_SESSION['id_user']);
 <section>
     <br/>
     <h1>Importation des fichiers Excels</h1>
-    <form action="index.php?module=users&amp;action=importation" method="post" enctype="multipart/form-data" >
+    <form class="remplir importation"action="index.php?module=users&amp;action=importation" method="post" enctype="multipart/form-data" >
+        <fieldset>
         <label for="info" >Emails étudiants :</label>
         <input type="hidden" name="MAX_FILE_SIZE" value="2097152">  
         <input type="file" id="excel_mails" name="excel_mails" value="ddd" />
@@ -52,9 +53,8 @@ $liste_ue= lectureUeUser($_SESSION['id_user']);
         <br/>
         <input name="charger" type="submit" value="Visualiser" />
         <input name="valider" type="submit" value="Valider" <?php if($_SESSION['etape']!=1) echo "disabled" ?> />
-        <br/>
+        </fieldset>
     </form>
-<br/>
 <?php
 
 $tab_erreur=getMessageFlash("upload");

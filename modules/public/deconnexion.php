@@ -27,16 +27,20 @@
 $bdd = PDOSingleton::getInstance();
 
 $bdd->query('DELETE FROM note WHERE uti_id = '.$_SESSION['id_user']);
-$bdd->query('DELETE FROM etdiant WHERE uti_id = '.$_SESSION['id_user']);
+$bdd->query('DELETE FROM etudiant WHERE uti_id = '.$_SESSION['id_user']);
+$bdd->query('UPDATE utilisateurs SET uti_is_co = false WHERE uti_id = '.$_SESSION['id_user']);
 
 logout();
 
-session_unset();
-session_destroy();
-
-// Message flash de succès vous avez bien été déconnecté
-setMessageFlash('Vous avez bien été déconnecté(e).');
-
-// Redirection sur la page d'accueil
-header( 'Location: '.LOGOUT_REDIRECT ) ;
+if(!isset($_POST["fermetture"]))
+{
+	// Message flash de succès vous avez bien été déconnecté
+	setMessageFlash('Vous avez bien été déconnecté(e).');
+	
+	// Redirection sur la page d'accueil
+	header( 'Location: '.LOGOUT_REDIRECT ) ;
+} else
+{
+	exit();
+}
 ?>

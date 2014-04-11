@@ -286,3 +286,79 @@ a.none:hover
 {
 	cursor: default;
 }
+
+form.remplir fieldset label
+{
+	display: block;
+	width: 100px;;
+	text-align: left;
+	float: left
+}
+
+form.remplir fieldset input[type="text"]
+{
+	width: 200px;
+}
+
+form.remplir fieldset input[type="password"]
+{
+	width: 200px;
+}
+
+
+form.connexion fieldset
+{
+	margin: auto;
+	width: 290px;
+}
+
+form.connexion fieldset input[type="text"],form.connexion fieldset input[type="password"]
+{
+	width: 150px;
+}
+
+form.user fieldset
+{
+	margin: auto;
+	width: 340px;
+}
+
+form.inscription fieldset
+{
+	margin: auto;
+	width: 360px;
+}
+
+form.importation fieldset
+{
+	margin: auto;
+	width: 500px;
+}
+
+form.importation fieldset label
+{
+	width: 140px;
+}
+
+form.importation fieldset select
+{
+	width: 250px;
+	margin-bottom: 20px;
+}
+
+
+fieldset
+{
+	border: 0;
+}
+
+form.inscription fieldset em
+{
+	display: block;
+	text-align: left;
+	float: left;
+	padding-left: 335px;
+	margin-top: -22px;
+	margin-right: -100px;
+	font-size: 0.9em;
+}

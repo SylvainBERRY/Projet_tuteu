@@ -97,31 +97,31 @@
 	</form>
 <?php } ?>
 
-<form id="dataUti" method="post" action="index.php?module=administrators&action=traite_administrators">
+<form class="remplir user" id="dataUti" method="post" action="index.php?module=administrators&amp;action=traite_administrators">
 	<fieldset><!-- <legend id="creation_from_legend">Création:</legend> -->
 		<p>
 			<h2 id="creation_from_title">Nouvel utilisateur :</h2>
 			<br/>
 		<!-- Affichage des donn&egrave;es de l'utilisateur s&egrave;lectionn&egrave; -->
-			Nom
+			<label>Nom : </label>
 			<input id="creation_from_nom" type="text" name="Nom" size="30" ></input>
 			<br>
-			Pr&egrave;nom
+			<label>Pr&egrave;nom : </label>
 			<input id="creation_from_prenom" type="text" name="Prenom" size="30" ></input>
 			<br>
-			Email
+			<label>Email : </label>
 			<input id="creation_from_mail" type="text" name="Email" size="30" ></input>
 			<br>
-			Confirmation de l'adresse mail
+			<label>Confirmation : </label>
 			<input id="creation_from_mailverif" type="text" name="EmailVerif" size="30" ></input>
 			<br>
-			Login
+			<label>Login : </label>
 			<input id="creation_from_login" type="text" name="Login" size="30" ></input>
 			<br>
 			<input id="creation_from_uti_id" type="hidden" name="Uti_id" ></input>
+		</fieldset>
 
 		<!-- Affichage les ue de l'utilisateur -->
-			<br/>
 			<table id="tableauUE">
 			<label>Nom des modules :<label>
 			<thead><tr><th></th><th></th></tr></thead>
@@ -142,7 +142,6 @@
 			</table>
 		</p>
 		<input id="creation_from_uti_submit" type="submit" value="Créer" />
-	</fieldset>
 </form>
 
 

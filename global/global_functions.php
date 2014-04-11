@@ -77,7 +77,7 @@ function password($mdp) {
 function ramdomMdp() {
     // initialiser la variable $mdp
     $mdp = "";
-	$longueur = 8;
+  $longueur = 8;
 
     // Définir tout les caractères possibles dans le mot de passe,
     $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
@@ -146,19 +146,8 @@ function login($login) {
  * Déconnexion de l'utilisateur courant
  */
 function logout() {
-
-  // Clean is admin
-  if (isset($_SESSION['is_admin'])) {
-    unset($_SESSION['is_admin']);
-  }
-  // Clean user id
-  if (isset($_SESSION['id_user'])) {
-    unset($_SESSION['id_user']);
-  }
-  // Clean is valide
-  if (isset($_SESSION['is_valide'])) {
-    unset($_SESSION['is_valide']);
-  }
+  session_unset();
+  session_destroy();
 }
 
 //////////////////////////
@@ -264,15 +253,17 @@ function printHtmlFlashMessages() {
   $result_success = printAllMessagesCategorie();
 
   if ($result_success != '') {
-    $result = '<div class="success">';
+    $result = '<p class="success">';
+    $result .= '<img src="'.CHEMIN_IMAGE.'success.png" alt="icone success"/>';
     $result .= $result_success;
-    $result .= '</div>';
+    $result .= '</p>';
   }
 
   if ($result_errors != '') {
-    $result .= '<div class="erreur">';
+    $result .= '<p class="erreur">';
+    $result .= '<img src="'.CHEMIN_IMAGE.'erreur.png" alt="icone Erreur"/>';
     $result .= $result_errors;
-    $result .= '</div>';
+    $result .= '</p>';
   }
 
   return $result;
@@ -322,12 +313,12 @@ function check_login($login) {
     $requete->execute();
 
     if($result = $requete->fetch(PDO::FETCH_ASSOC)) {
-  	  $requete->closeCursor();
+      $requete->closeCursor();
     }
 
-	if($result['nbr'] > 0) return EXISTS;
+  if($result['nbr'] > 0) return EXISTS;
 
-	else return OK;
+  else return OK;
   }
 }
 /**
@@ -358,16 +349,16 @@ function check_nom_prenom($nom_prenom) {
  */
 function check_mdp($mdp)
 {
-	if($mdp == '') return VIDE;
-	else if(strlen($mdp) < 4) return TOOSHORT;
-	else if(strlen($mdp) > 50) return TOOLONG;
+  if($mdp == '') return VIDE;
+  else if(strlen($mdp) < 4) return TOOSHORT;
+  else if(strlen($mdp) > 50) return TOOLONG;
 
-	else
-	{
-		if(!preg_match('#[0-9]{1,}#', $mdp)) return NOFIGURE;
-		else if(!preg_match('#[A-Z]{1,}#', $mdp)) return NOUPCAP;
-		else return OK;
-	}
+  else
+  {
+    if(!preg_match('#[0-9]{1,}#', $mdp)) return NOFIGURE;
+    else if(!preg_match('#[A-Z]{1,}#', $mdp)) return NOUPCAP;
+    else return OK;
+  }
 }
 /**
  * Retourne le résultat des test sur le mdp et le mdp de confirmation du formulaire d'inscription.
@@ -380,8 +371,8 @@ function check_mdp($mdp)
  */
 function check_mdp_conf($mdp_verif, $mdp2)
 {
-	if($mdp_verif != $mdp2 && $mdp_verif != '' && $mdp2 != '') return DIFFERENT;
-	else return check_mdp($mdp_verif);
+  if($mdp_verif != $mdp2 && $mdp_verif != '' && $mdp2 != '') return DIFFERENT;
+  else return check_mdp($mdp_verif);
 }
 /**
  * Retourne le résultat des test sur l'adresse mail du formulaire d'inscription.
@@ -393,26 +384,26 @@ function check_mdp_conf($mdp_verif, $mdp2)
  */
 function checkmail($mail)
 {
-	if($mail == '') return VIDE;
-	else if(!preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#is', $mail)) return ISNT;
+  if($mail == '') return VIDE;
+  else if(!preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#is', $mail)) return ISNT;
 
-	else
-	{
-		$pdo = PDOSingleton::getInstance();
+  else
+  {
+    $pdo = PDOSingleton::getInstance();
 
-	    $requete = $pdo->prepare("SELECT COUNT(*) AS nbr FROM utilisateurs WHERE uti_mail = :uti_mail");
+      $requete = $pdo->prepare("SELECT COUNT(*) AS nbr FROM utilisateurs WHERE uti_mail = :uti_mail");
 
-	    $requete->bindValue(':uti_mail', $mail);
+      $requete->bindValue(':uti_mail', $mail);
 
-	    $requete->execute();
+      $requete->execute();
 
-	    if($result = $requete->fetch(PDO::FETCH_ASSOC)) {
-	    	$requete->closeCursor();
-	    }
+      if($result = $requete->fetch(PDO::FETCH_ASSOC)) {
+        $requete->closeCursor();
+      }
 
-		if($result['nbr'] > 0) return EXISTS;
-			else return OK;
-	}
+    if($result['nbr'] > 0) return EXISTS;
+      else return OK;
+  }
 }
 /**
  * Retourne le résultat des test sur l'adresse mail de vérification du formulaire d'inscription.
@@ -422,68 +413,68 @@ function checkmail($mail)
  */
 function checkmailS($mail_verif, $mail)
 {
-	if($mail_verif != $mail && $mail != '' && $mail_verif != '') return DIFFERENT;
-	else return OK;
+  if($mail_verif != $mail && $mail != '' && $mail_verif != '') return DIFFERENT;
+  else return OK;
 }
 /**
  * Envoie d'un mail de notification
  */
 function envoiMail($email_from,$name_from,$email_to,$email_replay,$objet,$message)
 {
-	if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $email_to)) // On filtre les serveurs qui rencontrent des bug.
-	{
-		$passage_ligne = "\r\n";
-	}
-	else
-	{
-		$passage_ligne = "\n";
-	}
+  if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $email_to)) // On filtre les serveurs qui rencontrent des bug.
+  {
+    $passage_ligne = "\r\n";
+  }
+  else
+  {
+    $passage_ligne = "\n";
+  }
 
-	$headers = "From: \"".$name_from."\" ".$email_from.$passage_ligne;
-	$headers.= "Reply-to: \"".$name_from."\" ".$email_replay.$passage_ligne;
-	$headers  .= 'MIME-Version: 1.0' . "\r\n";
+  $headers = "From: \"".$name_from."\" ".$email_from.$passage_ligne;
+  $headers.= "Reply-to: \"".$name_from."\" ".$email_replay.$passage_ligne;
+  $headers  .= 'MIME-Version: 1.0' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
     /*
 
-	//=====Déclaration des messages au format texte et au format HTML.
-	$message_txt = "Salut à tous, voici un e-mail envoyé par un script PHP.";
-	$message_html = "<html><head></head><body><b>Salut à tous</b>, voici un e-mail envoyé par un <i>script PHP</i>.</body></html>";
-	//==========
+  //=====Déclaration des messages au format texte et au format HTML.
+  $message_txt = "Salut à tous, voici un e-mail envoyé par un script PHP.";
+  $message_html = "<html><head></head><body><b>Salut à tous</b>, voici un e-mail envoyé par un <i>script PHP</i>.</body></html>";
+  //==========
 
-	//=====Création de la boundary
-	$boundary = "-----=".md5(rand());
-	//==========
+  //=====Création de la boundary
+  $boundary = "-----=".md5(rand());
+  //==========
 
-	//=====Définition du sujet.
-	$objet = "salut !";
-	//=========
+  //=====Définition du sujet.
+  $objet = "salut !";
+  //=========
 
-	//=====Création du header de l'e-mail.
-	$header = "From: \"WeaponsB\"<hoctac@hotmail.fr>".$passage_ligne;
-	$header.= "Reply-to: \"WeaponsB\" <hoctac@hotmail.fr>".$passage_ligne;
-	$header.= "MIME-Version: 1.0".$passage_ligne;
-	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
-	//==========
+  //=====Création du header de l'e-mail.
+  $header = "From: \"WeaponsB\"<hoctac@hotmail.fr>".$passage_ligne;
+  $header.= "Reply-to: \"WeaponsB\" <hoctac@hotmail.fr>".$passage_ligne;
+  $header.= "MIME-Version: 1.0".$passage_ligne;
+  $header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
+  //==========
 
-	//=====Création du message.
-	$message = $passage_ligne."--".$boundary.$passage_ligne;
-	//=====Ajout du message au format texte.
-	$message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
-	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
-	$message.= $passage_ligne.$message_txt.$passage_ligne;
-	//==========
-	$message.= $passage_ligne."--".$boundary.$passage_ligne;
-	//=====Ajout du message au format HTML
-	$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
-	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
-	$message.= $passage_ligne.$message_html.$passage_ligne;
-	//==========
-	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
-	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
-	//==========
+  //=====Création du message.
+  $message = $passage_ligne."--".$boundary.$passage_ligne;
+  //=====Ajout du message au format texte.
+  $message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
+  $message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+  $message.= $passage_ligne.$message_txt.$passage_ligne;
+  //==========
+  $message.= $passage_ligne."--".$boundary.$passage_ligne;
+  //=====Ajout du message au format HTML
+  $message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
+  $message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+  $message.= $passage_ligne.$message_html.$passage_ligne;
+  //==========
+  $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+  $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+  //==========
 
-	*/
+  */
 
     mail($email_to, $objet, $message, $headers);
 
@@ -547,5 +538,24 @@ function lectureUeUser($id)
       $tab_nom_ue[] = lectureUENom($value_id_ue);
     }
   return $tab_nom_ue;
+}
+/**
+ * Retourne le boolean qui montre si l'utilisateur est déjà connecté ou non
+ * @return boolean | true si utilisateur déjà connecté ou false il peut se connecter 
+ */
+function check_uti_is_co($login)
+{
+  $pdo = PDOSingleton::getInstance();
+
+  $requete = $pdo->prepare("SELECT uti_is_co FROM utilisateurs WHERE uti_login = :uti_login");
+  $requete->bindValue(':uti_login', $login);
+  $requete->execute();
+  
+  $result = $requete->fetch(PDO::FETCH_ASSOC);
+  
+  $is_co = $result['uti_is_co'];
+  $requete->closeCursor();
+
+  return $is_co;
 }
 ?>

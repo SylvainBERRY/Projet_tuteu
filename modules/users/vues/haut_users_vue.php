@@ -46,8 +46,19 @@ echo $_SESSION['etape'];
         <title><?php echo $_GET['action'] ?></title>
         <script type="text/javascript" src="<?php echo CHEMIN_JS ?>table_ue.js"></script>
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>table_ue.css" />
+        <script type="text/javascript">
+        // Effectuer une déconnexion propre après fermetture du navigateur
+        function fermer(){
+             $.ajax({ 
+                    url: 'index.php?action=deconnexion',
+                    type: 'POST',
+                    datatype: 'html',
+                    data: 'fermetture='+true,
+            });
+        }
+        </script>
     </head>
-    <body>
+    <body onUnload="fermer()">
         <header>
             <a href="index.php?module=users&amp;action=importation"><img id="logo" src="images/logo_pf.png" alt="Logo" /></a>
 
