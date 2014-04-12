@@ -2,6 +2,15 @@
 
 }
 
+.dataTables_info
+{
+	margin-top: 3px;
+}
+
+.dataTables_paginate 
+{
+	margin-top: -2px;
+}
 .dataTables_wrapper .dataTables_filter {
 	margin-bottom: 10px;
 }

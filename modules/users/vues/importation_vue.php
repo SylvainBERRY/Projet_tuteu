@@ -52,9 +52,7 @@ $liste_ue= lectureUeUser($_SESSION['id_user']);
             </select>
         <br/>
         <input name="charger" type="submit" value="Visualiser" />
-        <input name="valider" type="submit" value="Valider" <?php if($_SESSION['etape']!=1) echo "disabled" ?> />
         </fieldset>
-    </form>
 <?php
 
 $tab_erreur=getMessageFlash("upload");
@@ -73,7 +71,8 @@ if (!empty($tab_erreur))
 
 if($_SESSION['emails_valides']) 
 {
-    echo '<br/><h2>Emails :</h2>';
+    echo '<br/><h3>Emails :</h3>';
+    echo '<hr/><br/>';
     $nb_etud=count($tab_noms);
 
     echo '<table border="1">';
@@ -90,15 +89,16 @@ if($_SESSION['emails_valides'])
     }
     echo '</tbody>';
     echo '</table>';
+    echo '<br/>
+<br/>';
 }
 ?>
-<br/>
-<br/>
 <br/>
 <?php
 if($_SESSION['notes_valides'])
 {
-    echo '<h2>Notes :</h2>';
+    echo '<h3>Notes :</h3>';
+    echo '<hr/><br/>';
     $nb_etud=count($tab_noms);
     echo '<table border="1">';
     echo '<thead><tr><th>Nom</th><th>Prénom</th>';
@@ -121,8 +121,13 @@ if($_SESSION['notes_valides'])
     }
     echo '</tbody>';
     echo '</table>';
+    echo '<br/><br/><br/>';
 }
 
 ?>
+
+<hr/>
+<input name="valider" type="submit" value="Valider l'importation" <?php if($_SESSION['etape']!=1) echo "disabled" ?> />
+    </form>
 <br/>
 </section>

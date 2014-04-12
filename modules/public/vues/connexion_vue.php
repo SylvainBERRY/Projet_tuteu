@@ -29,7 +29,7 @@
 	    <label for="mdp" class="float">Mot de passe :</label>
 	    <input type="password" name="mdp" id="mdp"/><br/>
 	    <div class="authentification"><input type="submit" value="Connexion" /><br/><br/>
-		<a href="index.php?module=public&amp;action=inscription" title="inscription">Pas de compte ! Inscriver vous</a>
+		<a class="lien" href="index.php?module=public&amp;action=inscription" title="inscription">Nouveau ! Inscriver vous</a>
 	</fieldset>
 	</form>
 	<br/>

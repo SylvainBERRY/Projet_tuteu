@@ -58,7 +58,7 @@
 				</table>
 				<div class="center"><input type="submit" value="Inscription" /></div>
 				<br/>
-		<a href="index.php?action=connexion" >Retourner à la page de connexion</a>
+		<a href="index.php?action=connexion" class="lien" >Retourner à la page de connexion</a>
 		</form>
 	</div>
 <br/>

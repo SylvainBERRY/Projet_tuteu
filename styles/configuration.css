@@ -14,15 +14,10 @@ fieldset input[type="text"]
 }
 fieldset textarea
 {
-	width: 450px;
-	height: 160px;
+	width: 350px;
+	height: 180px;
 	padding: 5px;
-	font: 0.9em "Time new roman";	
-}
-
-fieldset
-{
-	border: 0;
+	font: 0.9em "Time new roman";
 }
 
 #nb
@@ -33,3 +28,70 @@ fieldset
 	margin-bottom: -40px;
 	margin-top:30px;
 }
+
+#apercu
+{
+	border: 1px solid #dddddd;
+	display: inline-block;
+	width: 430px;
+	height: 290px;
+	text-align: justify;
+	margin-left: 10px;
+	padding: 10px;
+	vertical-align: top;
+	overflow-x: scroll; 
+}
+
+#apercu h3
+{
+	position: absolute;
+	width: 452px;
+	margin-top:-10px;
+	margin-left:-11px;
+
+}
+fieldset
+{
+	display: inline-block;
+	width: 360px;
+	height: 292px;
+	vertical-align: top;
+	border: 1px solid #dddddd;
+}
+
+#ap_de,#ap_a,#ap_text,#ap_objet
+{
+	margin: 8px 0px;
+		font-style: italic;
+}
+
+#ap_text
+{
+	width: 410px;
+}
+
+#ap_objet
+{
+	margin-top: 35px;
+	font-weight: bold;
+}
+
+#ap_de span,#ap_a span
+{
+	font-weight: bold;
+}
+
+
+form fieldset h3
+{
+	position: absolute;
+	width: 384px;
+	margin-top:-6px;
+	margin-left:-12px;
+}
+
+#objet
+{
+	margin-top: 40px;
+}
+

@@ -96,12 +96,11 @@
 		<input type="submit" value="Auto Utilisateur" />
 	</form>
 <?php } ?>
-
+<br/><br/>
 <form class="remplir user" id="dataUti" method="post" action="index.php?module=administrators&amp;action=traite_administrators">
 	<fieldset><!-- <legend id="creation_from_legend">Création:</legend> -->
 		<p>
-			<h2 id="creation_from_title">Nouvel utilisateur :</h2>
-			<br/>
+			<h2 id="creation_from_title">Nouvel utilisateur :</h2><br/>
 		<!-- Affichage des donn&egrave;es de l'utilisateur s&egrave;lectionn&egrave; -->
 			<label>Nom : </label>
 			<input id="creation_from_nom" type="text" name="Nom" size="30" ></input>
@@ -120,6 +119,7 @@
 			<br>
 			<input id="creation_from_uti_id" type="hidden" name="Uti_id" ></input>
 		</fieldset>
+		<br/>
 
 		<!-- Affichage les ue de l'utilisateur -->
 			<table id="tableauUE">

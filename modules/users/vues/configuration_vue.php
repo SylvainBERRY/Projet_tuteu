@@ -34,15 +34,33 @@ echo '</script>';
 
      <form action="index.php?module=users&amp;action=envoi" method="post" >
         <fieldset>
+            <h3>Message</h3>
             <label for="objet" >Objet :</label>
             <input id="objet" type="text" name="objet" value="Note du module <?php echo $_SESSION['ue'] ?>" />
             <br/>
             <label for="message" >Texte :</label>
             <br/>
             <textarea id="message" name="message" ><?php echo $text ?></textarea>
-            <br/>
-            <input type="submit" value="envoyer" /></br>
         </fieldset>
+        <div id="apercu">
+            <h3>Aperçu type</h3>
+            <p id="ap_objet" >Note du module genie logicle </p>
+            <p id="ap_de" ><span>De : </span>Sandrine LANQUETIN</p>
+            <p id="ap_a" ><span>&Agrave; : </span>hoctac@hotmail.fr</p>
+            <p id="ap_text" >Bonjour,
+                Ci-dessous vos notes du module Culture d’entreprise - Anglais.
+                Cordialement
+                Sylvain BERRY
+                Cordialement
+                Sylvain BERRY
+                Ci-dessous vos notes du module Culture d’entreprise - Anglais.
+                Cordialement
+                Sylvain BERRY
+            </p>
+        </div>
+    <br/><br/>
+    <h3 id="select_etu" >Selectionnez les étudinats</h3>
+    <hr/>
     <p id="nb" >Tous les etudiants sont sélectionnés</p>
 <?php
     
@@ -80,6 +98,8 @@ echo '</script>';
     echo '</tbody>';
     echo '</table>';
 ?>
+<br/><br/><br/>
+<hr/>
+            <input type="submit" value="envoyer les mails" />
     </form>
-    <br/>
 </section>

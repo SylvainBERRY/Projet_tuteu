@@ -58,7 +58,7 @@ echo $_SESSION['etape'];
         }
         </script>
     </head>
-    <body onUnload="fermer()">
+    <body onUnload="">
         <header>
             <a href="index.php?module=users&amp;action=importation"><img id="logo" src="images/logo_pf.png" alt="Logo" /></a>
 
