@@ -1,0 +1,76 @@
+body
+{
+	padding: 0;
+}
+
+header
+{
+	background-image:url("../images/header_accueil.png");
+	height: 42px;
+	margin-top: 120px;
+}
+
+section form + img
+{
+	width: 40%;
+	height: 40%;
+	display: inline-block;
+	margin-left: 30px;
+	vertical-align: top;
+}
+
+#logo
+{
+	margin-top: -160px;
+	display: block;
+	margin-bottom: 40px;
+}
+form.connexion
+{
+	display: inline-block;
+	vertical-align: top;
+	width: 350px;
+}
+
+h4
+{
+	font-family:"calibri";
+	color:gray;
+	font-size: 1.4em;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+
+form.inscription fieldset
+{
+	display: inline-block;
+	vertical-align: top;
+	margin: auto;
+	width: 360px;
+}
+
+form.inscription fieldset label
+{
+	width: 180px;
+}
+
+form.inscription fieldset input[type="text"], form.inscription fieldset input[type="password"]
+{
+	width: 150px;
+}
+
+form.inscription #tableauUE_wrapper
+{
+	display: inline-block;
+	width: 350px;
+	vertical-align: top;
+	margin-left: 15px;
+}
+
+#label_module
+{
+	position: absolute;
+	margin-left: 15px;
+}
+
+

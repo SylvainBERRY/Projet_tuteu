@@ -17,17 +17,20 @@
 *Aucune information/erreur
 *--------------------------
 */
+
+$nom_prenom=$user_information['uti_prenom'].' '.strtoupper($user_information['uti_nom']);
 $text ='Bonjour,
 
 Ci-dessous vos notes du module '.$_SESSION['ue'].'.
 
 Cordialement
-'.$user_information['uti_prenom'].' '.strtoupper($user_information['uti_nom']);
+'.$nom_prenom;
 
-echo '<script type="text/javascript">';
-echo 'var nb_etud_totale='; 
-echo '</script>';
-?>  
+
+?>
+<script type="text/javascript">
+    var nb_etud_totale = <?php echo $info_etudiants->rowCount(); ?>;
+</script>
 <section>
     <br/>
     <h1>Configuration des mails</h1>
@@ -43,34 +46,31 @@ echo '</script>';
             <textarea id="message" name="message" ><?php echo $text ?></textarea>
         </fieldset>
         <div id="apercu">
-            <h3>Aperçu type</h3>
-            <p id="ap_objet" >Note du module genie logicle </p>
-            <p id="ap_de" ><span>De : </span>Sandrine LANQUETIN</p>
-            <p id="ap_a" ><span>&Agrave; : </span>hoctac@hotmail.fr</p>
-            <p id="ap_text" >Bonjour,
-                Ci-dessous vos notes du module Culture d’entreprise - Anglais.
-                Cordialement
-                Sylvain BERRY
-                Cordialement
-                Sylvain BERRY
-                Ci-dessous vos notes du module Culture d’entreprise - Anglais.
-                Cordialement
-                Sylvain BERRY
-            </p>
+            <p id="ap_objet" >Note du module <?php echo $_SESSION['ue'] ?></p>
+            <p id="ap_de" ><span>De : </span><?php echo $nom_prenom ?></p>
+            <p id="ap_text"><?php echo nl2br($text) ?></p>
+            <p id="ap_note">
+            <?php 
+                while ($type_note = $types_notes->fetch())
+                {
+                    $tab_type_note[]=$type_note[0];
+                    echo '<span>'.$type_note[0].' : </span>##.##<br/>';
+                }
+            ?></p>
         </div>
     <br/><br/>
-    <h3 id="select_etu" >Selectionnez les étudinats</h3>
+    <h3 id="select_etu" >Sélectionnez les étudinats</h3>
     <hr/>
-    <p id="nb" >Tous les etudiants sont sélectionnés</p>
+    <p id="nb" >Aucun étudiant sélectionné</p>
 <?php
     
     echo '<table border="1">';
     echo '<thead><tr>';
-    echo '<th><input type="checkbox" id="select_tout" checked /></th><th>Nom</th><th>Prénom</th><th>Emails</th>';
+    echo '<th><input type="checkbox" id="select_tout" /></th><th>Nom</th><th>Prénom</th><th>Emails</th>';
 
-    while ($type_note = $types_notes->fetch())
+    foreach ($tab_type_note as $type_note) 
     {
-    echo '<th>'.$type_note[0].'</th>';
+    echo '<th>'.$type_note.'</th>';
     }
 
     echo '</tr></thead>';
@@ -79,7 +79,7 @@ echo '</script>';
     while ($etudiant = $info_etudiants->fetch())
     {
     echo '<tr>';
-    echo '<td><input type="checkbox" class="select" checked name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" /></td>';
+    echo '<td><input type="checkbox" class="select" name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" /></td>';
     echo '<td>'.$etudiant['nom'].'</td>';
     echo '<td>'.$etudiant['prenom'].'</td>';
     echo '<td>'.$etudiant['mail1'].'<br/>'.$etudiant['mail2'].'</td>';
@@ -100,6 +100,6 @@ echo '</script>';
 ?>
 <br/><br/><br/>
 <hr/>
-            <input type="submit" value="envoyer les mails" />
+            <input type="submit" value="Envoyer les mails" id="envoyer" disabled="true" />
     </form>
 </section>

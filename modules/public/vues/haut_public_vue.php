@@ -24,6 +24,7 @@
         <meta charset="utf-8" />
         <link rel="shurtcut icon" href="images/ico.ico" />
         <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>globale.css" />
+        <link rel="stylesheet" href="<?php echo CHEMIN_STYLE ?>public.css" />
         <?php
 				if(isset($_GET['action']) AND ($_GET['action']=='inscription'))
 				{

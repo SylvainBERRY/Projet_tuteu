@@ -476,7 +476,7 @@ function envoiMail($email_from,$name_from,$email_to,$email_replay,$objet,$messag
 
   */
 
-    mail($email_to, $objet, $message, $headers);
+    //mail($email_to, $objet, $message, $headers);
 
 }
 

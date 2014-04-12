@@ -17,8 +17,15 @@
 *Aucune information/erreur
 *--------------------------
 */
-if($_SESSION['etape']<3) {
-    header('Location:index.php?module=users&action=importation');
+
+foreach (array_keys($_POST) as $checkbox) 
+{
+    if(preg_match("/checkbox/", $checkbox))    $checkboxs[]=preg_replace("/checkbox_/","",$checkbox);
+}
+
+if (!isset($checkboxs)) 
+{
+	header('Location:index.php?module=users&action=configuration');
 }
 
 // Inclusion du modele pour l'envoi

@@ -19,11 +19,6 @@
 */
 $bdd = PDOSingleton::getInstance();
 
-foreach (array_keys($_POST) as $checkbox) 
-{
-    if(preg_match("/checkbox/", $checkbox))    $checkboxs[]=preg_replace("/checkbox_/","",$checkbox);
-}
-
 $num_etud='(';
 
 foreach($checkboxs as $num)
@@ -89,5 +84,7 @@ $name_from='Getnotes';
 $email_to = 'timlepart@gmail.com'; // get_information_user($_SESSION['id_user'])['uti_mail'];
 $email_replay='no-replay';
 envoiMail($email_from,$name_from,$email_to,$email_replay,$objet,$message_globale);
+
+$_SESSION['etape']=3;
 
 ?>

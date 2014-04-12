@@ -28,7 +28,7 @@ $(document).ready (function()
                 "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
             }
         },
-        "sScrollY": "300px",
+        "sScrollY": "180px",
         "bPaginate": false,
         "bScrollCollapse": true,
         "bInfo": false

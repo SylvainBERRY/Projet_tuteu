@@ -17,7 +17,6 @@
 *Aucune information/erreur
 *--------------------------
 */
-echo $_SESSION['etape'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,15 +65,18 @@ echo $_SESSION['etape'];
                 <ul>
                     <li><a <?php if($_GET['action']=='importation') echo 'id="ici"' ?> href="index.php?module=users&amp;action=importation">IMPORTATION</a></li>
                     <li><a <?php if($_GET['action']=='configuration') echo 'id="ici"' ?> <?php echo ($_SESSION['etape']>1)?'href="index.php?module=users&amp;action=configuration"':'class="none"' ?> >CONFIGURATION</a></li>
-                    <li><a <?php if($_GET['action']=='envoi') echo 'id="ici"' ?> <?php echo ($_SESSION['etape']>2)?'href="index.php?module=users&amp;action=envoi':'class="none"' ?> >ENVOI EMAIL</a></li>
+                    <li><a <?php if($_GET['action']=='envoi') echo 'id="ici"' ?> <?php echo ($_SESSION['etape']>2)?'href="index.php?module=users&amp;action=envoi"':'class="none"' ?> >ENVOI EMAIL</a></li>
                 </ul>
             </nav>
             <p>
+                 <?php if (!$_SESSION['is_admin']) { ?>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <?php } ?>
                 <a href="index.php?action=deconnexion"><img src="images/logout.png" /><br/><span class="">LOGOUT</span></a>
                 <a href="<?php echo LOGIN_REDIRECT_PROFIL ?>"><img src="images/profile.png" /><br/><span class="">PROFIL</span></a>
-            <?php if ($_SESSION['is_admin']) { ?>
+                <?php if ($_SESSION['is_admin']) { ?>
                 <a href="<?php echo LOGIN_REDIRECT_ADMIN ?>" ><img src="images/admin.png" /><br/><span class="">ADMIN</span></a>
-            <?php } ?>
+                <?php } ?>
             </p>
             <?php $user_information = get_information_user($_SESSION['id_user']); ?>
             <h3>Utilisateur : <?php echo $user_information['uti_prenom'].' '.strtoupper($user_information['uti_nom']) ?></h3>

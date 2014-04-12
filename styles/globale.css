@@ -8,14 +8,6 @@
 /* Définition des fonts du site */
 
 @font-face {
-    font-family: 'cahier';
-    src: url('../images/polices/cahier.ttf');
-}
-@font-face {
-    font-family: 'complete_in_him';
-    src: url('../images/polices/complete_in_him.ttf');
-}
-@font-face {
     font-family: 'you_are_loved';
     src: url('../images/polices/you_are_loved.ttf');
 }

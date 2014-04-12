@@ -22,22 +22,23 @@
 <!-- Formulaire d'inscription -->
 <section>
 	<br/>
+	<a id="logo" href="index.php"><img src="images/logo_pf.png" alt="Logo" /></a>
 	<div id="contenu">
 		<h1>Formulaire d'inscription</h1>
-		Merci de remplir ces champs pour continuer.</p>
+		<h4>Merci de remplir ces champs pour continuer.</h4>
+		<br/>
 		<form class="remplir inscription" name="inscription" id="inscription" action="index.php?action=inscription" method="post">
 				<fieldset>
-				<label for="login" class="float">Login :</label> <input type="text" name="login" id="login" size="30" /><br/><em>(3 à 32 caractères)</em>
-				<label for="nom" class="float">Nom :</label> <input type="text" name="nom" id="nom" size="30" /><br />
-				<label for="prenom" class="float">Prénom :</label> <input type="text" name="prenom" id="prenom" size="30" /><br/>
-				<label for="mdp" class="float">Mot de passe :</label> <input type="password" name="mdp" id="mdp" size="30" /><br/><em>(8 caractères)</em>
-				<label for="mdp_verif" class="float">Vérification :</label> <input type="password" name="mdp_verif" id="mdp_verif" size="30" /><br />
-				<label for="mail" class="float">Adresse mail :</label> <input type="text" name="mail" id="mail" size="30" /> <br />
-				<label for="mail_verif" class="float">Vérification :</label> <input type="text" name="mail_verif" id="mail_verif" size="30" /><br />
+					<label for="login" class="float">Login : (3 à 32 carac.)</label> <input type="text" name="login" id="login" size="30" /><br/>
+					<label for="nom" class="float">Nom :</label> <input type="text" name="nom" id="nom" size="30" /><br />
+					<label for="prenom" class="float">Prénom :</label> <input type="text" name="prenom" id="prenom" size="30" /><br/>
+					<label for="mdp" class="float">Mot de passe : (8 carac.)</label> <input type="password" name="mdp" id="mdp" size="30" /><br/>
+					<label for="mdp_verif" class="float">Vérification :</label> <input type="password" name="mdp_verif" id="mdp_verif" size="30" /><br />
+					<label for="mail" class="float">Adresse mail :</label> <input type="text" name="mail" id="mail" size="30" /> <br />
+					<label for="mail_verif" class="float">Vérification :</label> <input type="text" name="mail_verif" id="mail_verif" size="30" /><br />
 				</fieldset>
-				<br/>
 				<table name="tableauUE" id="tableauUE">
-				<label>Nom des modules :<label>
+				<label id="label_module" >Modules :<label>
 				<thead><tr><th></th><th></th></tr></thead>
 				<tbody>
 				<?php

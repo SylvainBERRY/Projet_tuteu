@@ -42,14 +42,6 @@ fieldset textarea
 	overflow-x: scroll; 
 }
 
-#apercu h3
-{
-	position: absolute;
-	width: 452px;
-	margin-top:-10px;
-	margin-left:-11px;
-
-}
 fieldset
 {
 	display: inline-block;
@@ -59,10 +51,16 @@ fieldset
 	border: 1px solid #dddddd;
 }
 
-#ap_de,#ap_a,#ap_text,#ap_objet
+#ap_de,#ap_text,#ap_objet
 {
 	margin: 8px 0px;
-		font-style: italic;
+}
+
+#ap_de
+{
+	margin-bottom: 15px;
+	border-bottom: 1px solid gray;
+	padding-bottom: 8px;
 }
 
 #ap_text
@@ -72,11 +70,12 @@ fieldset
 
 #ap_objet
 {
-	margin-top: 35px;
+	margin-top: 0px;
 	font-weight: bold;
+	font-style: italic;
 }
 
-#ap_de span,#ap_a span
+#ap_de span,#ap_a span, #ap_note span
 {
 	font-weight: bold;
 }
@@ -95,3 +94,7 @@ form fieldset h3
 	margin-top: 40px;
 }
 
+p#ap_text
+{
+	line-height:15px;
+}
