@@ -249,21 +249,29 @@ function printAllMessagesCategorie($category = MESSAGE_FLASH_DEFAULT) {
 function printHtmlFlashMessages() {
 
   $result = "";
-  $result_errors = printAllMessagesCategorie(MESSAGE_FLASH_ERREUR);
-  $result_success = printAllMessagesCategorie();
+  $result_errors = getMessageFlash(MESSAGE_FLASH_ERREUR);
+  $result_success = getMessageFlash();
 
-  if ($result_success != '') {
-    $result = '<p class="success">';
-    $result .= '<img src="'.CHEMIN_IMAGE.'success.png" alt="icone success"/>';
-    $result .= $result_success;
-    $result .= '</p>';
+  var_dump($result_errors);
+  var_dump($result_success);
+  if (!empty($result_success)) {
+      $result = '<p class="success">';
+      foreach ($result_success as $success) {
+        $result .= '<img src="'.CHEMIN_IMAGE.'success.png" alt="icone success"/>';
+        $result .= $success;
+        $result .= '<br/>';
+      }
+      $result .= '</p>';
   }
 
-  if ($result_errors != '') {
-    $result .= '<p class="erreur">';
-    $result .= '<img src="'.CHEMIN_IMAGE.'erreur.png" alt="icone Erreur"/>';
-    $result .= $result_errors;
-    $result .= '</p>';
+  if (!empty($result_errors)) {
+      $result .= '<p id="erreur_message" class="erreur">';
+      foreach ($result_errors as $errors) {
+        $result .= '<img src="'.CHEMIN_IMAGE.'erreur.png" alt="icone Erreur"/>';
+        $result .= $errors;
+        $result .= '<br/>';
+     }
+     $result .= '</p>';
   }
 
   return $result;

@@ -38,8 +38,11 @@ if (!empty($_POST)) {
 				// Ajout variable pour ne faire qu'une connection à la fois
 				$bdd = PDOSingleton::getInstance();
 				$bdd->query('UPDATE utilisateurs SET uti_is_co = true WHERE uti_id = '.$_SESSION['id_user']);
-				// Message flash de succès vous avez bien été connecté
-				setMessageFlash('Vous avez bien été connecté(e).');
+				
+				if(DEBUG_FLASH_SUCCESS){
+					// Message flash de succès vous avez bien été connecté
+					setMessageFlash('Vous avez bien été connecté(e).');
+				}
 				$_SESSION['etape']=0;
 				$_SESSION['emails_valides']=false;
 				$_SESSION['notes_valides']=false;
@@ -60,8 +63,14 @@ if (!empty($_POST)) {
 				// Ajout message erreur vous êtez déjà connecté
 				setMessageFlash('Vous êtez déjà connecté.',MESSAGE_FLASH_ERREUR);
 			} else {
-				// Ajout message erreur mot de passe, login incorrecte ou compte non validé
-				setMessageFlash('Votre mot de passe ou votre login est incorrecte. (Il est possible que votre compte ne soit pas encore validé)',MESSAGE_FLASH_ERREUR);
+					if(isset($_SESSION['is_valide']) && !$_SESSION['is_valide'])
+					{
+						// Ajout message erreur compte non validé
+						setMessageFlash("Votre compte n'est pas encore validé.",MESSAGE_FLASH_ERREUR);
+					} else {
+						// Ajout message erreur mot de passe, login incorrecte
+						setMessageFlash('Votre mot de passe ou votre login est incorrecte.',MESSAGE_FLASH_ERREUR);
+					}
 			}
 			// Redirection
 			header( 'Location: '.LOGOUT_REDIRECT );

@@ -23,6 +23,7 @@ define('DEBUG_SESSION', false);
 define('DEBUG_POST', false);
 define('DEBUG_GET', false);
 define('DEBUG_AUTO_UTI', false);
+define('DEBUG_FLASH_SUCCESS', false);
 
 // Informations relatives au site
 define('ROOTPATH', 'http://'.$_SERVER['HTTP_HOST'].'/GitHub/Projet_tuteu', true);

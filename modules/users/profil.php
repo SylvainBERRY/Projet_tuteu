@@ -57,11 +57,13 @@ if (!empty($_POST)) {
 
 			else if($login_result == OK)
 			{
-				//Login ok pas de message d'erreur en flash
-				setMessageFlash('Login validé');
+				if(DEBUG_FLASH_SUCCESS) {
+					//Login ok pas de message d'erreur en flash
+					setMessageFlash('Login validé');
+				}
 			}
 			else
-			 {
+			{
 				// Doit être renseigné
 				$errors_array[] = 'Vous devez renseigner un login !';
 			}
@@ -93,8 +95,10 @@ if (!empty($_POST)) {
 
 			else if($prenom_result == OK)
 			{
-				//Prénom ok pas de message d'erreur en flash
-				setMessageFlash('Prénom validé');
+				if(DEBUG_FLASH_SUCCESS) {
+					//Prénom ok pas de message d'erreur en flash
+					setMessageFlash('Prénom validé');
+				}
 			}
 			else {
 			// Doit être renseigné
@@ -127,8 +131,10 @@ if (!empty($_POST)) {
 
 			else if($nom_result == OK)
 			{
-				// Nom ok pas de message d'erreur en flash
-				setMessageFlash('Nom validé');
+				if(DEBUG_FLASH_SUCCESS) {
+					// Nom ok pas de message d'erreur en flash
+					setMessageFlash('Nom validé');
+				}
 			} else
 			{
 				// Doit être renseigné
@@ -169,8 +175,10 @@ if (!empty($_POST)) {
 
 		else if($mdp_result == OK)
 		{
-			// Mdp ok pas de message d'erreur en flash
-			setMessageFlash('Mot de passe validé');
+			if(DEBUG_FLASH_SUCCESS) {
+				// Mdp ok pas de message d'erreur en flash
+				setMessageFlash('Mot de passe validé');
+			}
 		}
 	}
 
@@ -189,8 +197,10 @@ if (!empty($_POST)) {
 		{
 			if($mdp_verif_result == OK)
 			{
-				// Mdp de vérification ok pas de message d'erreur en flash
-				setMessageFlash('Mot de passe de confirmation validé');
+				if(DEBUG_FLASH_SUCCESS) {
+					// Mdp de vérification ok pas de message d'erreur en flash
+					setMessageFlash('Mot de passe de confirmation validé');
+				}
 			}
 
 			else
@@ -229,8 +239,10 @@ if (!empty($_POST)) {
 
 			else if($mail_result == OK)
 			{
-				// Adresse mail ok pas de message d'erreur en flash
-				setMessageFlash('Adresse mail validé');
+				if(DEBUG_FLASH_SUCCESS) {
+					// Adresse mail ok pas de message d'erreur en flash
+					setMessageFlash('Adresse mail validé');
+				}
 			}
 			else {
 
@@ -260,8 +272,10 @@ if (!empty($_POST)) {
 			{
 				if($mail_result == OK)
 				{
-					// Adresse mail de vérification ok pas de message d'erreur en flash
-					setMessageFlash('Adresse mail de vérification validé');
+					if(DEBUG_FLASH_SUCCESS) {
+						// Adresse mail de vérification ok pas de message d'erreur en flash
+						setMessageFlash('Adresse mail de vérification validé');
+					}
 				}
 
 				else
@@ -273,21 +287,28 @@ if (!empty($_POST)) {
 		}
 	}
 
+	// Initialisation du tableau d'ue
+	$reponse = lectureUE();
+	$tableau_ue = array();
+	$i = 1;
+
+	// Remplissage du tableau d'ue avec les id ue
+	foreach ($reponse as $donnees) {
+		if (isset($_POST[$i])) {
+			$tableau_ue[] = $donnees['ue_id'];
+		}
+		$i++;
+	}
+
+	if(empty($tableau_ue)){
+		// Au moins 1 ue doit être renseigné
+		$errors_array[] = "Vous devez renseigner au moins une unité d'enseignement !";
+	}
+	
 	// Si aucune erreur n'est trouvée
 	if (empty($errors_array)) {
 
-		// Initialisation du tableau d'ue
-		$reponse = lectureUE();
-		$tableau_ue = array();
-		$i = 1;
 
-		// Remplissage du tableau d'ue avec les id ue
-		foreach ($reponse as $donnees) {
-			if (isset($_POST[$i])) {
-				$tableau_ue[] = $donnees['ue_id'];
-			}
-			$i++;
-		}
 		$mdp = $_POST['mdp'];
 
 
@@ -298,11 +319,11 @@ if (!empty($_POST)) {
 			setMessageFlash("La modification de votre profil a été effectuée avec succès.");
 
 			// Envoie d'un mail de notification à l'utilisateur pour la modification de son profil
-			//$email_from = 'berry.sylvain@free.fr';  // @todo: définir l'expéditeur du mail.
-			//$email_to = $_POST['mail'];
-			//$objet = "Mail de notification suite à la modification de votre profil.";
-			//$message = "Une modification de votre profil a été effectué sur l'application GetNote. Voici le résumé de cette modification: Nom: ".$_POST['nom']." Prenom: ".$_POST['prenom']." Login: ".$_POST['login']." Mail: ".$_POST['mail']." Mot de passe: ".$_POST['mdp']." Enseignement: ".$tableau_ue;
-			//envoiMail($email_from,$email_to,$email_replay,$objet,$message);
+			$email_from = 'berry.sylvain@free.fr';
+			$email_to = $_POST['mail'];
+			$objet = "Mail de notification suite à la modification de votre profil.";
+			$message = "Une modification de votre profil a été effectué sur l'application GetNote. Voici le résumé de cette modification: Nom: ".$_POST['nom']." Prenom: ".$_POST['prenom']." Login: ".$_POST['login']." Mail: ".$_POST['mail']." Mot de passe: ".$_POST['mdp']." Enseignement: ".$tableau_ue;
+			envoiMail($email_from,$email_to,$email_replay,$objet,$message);
 
 			// Redirection connexion
 			header( 'Location: '.LOGOUT ) ;

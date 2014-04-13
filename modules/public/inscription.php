@@ -30,7 +30,7 @@ if (!empty($_POST)) {
 		if($_SESSION['login'] == $_POST['login'] && trim($_POST['login']) != '')
 		{
 			// Création message flash utilisateur déjà inscrit et connecté avec le login
-			setMessageFlash('Vous êtes déjà connecté(e) '.$_POST['login'].'.');
+			setMessageFlash('Vous êtes déjà connecté(e) '.$_POST['login'].'.',MESSAGE_FLASH_ERREUR);
 
 			// Redirection si administrateur ou utilisateur
 			if (administrateur_est_connecte()) {
@@ -73,7 +73,7 @@ if (!empty($_POST)) {
 			$errors_array[] = 'Le login renseigné est déjà utilisé !';
 		}
 
-		else if($login_result == OK)
+		else if($login_result == OK && DEBUG_FLASH_SUCCESS)
 		{
 			//Login ok pas de message d'erreur en flash
 			setMessageFlash('Login validé');
@@ -104,7 +104,7 @@ if (!empty($_POST)) {
 			$errors_array[] = 'Le prénom renseigné est trop long !';
 		}
 
-		else if($prenom_result == OK)
+		else if($prenom_result == OK && DEBUG_FLASH_SUCCESS)
 		{
 			//Prénom ok pas de message d'erreur en flash
 			setMessageFlash('Prénom validé');
@@ -135,7 +135,7 @@ if (!empty($_POST)) {
 			$errors_array[] = 'Le nom renseigné est trop long !';
 		}
 
-		else if($nom_result == OK)
+		else if($nom_result == OK && DEBUG_FLASH_SUCCESS)
 		{
 			// Nom ok pas de message d'erreur en flash
 			setMessageFlash('Nom validé');
@@ -176,7 +176,7 @@ if (!empty($_POST)) {
 			$errors_array[] = 'Votre mot de passe doit contenir au moins 1 majuscule !';
 		}
 
-		else if($mdp_result == OK)
+		else if($mdp_result == OK && DEBUG_FLASH_SUCCESS)
 		{
 			// Mdp ok pas de message d'erreur en flash
 			setMessageFlash('Mot de passe validé');
@@ -201,7 +201,7 @@ if (!empty($_POST)) {
 
 		else
 		{
-			if($mdp_verif_result == OK)
+			if($mdp_verif_result == OK && DEBUG_FLASH_SUCCESS)
 			{
 				// Mdp de vérification ok pas de message d'erreur en flash
 				setMessageFlash('Mot de passe de confirmation validé');
@@ -237,7 +237,7 @@ if (!empty($_POST)) {
 			$errors_array[] = 'Adresse mail déjà utilisé !';
 		}
 
-		else if($mail_result == OK)
+		else if($mail_result == OK && DEBUG_FLASH_SUCCESS)
 		{
 			// Adresse mail ok pas de message d'erreur en flash
 			setMessageFlash('Adresse mail validé');
@@ -264,8 +264,10 @@ if (!empty($_POST)) {
 		{
 			if($mail_result == OK)
 			{
-				// Adresse mail de vérification ok pas de message d'erreur en flash
-				setMessageFlash('Adresse mail de vérification validé');
+				if(DEBUG_FLASH_SUCCESS) {
+					// Adresse mail de vérification ok pas de message d'erreur en flash
+					setMessageFlash('Adresse mail de vérification validé');
+				}
 			}
 
 			else
@@ -281,21 +283,25 @@ if (!empty($_POST)) {
 		$errors_array[] = 'Vous devez renseigner une adresse mail de vérification !';
 	}
 
+	// Initialisation du tableau d'ue
+	$reponse = lectureUE();
+	$tableau_ue = array();
+	$i = 1;
+
+	// Remplissage du tableau d'ue avec les id ue
+	foreach ($reponse as $donnees) {
+		if (isset($_POST[$i])) {
+			$tableau_ue[] = $donnees['ue_id'];
+		}
+		$i++;
+	}
+
+	if(empty($tableau_ue)){
+		// Au moins 1 ue doit être renseigné
+		$errors_array[] = "Vous devez renseigner au moins une unité d'enseignement !";
+	}
 	// Si aucune erreur n'est trouvée
 	if (empty($errors_array)) {
-
-		// Initialisation du tableau d'ue
-		$reponse = lectureUE();
-		$tableau_ue = array();
-		$i = 1;
-
-		// Remplissage du tableau d'ue avec les id ue
-		foreach ($reponse as $donnees) {
-			if (isset($_POST[$i])) {
-				$tableau_ue[] = $donnees['ue_id'];
-			}
-			$i++;
-		}
 
 		// Inscription base de données
 		if (createUti($_POST['mdp'], $_POST['nom'],$_POST['prenom'],$_POST['login'],$_POST['mail'],$tableau_ue)) {
@@ -304,8 +310,8 @@ if (!empty($_POST)) {
 			setMessageFlash("L'inscription a été effectuée avec succès.");
 
 			// Envoie d'un mail de notification à l'administrateur pour validation de l'utilisateur
-			$email_from = 'berry.sylvain@free.fr'; // @todo: définir l'expéditeur du mail (l'application GetNote)
-			$email_to = 'berry.sylvain@free.fr'; // @todo: getMailAdmin() faire la fonction de récupération du mail de l'administrateur pour l'envoi.
+			$email_from = 'berry.sylvain@free.fr';
+			$email_to = 'berry.sylvain@free.fr';
 			$objet = "Mail de notification de l'application GetNote pour validation d'inscription.";
 			$message = "Une inscription a été effectué sur l'application GetNote. Veuillé valide ou supprimer l'utilisateur nouvellement inscrit".$_POST['login'];
 			envoiMail($email_from,$email_to,$email_replay,$objet,$message);
