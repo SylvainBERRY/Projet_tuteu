@@ -252,8 +252,6 @@ function printHtmlFlashMessages() {
   $result_errors = getMessageFlash(MESSAGE_FLASH_ERREUR);
   $result_success = getMessageFlash();
 
-  var_dump($result_errors);
-  var_dump($result_success);
   if (!empty($result_success)) {
       $result = '<p class="success">';
       foreach ($result_success as $success) {
@@ -484,7 +482,7 @@ function envoiMail($email_from,$name_from,$email_to,$email_replay,$objet,$messag
 
   */
 
-    //mail($email_to, $objet, $message, $headers);
+    mail($email_to, $objet, $message, $headers);
 
 }
 
