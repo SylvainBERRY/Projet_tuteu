@@ -18,5 +18,14 @@
 *--------------------------
 */
 ?>
+<section>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 <h1>Accès interdit</h1>
 <p> Vous n'êtez pas administrateur !</p>
+<br/>
+</section>

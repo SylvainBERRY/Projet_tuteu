@@ -86,5 +86,7 @@ $email_replay='no-replay';
 envoiMail($email_from,$name_from,$email_to,$email_replay,$objet,$message_globale);
 
 $_SESSION['etape']=3;
+$_SESSION['mail_envoyee']=true;
+
 
 ?>

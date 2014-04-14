@@ -253,9 +253,9 @@ function printHtmlFlashMessages() {
   $result_success = getMessageFlash();
 
   if (!empty($result_success)) {
-      $result = '<p class="success">';
+      $result = '<p class="succes">';
       foreach ($result_success as $success) {
-        $result .= '<img src="'.CHEMIN_IMAGE.'success.png" alt="icone success"/>';
+        $result .= '<img src="'.CHEMIN_IMAGE.'succes.png" alt="icone succes"/>';
         $result .= $success;
         $result .= '<br/>';
       }
@@ -356,7 +356,7 @@ function check_nom_prenom($nom_prenom) {
 function check_mdp($mdp)
 {
   if($mdp == '') return VIDE;
-  else if(strlen($mdp) < 4) return TOOSHORT;
+  else if(strlen($mdp) < 8) return TOOSHORT;
   else if(strlen($mdp) > 50) return TOOLONG;
 
   else
@@ -482,7 +482,7 @@ function envoiMail($email_from,$name_from,$email_to,$email_replay,$objet,$messag
 
   */
 
-    mail($email_to, $objet, $message, $headers);
+    //mail($email_to, $objet, $message, $headers);
 
 }
 

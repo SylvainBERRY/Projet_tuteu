@@ -25,4 +25,6 @@ include_once CHEMIN_MODELE.'configuration_modele.php';
 
 // Inclusion de la vue
 include_once CHEMIN_VUE.'configuration_vue.php';
+
+unset($_SESSION['mail_envoyee']);
 ?>

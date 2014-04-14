@@ -27,6 +27,7 @@
 	</h1>
 
 	<!-- Affichage de la liste des utilisateurs avec choix possible -->
+	<?php echo $erreurs ?>
 	<table id="tableauUti">
 
 			<thead>
@@ -97,11 +98,11 @@
 	</form>
 <?php } ?>
 <br/><br/>
-<form class="remplir user" id="dataUti" method="post" action="index.php?module=administrators&amp;action=traite_administrators">
+<form class="remplir inscription" id="dataUti" method="post" action="index.php?module=administrators&amp;action=traite_administrators">
+	<br/><h2 id="creation_from_title">Nouvel utilisateur :</h2><br/>
 	<fieldset><!-- <legend id="creation_from_legend">Création:</legend> -->
-		<p>
-			<h2 id="creation_from_title">Nouvel utilisateur :</h2><br/>
 		<!-- Affichage des donn&egrave;es de l'utilisateur s&egrave;lectionn&egrave; -->
+			<br/>
 			<label>Nom : </label>
 			<input id="creation_from_nom" type="text" name="Nom" size="30" ></input>
 			<br>
@@ -119,11 +120,9 @@
 			<br>
 			<input id="creation_from_uti_id" type="hidden" name="Uti_id" ></input>
 		</fieldset>
-		<br/>
-
 		<!-- Affichage les ue de l'utilisateur -->
 			<table id="tableauUE">
-			<label>Nom des modules :<label>
+			<label id="label_module" >Modules :<label>
 			<thead><tr><th></th><th></th></tr></thead>
 			<tbody>
 			<?php

@@ -18,5 +18,15 @@
 *--------------------------
 */
 ?>
+<section>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 <h1>Erreur 404 !</h1>
 <p> Désolé une erreur est survenue. </p>
+<p> <?php $erreurs ?><p>
+<br/>
+</section>

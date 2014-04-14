@@ -41,36 +41,4 @@ h4
 	margin-bottom: 10px;
 }
 
-form.inscription fieldset
-{
-	display: inline-block;
-	vertical-align: top;
-	margin: auto;
-	width: 360px;
-}
-
-form.inscription fieldset label
-{
-	width: 180px;
-}
-
-form.inscription fieldset input[type="text"], form.inscription fieldset input[type="password"]
-{
-	width: 150px;
-}
-
-form.inscription #tableauUE_wrapper
-{
-	display: inline-block;
-	width: 350px;
-	vertical-align: top;
-	margin-left: 15px;
-}
-
-#label_module
-{
-	position: absolute;
-	margin-left: 15px;
-}
-
 

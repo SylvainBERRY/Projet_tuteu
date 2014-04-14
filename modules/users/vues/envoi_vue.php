@@ -19,15 +19,19 @@
 */
 ?>     
 <section>
-	<br/>
+	<br/><br/><br/><br/>
 <?php
 echo '<script type="text/javascript">$("nav").css("background-image", "url('.CHEMIN_IMAGE.'prog_'.$_SESSION['etape'].'.png)"); </script>';
 ?>
 
+<h1 class="succes">
+	<img src="<?php echo CHEMIN_IMAGE ?>succes.png" alt="icone succes"/>
+	L'envoi des mails est réalisé avec succés
+</h2>
 <p>
-	L'envoi des mails est réalisé avec succés<br/>
-	Vous avez reçu un mail récaputilatif sur votre boite mail<br//>
-	Merci
+<br/>
+	Vous avez reçu un mail récapitulatif sur votre boite mail 
+	<br/>Merci
 </p>
 <br/>
 </section>

@@ -23,7 +23,7 @@ foreach (array_keys($_POST) as $checkbox)
     if(preg_match("/checkbox/", $checkbox))    $checkboxs[]=preg_replace("/checkbox_/","",$checkbox);
 }
 
-if (!isset($checkboxs)) 
+if (!isset($checkboxs) OR isset($_SESSION['mail_envoyee']))
 {
 	header('Location:index.php?module=users&action=configuration');
 }

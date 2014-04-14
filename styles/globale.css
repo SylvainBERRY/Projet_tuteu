@@ -241,14 +241,28 @@ form option
 .erreur
 {
 	color:  #fb4040;
-	margin-bottom: 15px;
 }
 
-.erreur img
+.alert
+{
+	color: #e59f26 ;
+	font-size: 1.05em;
+}
+
+.succes
+{
+	color: #6ac62e ;
+}
+
+.erreur img, .succes img, .alert img
 {
 	margin-right: 5px;
 	margin-bottom: -5px;
 	margin-top: 5px;
+}
+.alert img
+{
+	margin-bottom: -3px;
 }
 
 td,th
@@ -309,12 +323,6 @@ form.connexion fieldset
 form.connexion fieldset input[type="text"],form.connexion fieldset input[type="password"]
 {
 	width: 150px;
-}
-
-form.user fieldset
-{
-	margin: auto;
-	width: 340px;
 }
 
 form.inscription fieldset
@@ -394,4 +402,36 @@ hr
 	border-top: 1px solid #dddddd;
 	width: 860px;
 	margin-top: -15px;
+}
+
+form.inscription fieldset
+{
+	display: inline-block;
+	vertical-align: top;
+	margin: auto;
+	width: 360px;
+}
+
+form.inscription fieldset label
+{
+	width: 180px;
+}
+
+form.inscription fieldset input[type="text"], form.inscription fieldset input[type="password"]
+{
+	width: 150px;
+}
+
+form.inscription #tableauUE_wrapper
+{
+	display: inline-block;
+	width: 350px;
+	vertical-align: top;
+	margin-left: 15px;
+}
+
+#label_module
+{
+	position: absolute;
+	margin-left: 15px;
 }

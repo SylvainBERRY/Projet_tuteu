@@ -34,7 +34,7 @@ function lectureUti()
 {
 	$pdo = PDOSingleton::getInstance();
 
-	$requete = $pdo->prepare("SELECT uti_id, uti_nom, uti_prenom, uti_login, uti_mail, uti_is_valide FROM utilisateurs");
+	$requete = $pdo->prepare("SELECT uti_id, uti_nom, uti_prenom, uti_login, uti_mail, uti_is_valide FROM utilisateurs WHERE uti_is_admin=0 ");
 	$requete->execute();
 
 	if ($result = $requete->fetchall(PDO::FETCH_ASSOC)) {

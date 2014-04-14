@@ -449,7 +449,7 @@ if (!empty($_POST)) {
 			if (modifUti($uti_update['uti_id'], $_POST['Nom'], $_POST['Prenom'], $_POST['Login'], $_POST['Email'], $tableau_ue)) {
 
 				// Modification de l'utilisateur et ajout d'un message flash de succès
-				setMessageFlash("La modification de votre profil a été effectuée avec succès.");
+				setMessageFlash("La modification de ce profil a été effectuée avec succès.");
 
 				// Envoie d'un mail de notification à l'utilisateur pour la modification de son profil
 				$email_from = 'berry.sylvain@free.fr'; 

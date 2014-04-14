@@ -52,7 +52,7 @@
                 <ul>
                     <li><a <?php if($_GET['action']=='importation') echo 'id="ici"' ?> href="index.php?module=users&amp;action=importation">IMPORTATION</a></li>
                     <li><a <?php if($_GET['action']=='configuration') echo 'id="ici"' ?> <?php echo ($_SESSION['etape']>1)?'href="index.php?module=users&amp;action=configuration"':'class="none"' ?> >CONFIGURATION</a></li>
-                    <li><a <?php if($_GET['action']=='envoi') echo 'id="ici"' ?> <?php echo ($_SESSION['etape']>2)?'href="index.php?module=users&amp;action=envoi':'class="none"' ?> >ENVOI EMAIL</a></li>
+                    <li><a <?php if($_GET['action']=='envoi') echo 'id="ici"' ?> <?php echo ($_SESSION['etape']>2)?'href="index.php?module=users&amp;action=envoi"':'class="none"' ?> >ENVOI EMAIL</a></li>
                 </ul>
             </nav>
             <p>

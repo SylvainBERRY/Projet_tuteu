@@ -26,21 +26,21 @@
 <div id="contenu">
 	<h1>Gestion de profil</h1>
 	<p>Bienvenue sur la page de gestion de votre profil<br/></p>
-
+	<p><?php echo $erreurs ?></p>
 	<form class="remplir inscription" name="modifProfil" id="modifProfil" action="index.php?action=profil&amp;module=users" method="post">
 			<?php
 				$reponse = lectureUti();
 				foreach ($reponse as $key => $donnees) {
 			?>
 					<fieldset>
-					<label for="login" class="float">Login :</label>
-					<input type="text" name="login" id="login" size="30" value="<?php echo $donnees['uti_login']; ?>"/> <em>(3 à 32 caractères)</em>
+					<label for="login" class="float">Login : (3 à 32 caract.)</label>
+					<input type="text" name="login" id="login" size="30" value="<?php echo $donnees['uti_login']; ?>"/>
 					<label for="nom" class="float">Nom :</label>
 					<input type="text" name="nom" id="nom" size="30" value="<?php echo $donnees['uti_nom']; ?>" /><br />
 					<label for="prenom" class="float">Prenom :</label>
 					<input type="text" name="prenom" id="prenom" size="30" value="<?php echo $donnees['uti_prenom']; ?>" /><br />
-					<label for="mdp" class="float">Mot de passe :</label>
-					<input type="password" name="mdp" id="mdp" size="30" /> <em>(8 caractères)</em>
+					<label for="mdp" class="float">Mot de passe : (8 caract.)</label>
+					<input type="password" name="mdp" id="mdp" size="30" />
 					<label for="mdp_verif" class="float">Vérification :</label> <input type="password" name="mdp_verif" id="mdp_verif" size="30" /><br />
 					<label for="mail" class="float">Mail :</label>
 					<input type="text" name="mail" id="mail" size="30" value="<?php echo $donnees['uti_mail']; ?>"/> <br />
@@ -50,9 +50,8 @@
 			<?php
 				}
 			?>
-			<br/>
 			<table id="tableauUE">
-				<label>Nom des modules :<label>
+				<label id="label_module">Modules :<label>
 				<thead><tr><th></th><th></th></tr></thead>
 				<tbody>
 					<?php
@@ -93,6 +92,7 @@
 			</table>
 			<div class="center"><input type="submit" value="Modifier" /></div>
 	</form>
+<p class="alert"><img src="<?php echo CHEMIN_IMAGE ?>alert.png" at="alert" />Attention ! vous allez être déconnecté pour effectuer les modification</p>
 </div>
 <br/>
 </section>
