@@ -1,3 +1,5 @@
+var nb_etudiant = 0;
+
 $(document).ready (function()
 {
     $('table').dataTable
@@ -38,7 +40,6 @@ $(document).ready (function()
 
     });
 
-    var nb_etudiant = 0;
     $('input#select_tout').on('click',selectTout);
     $('input.select').on('click',select);
     $('#objet').keyup(changeObjet);
@@ -104,11 +105,10 @@ function select()
     {
         $('input#select_tout').attr('checked', false);
         nb_etudiant--;
-        MajNbEtudiant();
     }
     else
     {
         nb_etudiant++;
-        MajNbEtudiant();
     }
+    MajNbEtudiant();
 }

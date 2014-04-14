@@ -17,3 +17,8 @@ fieldset
 {
 	border: 0;
 }
+
+#tableauUti_wrapper button
+{
+	margin:5px 0px; 
+}

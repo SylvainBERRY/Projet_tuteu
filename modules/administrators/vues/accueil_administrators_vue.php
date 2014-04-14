@@ -121,7 +121,7 @@
 			<input id="creation_from_uti_id" type="hidden" name="Uti_id" ></input>
 		</fieldset>
 		<!-- Affichage les ue de l'utilisateur -->
-			<table id="tableauUE">
+			<table id="tableauUE" name="tableauUE" >
 			<label id="label_module" >Modules :<label>
 			<thead><tr><th></th><th></th></tr></thead>
 			<tbody>
@@ -131,7 +131,7 @@
 			foreach ($reponse as $donnees) {
 			?>
 			<tr id="tr_ue_"<?php echo $donnees['ue_id'];?> value="<?php echo $donnees['ue_id'];?>" >
-				<td><input name="<?php echo $donnees['ue_id']; ?>"  type="checkbox" validid_check_ue="<?php echo $donnees['ue_id']; ?>" /></td>
+				<td><input name="<?php echo $donnees['ue_id']; ?>" type="checkbox" validid_check_ue="<?php echo $donnees['ue_id']; ?>" /></td>
 				<td><label for="ue" class="float"><?php echo $donnees['ue_nom']; ?></label></td>
 			</tr>
 			<?php
@@ -351,6 +351,7 @@
 		// alert(data.message);
 
 		// Modifier le tableau pour cocher les éléments
+		$('table#tableauUE input[type=checkbox]').prop('checked', false);
 		for (var x = 0; x < data.ue_id_uti.length; x++) {
 
 			// Coche les checkbox correspondant au ue obtenu

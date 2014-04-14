@@ -26,6 +26,7 @@
 	<div id="contenu">
 		<h1>Formulaire d'inscription</h1>
 		<h4>Merci de remplir ces champs pour continuer.</h4>
+		<?php echo $erreurs ?>
 		<br/>
 		<form class="remplir inscription" name="inscription" id="inscription" action="index.php?action=inscription" method="post">
 				<fieldset>

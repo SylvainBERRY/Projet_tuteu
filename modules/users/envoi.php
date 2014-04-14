@@ -26,6 +26,12 @@ foreach (array_keys($_POST) as $checkbox)
 if (!isset($checkboxs) OR isset($_SESSION['mail_envoyee']))
 {
 	header('Location:index.php?module=users&action=configuration');
+}else
+{
+	if(!isset($_SESSION['checkbox']))
+		$_SESSION['checkbox']=implode('|', $checkboxs);
+	else
+		$_SESSION['checkbox']=$_SESSION['checkbox'].'|'.implode('|', $checkboxs);
 }
 
 // Inclusion du modele pour l'envoi

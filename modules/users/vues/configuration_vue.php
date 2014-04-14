@@ -26,10 +26,20 @@ Ci-dessous vos notes du module '.$_SESSION['ue'].'.
 Cordialement
 '.$nom_prenom;
 
+$nb_etudiants=$info_etudiants->rowCount();
+
+$checkboxs=array();
+
+//print_r($_SESSION['checkbox']);
+
+if(isset($_SESSION['checkbox']))
+{
+    $checkboxs=explode('|',$_SESSION['checkbox']);
+}
 
 ?>
 <script type="text/javascript">
-    var nb_etud_totale = <?php echo $info_etudiants->rowCount(); ?>;
+    var nb_etud_totale = <?php echo $nb_etudiants; ?>;
 </script>
 <section>
     <br/>
@@ -66,7 +76,13 @@ Cordialement
     
     echo '<table border="1">';
     echo '<thead><tr>';
-    echo '<th><input type="checkbox" id="select_tout" /></th><th>Nom</th><th>Prénom</th><th>Emails</th>';
+    echo '<th>';
+    if($nb_etudiants!=count($checkboxs))
+        echo '<input type="checkbox" id="select_tout" />';
+    else
+         echo '<img src="'.CHEMIN_IMAGE.'succes.png" />';
+     
+    echo '</th><th>Nom</th><th>Prénom</th><th>Emails</th>';
 
     foreach ($tab_type_note as $type_note) 
     {
@@ -79,7 +95,12 @@ Cordialement
     while ($etudiant = $info_etudiants->fetch())
     {
     echo '<tr>';
-    echo '<td><input type="checkbox" class="select" name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" /></td>';
+    echo '<td>';
+    if(!in_array($etudiant['id_etud'],$checkboxs))
+        echo '<input type="checkbox" class="select" name="checkbox_'.$etudiant['id_etud'].'" value="'.$etudiant['id_etud'].'" />';
+    else
+        echo '<img src="'.CHEMIN_IMAGE.'succes.png" />';
+    echo '</td>';
     echo '<td>'.$etudiant['nom'].'</td>';
     echo '<td>'.$etudiant['prenom'].'</td>';
     echo '<td>'.$etudiant['mail1'].'<br/>'.$etudiant['mail2'].'</td>';
